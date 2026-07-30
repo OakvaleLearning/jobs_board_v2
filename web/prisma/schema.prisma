@@ -1,0 +1,975 @@
+// Oakvale Jobs Board — Prisma schema
+// Taxonomies (workforce categories, employer types, care types) are configurable DB rows,
+// not hardcoded, to satisfy the brief's extensibility requirement. Soft deletes via deletedAt.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ----------------------------------------------------------------------------
+// Enums
+// ----------------------------------------------------------------------------
+
+enum Role {
+  WORKER
+  EMPLOYER
+  AGENT
+  ADMIN
+}
+
+enum EmployerKind {
+  INDIVIDUAL
+  ORGANIZATION
+}
+
+enum VerificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ProfileStatus {
+  DRAFT
+  PENDING
+  APPROVED
+  REJECTED
+  SUSPENDED
+}
+
+enum CertStatus {
+  NOT_SUBMITTED
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum BackgroundCheckStatus {
+  NOT_REQUESTED
+  PENDING
+  IN_PROGRESS
+  CLEAR
+  FLAGGED
+}
+
+enum DocumentType {
+  NIN
+  PASSPORT
+  VOTER_CARD
+  DRIVERS_LICENCE
+  SELFIE
+  ADDRESS_PROOF
+  CERTIFICATE
+  POLICE_REPORT
+  GUARANTOR_LETTER
+  AFFIDAVIT
+  VIDEO_INTRO
+}
+
+enum EmployerDocType {
+  CAC
+  PROOF_OF_RESIDENCE
+  ID_DOCUMENT
+}
+
+enum Currency {
+  NGN
+  GBP
+  USD
+}
+
+enum EmploymentType {
+  FULL_TIME
+  PART_TIME
+  SHIFT
+  LIVE_IN
+  CONTRACT
+}
+
+enum JobStatus {
+  DRAFT
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  CLOSED
+}
+
+enum JobVisibility {
+  PUBLIC
+  RESTRICTED
+}
+
+enum ApplicationStatus {
+  APPLIED
+  SHORTLISTED
+  INTERVIEW
+  OFFER
+  ACCEPTED
+  DECLINED
+  REJECTED
+  HIRED
+}
+
+enum InterviewFormat {
+  IN_PERSON
+  VIDEO
+  PHONE
+}
+
+enum InterviewStatus {
+  PROPOSED
+  CONFIRMED
+  RESCHEDULE_REQUESTED
+  COMPLETED
+  CANCELLED
+}
+
+enum OfferStatus {
+  PENDING_ADMIN
+  SENT
+  ACCEPTED
+  DECLINED
+  NEGOTIATE
+}
+
+enum PlacementStatus {
+  ACTIVE
+  ENDED
+  SUSPENDED
+  UNDER_REVIEW
+}
+
+enum ReferralSource {
+  SOCIAL_MEDIA
+  PERSONAL_REFERRAL
+  SEARCH_ENGINE
+  EVENT
+  OTHER
+}
+
+// --- Stage 2: contracts, placement lifecycle, complaints, billing ---
+
+enum ContractType {
+  WORKER_PLACEMENT
+  EMPLOYER_SERVICE
+  ANNUAL_PARTNERSHIP
+}
+
+enum ContractStatus {
+  DRAFT
+  AWAITING_SIGNATURE
+  EXECUTED
+  SUPERSEDED
+  TERMINATED
+  DISPUTED
+}
+
+enum WelfareMethod {
+  CALL
+  MESSAGE
+  VISIT
+}
+
+enum WellbeingStatus {
+  GREEN
+  AMBER
+  RED
+}
+
+enum CpdStatus {
+  CURRENT
+  DUE_SOON
+  OVERDUE
+}
+
+enum ComplaintCategory {
+  WORKER_NON_ATTENDANCE
+  WORKER_UNDERPERFORMANCE
+  WORKER_MISCONDUCT_MINOR
+  WORKER_MISCONDUCT_SERIOUS
+  EMPLOYER_UNFAIR_TREATMENT
+  EMPLOYER_NON_PAYMENT
+  PLATFORM_DISPUTE
+  DATA_PRIVACY
+}
+
+enum ComplaintUrgency {
+  CRITICAL
+  HIGH
+  STANDARD
+}
+
+enum ComplaintStatus {
+  SUBMITTED
+  TRIAGED
+  ACKNOWLEDGED
+  INVESTIGATING
+  RESOLVED
+  CLOSED
+  REOPENED
+}
+
+enum ComplaintStage {
+  TRIAGE
+  ACKNOWLEDGEMENT
+  INVESTIGATION
+  RESOLUTION
+  COMMUNICATION
+  CLOSURE
+}
+
+enum InvoiceStatus {
+  ISSUED
+  PAID
+  OVERDUE
+  VOID
+}
+
+enum InvoiceType {
+  PLACEMENT_FEE
+  SUBSCRIPTION
+  CPD_REFRESH
+}
+
+enum AssessmentType {
+  CARE_NEEDS
+  WORKFORCE_REQUIREMENTS
+}
+
+enum ReviewDirection {
+  EMPLOYER_ON_WORKER
+  WORKER_ON_EMPLOYER
+}
+
+enum ReviewStatus {
+  PUBLISHED
+  HIDDEN
+}
+
+// ----------------------------------------------------------------------------
+// Users & profiles
+// ----------------------------------------------------------------------------
+
+model User {
+  id           String  @id @default(cuid())
+  email        String  @unique
+  passwordHash String
+  role         Role
+  name         String
+  phone        String?
+
+  // Referral tracking (dropdown + conditional referrer name)
+  referralSource ReferralSource?
+  referrerName   String?
+
+  workerProfile   WorkerProfile?
+  employerProfile EmployerProfile?
+
+  notifications Notification[]
+  auditLogs     AuditLog[]
+  sentMessages  Message[]      @relation("MessageSender")
+
+  // Stage 2 — agent/complaint relations
+  assignedEmployers  EmployerProfile[] @relation("EmployerAccountManager")
+  managedPlacements  Placement[]       @relation("PlacementAccountManager")
+  welfareChecks      WelfareCheck[]
+  complaintsRaised   Complaint[]       @relation("ComplaintRaiser")
+  complaintsAgainst  Complaint[]       @relation("ComplaintSubject")
+  assignedComplaints Complaint[]       @relation("ComplaintHandler")
+  complaintEvents    ComplaintEvent[]
+
+  // Stage 3 — two-sided reviews
+  reviewsAuthored Review[] @relation("ReviewAuthor")
+  reviewsReceived Review[] @relation("ReviewSubject")
+  reviewsHidden   Review[] @relation("ReviewModerator")
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([role])
+}
+
+model WorkerProfile {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Personal
+  dateOfBirth DateTime?
+  gender      String?
+  state       String?
+  lga         String?
+  address     String?
+
+  // Category (from configurable taxonomy)
+  workforceCategoryId String?
+  workforceCategory   WorkforceCategory? @relation(fields: [workforceCategoryId], references: [id])
+
+  // Preferences / searchable facets
+  employmentTypes   EmploymentType[]
+  languages         String[]
+  willingToRelocate Boolean          @default(false)
+  availabilityDate  DateTime?
+  experienceLevel   String?
+  expectedSalaryMin Int?
+  expectedSalaryMax Int?
+  salaryCurrency    Currency         @default(NGN)
+  personalStatement String?
+
+  // Certification (number optional; file upload is the artifact)
+  certificateNumber  String?
+  certProgramme      String?
+  certCompletionDate DateTime?
+  cpdHours           Int?
+
+  // CPD refresh tracking (cycle length read from workforceCategory.config)
+  cpdLastCompletedAt DateTime?
+  cpdNextDueAt       DateTime?
+
+  // Status / gates
+  completionPercent     Int                   @default(0)
+  profileStatus         ProfileStatus         @default(DRAFT)
+  certStatus            CertStatus            @default(NOT_SUBMITTED)
+  backgroundCheckStatus BackgroundCheckStatus @default(NOT_REQUESTED)
+  searchable            Boolean               @default(false)
+  reviewNotes           String?
+
+  // Stage 3 — rating cache (recomputed from published reviews)
+  ratingAvg   Float?
+  ratingCount Int    @default(0)
+
+  educations   Education[]
+  experiences  Experience[]
+  references   Reference[]
+  documents    WorkerDocument[]
+  applications Application[]
+  shortlists   Shortlist[]
+  placements   Placement[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([workforceCategoryId])
+  @@index([profileStatus])
+  @@index([searchable])
+}
+
+model Education {
+  id            String        @id @default(cuid())
+  workerId      String
+  worker        WorkerProfile @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  institution   String
+  qualification String
+  startYear     Int?
+  endYear       Int?
+  createdAt     DateTime      @default(now())
+}
+
+model Experience {
+  id          String        @id @default(cuid())
+  workerId    String
+  worker      WorkerProfile @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  employer    String
+  roleTitle   String
+  startDate   DateTime?
+  endDate     DateTime?
+  current     Boolean       @default(false)
+  description String?
+  createdAt   DateTime      @default(now())
+}
+
+model Reference {
+  id           String        @id @default(cuid())
+  workerId     String
+  worker       WorkerProfile @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  name         String
+  relationship String?
+  phone        String?
+  email        String?
+  createdAt    DateTime      @default(now())
+}
+
+model WorkerDocument {
+  id        String             @id @default(cuid())
+  workerId  String
+  worker    WorkerProfile      @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  type      DocumentType
+  fileUrl   String
+  fileName  String
+  status    VerificationStatus @default(PENDING)
+  createdAt DateTime           @default(now())
+
+  @@index([workerId, type])
+}
+
+model EmployerProfile {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  kind           EmployerKind
+  employerTypeId String?
+  employerType   EmployerType? @relation(fields: [employerTypeId], references: [id])
+
+  // Organization fields
+  orgName   String?
+  sector    String?
+  cacNumber String?
+
+  // Individual / shared fields
+  contactName String?
+  address     String?
+  country     String?
+
+  verificationStatus VerificationStatus @default(PENDING)
+  reviewNotes        String?
+
+  // Stage 3 — rating cache (recomputed from published reviews)
+  ratingAvg   Float?
+  ratingCount Int    @default(0)
+
+  // Stage 2 — assigned account manager (agent)
+  assignedAgentId String?
+  assignedAgent   User?   @relation("EmployerAccountManager", fields: [assignedAgentId], references: [id], onDelete: SetNull)
+
+  documents   EmployerDocument[]
+  jobs        Job[]
+  shortlists  Shortlist[]
+  placements  Placement[]
+  invoices    Invoice[]
+  assessments Assessment[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([verificationStatus])
+}
+
+model EmployerDocument {
+  id         String             @id @default(cuid())
+  employerId String
+  employer   EmployerProfile    @relation(fields: [employerId], references: [id], onDelete: Cascade)
+  type       EmployerDocType
+  fileUrl    String
+  fileName   String
+  status     VerificationStatus @default(PENDING)
+  createdAt  DateTime           @default(now())
+}
+
+// ----------------------------------------------------------------------------
+// Configurable taxonomy
+// ----------------------------------------------------------------------------
+
+model WorkforceCategory {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String  @unique
+  description String?
+  config      Json?
+  active      Boolean @default(true)
+
+  workers WorkerProfile[]
+  jobs    Job[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model EmployerType {
+  id                 String       @id @default(cuid())
+  name               String
+  slug               String       @unique
+  description        String?
+  kind               EmployerKind
+  verificationMethod String?
+  serviceModel       String?
+  jobPostingEnabled  Boolean      @default(true)
+  config             Json?
+  active             Boolean      @default(true)
+
+  employers EmployerProfile[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model CareType {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String  @unique
+  description String?
+  // Grouping used to organise care types into sections when posting a job
+  // (e.g. "Personal Care", "Specialized Care"). Admin-editable, free text.
+  category    String?
+  active      Boolean @default(true)
+
+  jobs JobCareType[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+// ----------------------------------------------------------------------------
+// Jobs, applications, hiring
+// ----------------------------------------------------------------------------
+
+model Job {
+  id         String          @id @default(cuid())
+  employerId String
+  employer   EmployerProfile @relation(fields: [employerId], references: [id], onDelete: Cascade)
+
+  title               String
+  workforceCategoryId String
+  workforceCategory   WorkforceCategory @relation(fields: [workforceCategoryId], references: [id])
+  careTypes           JobCareType[]
+
+  description             String
+  state                   String?
+  lga                     String?
+  employmentType          EmploymentType
+  salaryMin               Int?
+  salaryMax               Int?
+  salaryCurrency          Currency       @default(NGN)
+  backgroundCheckRequired Boolean        @default(true)
+
+  visibility  JobVisibility @default(PUBLIC)
+  status      JobStatus     @default(PENDING_REVIEW)
+  reviewNotes String?
+
+  applications Application[]
+  shortlists   Shortlist[]
+  placements   Placement[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([status, visibility])
+  @@index([workforceCategoryId])
+}
+
+model JobCareType {
+  jobId      String
+  job        Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  careTypeId String
+  careType   CareType @relation(fields: [careTypeId], references: [id], onDelete: Cascade)
+
+  @@id([jobId, careTypeId])
+}
+
+model Application {
+  id       String        @id @default(cuid())
+  jobId    String
+  job      Job           @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  workerId String
+  worker   WorkerProfile @relation(fields: [workerId], references: [id], onDelete: Cascade)
+
+  status    ApplicationStatus @default(APPLIED)
+  coverNote String?
+
+  interview Interview?
+  offer     Offer?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([jobId, workerId])
+  @@index([workerId])
+  @@index([jobId, status])
+}
+
+model Shortlist {
+  id         String          @id @default(cuid())
+  employerId String
+  employer   EmployerProfile @relation(fields: [employerId], references: [id], onDelete: Cascade)
+  workerId   String
+  worker     WorkerProfile   @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  jobId      String?
+  job        Job?            @relation(fields: [jobId], references: [id], onDelete: SetNull)
+  note       String?
+  createdAt  DateTime        @default(now())
+
+  @@unique([employerId, workerId, jobId])
+}
+
+model Interview {
+  id            String          @id @default(cuid())
+  applicationId String          @unique
+  application   Application     @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  format        InterviewFormat
+  proposedTimes Json
+  confirmedTime DateTime?
+  status        InterviewStatus @default(PROPOSED)
+  outcome       String?
+  notes         String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+model Offer {
+  id            String      @id @default(cuid())
+  applicationId String      @unique
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  roleTitle      String
+  startDate      DateTime
+  employmentType EmploymentType
+  salary         Int
+  salaryCurrency Currency       @default(NGN)
+  location       String?
+  hours          String?
+  conditions     String?
+
+  status    OfferStatus @default(PENDING_ADMIN)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  placement Placement?
+}
+
+model Placement {
+  id         String          @id @default(cuid())
+  workerId   String
+  worker     WorkerProfile   @relation(fields: [workerId], references: [id])
+  employerId String
+  employer   EmployerProfile @relation(fields: [employerId], references: [id])
+  jobId      String
+  job        Job             @relation(fields: [jobId], references: [id])
+  offerId    String          @unique
+  offer      Offer           @relation(fields: [offerId], references: [id])
+
+  roleTitle String
+  startDate DateTime
+  status    PlacementStatus @default(ACTIVE)
+
+  // Stage 2 — managed placement lifecycle
+  expectedEndDate     DateTime?
+  actualEndDate       DateTime?
+  salary              Int?
+  salaryCurrency      Currency  @default(NGN)
+  guaranteeWindowEnds DateTime?
+  performanceNotes    String?
+
+  accountManagerId String?
+  accountManager   User?   @relation("PlacementAccountManager", fields: [accountManagerId], references: [id], onDelete: SetNull)
+
+  // Replacement chain (a placement can replace an earlier one)
+  replacesId        String?    @unique
+  replaces          Placement? @relation("PlacementReplacement", fields: [replacesId], references: [id])
+  replacedBy        Placement? @relation("PlacementReplacement")
+  replacementReason String?
+
+  contracts     Contract[]
+  welfareChecks WelfareCheck[]
+  complaints    Complaint[]
+  invoices      Invoice[]
+  reviews       Review[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+}
+
+// ----------------------------------------------------------------------------
+// Contracts
+// ----------------------------------------------------------------------------
+
+model ContractTemplate {
+  id      String       @id @default(cuid())
+  type    ContractType
+  name    String
+  version Int          @default(1)
+  body    String // template text with {{variable}} placeholders
+  active  Boolean      @default(true)
+
+  contracts Contract[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([type, active])
+}
+
+model Contract {
+  id          String    @id @default(cuid())
+  placementId String
+  placement   Placement @relation(fields: [placementId], references: [id], onDelete: Cascade)
+
+  type       ContractType
+  templateId String?
+  template   ContractTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  version    Int               @default(1)
+
+  populatedBody String
+  pdfKey        String?
+  pdfUrl        String?
+
+  status          ContractStatus @default(AWAITING_SIGNATURE)
+  partySignedAt   DateTime? // worker (WORKER_PLACEMENT) or employer (EMPLOYER_SERVICE)
+  oakvaleSignedAt DateTime? // Oakvale counter-signature (auto)
+  terminatedAt    DateTime?
+
+  supersededById String?   @unique
+  supersededBy   Contract? @relation("ContractSupersede", fields: [supersededById], references: [id])
+  supersedes     Contract? @relation("ContractSupersede")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([placementId])
+}
+
+// ----------------------------------------------------------------------------
+// Welfare checks
+// ----------------------------------------------------------------------------
+
+model WelfareCheck {
+  id          String    @id @default(cuid())
+  placementId String
+  placement   Placement @relation(fields: [placementId], references: [id], onDelete: Cascade)
+  agentId     String?
+  agent       User?     @relation(fields: [agentId], references: [id], onDelete: SetNull)
+
+  date                DateTime        @default(now())
+  method              WelfareMethod
+  attendanceConfirmed Boolean         @default(true)
+  wellbeing           WellbeingStatus @default(GREEN)
+  issues              String?
+  actionTaken         String?
+  reportPdfKey        String?
+  reportPdfUrl        String?
+
+  createdAt DateTime @default(now())
+
+  @@index([placementId])
+}
+
+// ----------------------------------------------------------------------------
+// Complaints & resolution
+// ----------------------------------------------------------------------------
+
+model Complaint {
+  id      String @id @default(cuid())
+  caseRef String @unique
+
+  category ComplaintCategory
+  urgency  ComplaintUrgency
+  status   ComplaintStatus   @default(SUBMITTED)
+  stage    ComplaintStage    @default(TRIAGE)
+
+  raisedById String
+  raisedBy   User   @relation("ComplaintRaiser", fields: [raisedById], references: [id])
+
+  againstUserId String?
+  againstUser   User?   @relation("ComplaintSubject", fields: [againstUserId], references: [id], onDelete: SetNull)
+
+  placementId String?
+  placement   Placement? @relation(fields: [placementId], references: [id], onDelete: SetNull)
+
+  incidentDate        DateTime?
+  description         String
+  preferredResolution String?
+
+  assignedAgentId String?
+  assignedAgent   User?   @relation("ComplaintHandler", fields: [assignedAgentId], references: [id], onDelete: SetNull)
+
+  slaDueAt              DateTime?
+  resolutionNotes       String?
+  closedAt              DateTime?
+  satisfactionConfirmed Boolean?
+  reopenDeadline        DateTime?
+
+  events    ComplaintEvent[]
+  documents ComplaintDocument[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([assignedAgentId])
+}
+
+model ComplaintEvent {
+  id          String    @id @default(cuid())
+  complaintId String
+  complaint   Complaint @relation(fields: [complaintId], references: [id], onDelete: Cascade)
+  actorId     String?
+  actor       User?     @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  stage ComplaintStage
+  note  String?
+
+  createdAt DateTime @default(now())
+
+  @@index([complaintId])
+}
+
+model ComplaintDocument {
+  id          String    @id @default(cuid())
+  complaintId String
+  complaint   Complaint @relation(fields: [complaintId], references: [id], onDelete: Cascade)
+  fileUrl     String
+  fileName    String
+  createdAt   DateTime  @default(now())
+}
+
+// ----------------------------------------------------------------------------
+// Billing (NGN via Paystack)
+// ----------------------------------------------------------------------------
+
+model Invoice {
+  id         String          @id @default(cuid())
+  number     String          @unique
+  employerId String
+  employer   EmployerProfile @relation(fields: [employerId], references: [id], onDelete: Cascade)
+
+  placementId String?
+  placement   Placement? @relation(fields: [placementId], references: [id], onDelete: SetNull)
+
+  type     InvoiceType   @default(PLACEMENT_FEE)
+  amount   Int
+  currency Currency      @default(NGN)
+  status   InvoiceStatus @default(ISSUED)
+
+  dueAt       DateTime?
+  paidAt      DateTime?
+  paystackRef String?
+  lineItems   Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([employerId])
+}
+
+// ----------------------------------------------------------------------------
+// Pipeline intake (Care Needs Assessment / Workforce Requirements)
+// ----------------------------------------------------------------------------
+
+model Assessment {
+  id         String          @id @default(cuid())
+  employerId String
+  employer   EmployerProfile @relation(fields: [employerId], references: [id], onDelete: Cascade)
+
+  type        AssessmentType
+  data        Json
+  submittedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([employerId, type])
+}
+
+// ----------------------------------------------------------------------------
+// Messaging, notifications, audit
+// ----------------------------------------------------------------------------
+
+model Conversation {
+  id             String    @id @default(cuid())
+  workerUserId   String
+  employerUserId String
+  jobId          String?
+  messages       Message[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([workerUserId, employerUserId, jobId])
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  senderId       String
+  sender         User         @relation("MessageSender", fields: [senderId], references: [id])
+  body           String
+  flagged        Boolean      @default(false)
+  readAt         DateTime?
+  createdAt      DateTime     @default(now())
+
+  @@index([conversationId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String
+  title     String
+  body      String?
+  link      String?
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId, read])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action     String
+  entityType String?
+  entityId   String?
+  ip         String?
+  meta       Json?
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([userId])
+}
+
+// ----------------------------------------------------------------------------
+// Stage 3 — two-sided reviews & learned matching
+// ----------------------------------------------------------------------------
+
+model Review {
+  id          String    @id @default(cuid())
+  placementId String
+  placement   Placement @relation(fields: [placementId], references: [id], onDelete: Cascade)
+
+  authorId  String
+  author    User   @relation("ReviewAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  subjectId String
+  subject   User   @relation("ReviewSubject", fields: [subjectId], references: [id], onDelete: Cascade)
+
+  direction ReviewDirection
+  rating    Int // 1–5
+  comment   String
+
+  status       ReviewStatus @default(PUBLISHED)
+  hiddenById   String?
+  hiddenBy     User?        @relation("ReviewModerator", fields: [hiddenById], references: [id], onDelete: SetNull)
+  hiddenReason String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([placementId, direction])
+  @@index([subjectId, status])
+}
+
+// Single "default" row holding admin base weights + outcome-learned effective weights.
+model MatchingModel {
+  id             String    @id @default("default")
+  baseWeights    Json // admin-set defaults per factor
+  learnedWeights Json? // outcome-tuned effective weights (blended toward base)
+  sampleSize     Int       @default(0)
+  lastLearnedAt  DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
