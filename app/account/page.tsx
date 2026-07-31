@@ -1,12 +1,11 @@
-import Link from "next/link";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { requireUser, getCurrentDbUser, roleHome } from "@/lib/session";
 import { PageTransition } from "@/components/motion";
+import LinkButton from "@/components/LinkButton";
 import AccountDetailsForm from "@/components/account/AccountDetailsForm";
 import ChangePasswordForm from "@/components/account/ChangePasswordForm";
 
@@ -27,14 +26,13 @@ export default async function AccountPage() {
 
   return (
     <PageTransition sx={{ maxWidth: 720, mx: "auto", p: { xs: 2, sm: 3, md: 4 } }}>
-      <Button
-        component={Link}
+      <LinkButton
         href={roleHome(user.role)}
         startIcon={<ArrowBackRoundedIcon />}
         sx={{ mb: 2 }}
       >
         Back to dashboard
-      </Button>
+      </LinkButton>
       <Typography variant="h4" gutterBottom>
         Account settings
       </Typography>
