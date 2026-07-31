@@ -72,7 +72,7 @@ function QueueCard({
 }
 
 export default async function AdminOverview() {
-  await requireRole("ADMIN", "AGENT");
+  await requireRole("ADMIN");
   const c = await counts();
 
   return (

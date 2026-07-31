@@ -21,6 +21,7 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import Logo from "@/components/Logo";
 import NotificationsBell from "@/components/shell/NotificationsBell";
 import type { ReactNode } from "react";
@@ -157,6 +158,16 @@ export default function DashboardShell({
                 </Typography>
               </Box>
               <Divider />
+              <MenuItem
+                component={Link}
+                href="/account"
+                onClick={() => setAnchorEl(null)}
+              >
+                <ListItemIcon>
+                  <SettingsRoundedIcon fontSize="small" />
+                </ListItemIcon>
+                Account settings
+              </MenuItem>
               <MenuItem onClick={() => signOut({ callbackUrl: "/" })}>
                 <ListItemIcon>
                   <LogoutRoundedIcon fontSize="small" />

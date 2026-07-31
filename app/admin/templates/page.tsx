@@ -10,7 +10,7 @@ import type { ContractType } from "@/generated/prisma/client";
 const TYPES: ContractType[] = ["WORKER_PLACEMENT", "EMPLOYER_SERVICE", "ANNUAL_PARTNERSHIP"];
 
 export default async function AdminTemplatesPage() {
-  await requireRole("ADMIN", "AGENT");
+  await requireRole("ADMIN");
   const templates = await prisma.contractTemplate.findMany({
     where: { active: true, deletedAt: null },
     orderBy: { version: "desc" },

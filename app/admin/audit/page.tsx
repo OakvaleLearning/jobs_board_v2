@@ -12,7 +12,7 @@ import { prisma } from "@/lib/prisma";
 import { PageTransition } from "@/components/motion";
 
 export default async function AdminAuditPage() {
-  await requireRole("ADMIN", "AGENT");
+  await requireRole("ADMIN");
   const logs = await prisma.auditLog.findMany({
     orderBy: { createdAt: "desc" },
     take: 200,
