@@ -27,7 +27,7 @@ export default function CertificateSection({ certStatus, existing, defaults }: P
 
   return (
     <Box>
-      <Stack direction="row" spacing={1.5} sx={{ alignItems: "center", mb: 2 }}>
+      <Stack direction="row" spacing={1.5} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1, mb: 2 }}>
         <Typography variant="subtitle1">Your Oakvale certificate</Typography>
         <StatusBadge meta={certStatusMeta[certStatus]} />
       </Stack>

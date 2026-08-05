@@ -47,6 +47,7 @@ export default function Thread({
                   <Box
                     sx={{
                       maxWidth: "75%",
+                      overflowWrap: "anywhere",
                       px: 1.75,
                       py: 1,
                       borderRadius: 3,

@@ -101,13 +101,15 @@ export default async function WorkerDashboard() {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
+                        gap: 1.5,
+                        flexWrap: "wrap",
                         p: 2,
                         border: "1px solid",
                         borderColor: "divider",
                         borderRadius: 2,
                       }}
                     >
-                      <Box>
+                      <Box sx={{ minWidth: 0 }}>
                         <Typography sx={{ fontWeight: 600 }}>{a.job.title}</Typography>
                         <Typography variant="body2" color="text.secondary">
                           {a.job.employer.orgName ?? "Private employer"} · applied {formatDate(a.createdAt)}

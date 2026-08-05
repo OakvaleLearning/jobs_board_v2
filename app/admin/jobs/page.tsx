@@ -92,7 +92,7 @@ export default async function AdminJobsPage() {
       <Stack spacing={1.5}>
         {others.map((j) => (
           <Card key={j.id}>
-            <CardContent sx={{ p: 2.5, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
+            <CardContent sx={{ p: 2.5, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 2 }}>
               <Box>
                 <Typography sx={{ fontWeight: 600 }}>{j.title}</Typography>
                 <Typography variant="body2" color="text.secondary">

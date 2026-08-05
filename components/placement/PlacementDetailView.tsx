@@ -38,7 +38,7 @@ function Field({ label, value }: { label: string; value: React.ReactNode }) {
       <Typography variant="caption" color="text.secondary">
         {label}
       </Typography>
-      <Typography variant="body2" sx={{ fontWeight: 600 }}>
+      <Typography variant="body2" sx={{ fontWeight: 600, overflowWrap: "anywhere" }}>
         {value}
       </Typography>
     </Box>
@@ -106,19 +106,19 @@ export default function PlacementDetailView({
                 Placement details
               </Typography>
               <Grid container spacing={2}>
-                <Grid size={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <Field label="Start date" value={formatDate(placement.startDate)} />
                 </Grid>
-                <Grid size={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <Field
                     label="Salary"
                     value={placement.salary ? `${formatMoney(placement.salary, placement.salaryCurrency)}/mo` : "As agreed"}
                   />
                 </Grid>
-                <Grid size={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <Field label="Account manager" value={placement.accountManager?.name ?? "Unassigned"} />
                 </Grid>
-                <Grid size={6}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                   <Field
                     label="Guarantee window"
                     value={
@@ -131,7 +131,7 @@ export default function PlacementDetailView({
                   />
                 </Grid>
                 {(isEmployerOwner || isAgent || isWorker) && placement.status === "ACTIVE" && (
-                  <Grid size={6}>
+                  <Grid size={{ xs: 12, sm: 6 }}>
                     <Field
                       label="Contact"
                       value={

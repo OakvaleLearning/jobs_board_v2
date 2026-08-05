@@ -20,22 +20,34 @@ export default async function MarketingLayout({
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <AppBar position="sticky">
         <Container maxWidth="lg">
-          <Toolbar disableGutters sx={{ gap: 2 }}>
+          <Toolbar disableGutters sx={{ gap: { xs: 1, sm: 2 } }}>
             <Link href="/" aria-label="Oakvale Jobs home">
               <Logo />
             </Link>
             <Box sx={{ flexGrow: 1 }} />
-            <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+            <Stack direction="row" spacing={{ xs: 0.5, sm: 1 }} sx={{ alignItems: "center" }}>
               {user ? (
-                <LinkButton href={roleHome(user.role)} variant="contained">
+                <LinkButton
+                  href={roleHome(user.role)}
+                  variant="contained"
+                  sx={{ px: { xs: 2, sm: 2.5 }, whiteSpace: "nowrap" }}
+                >
                   My dashboard
                 </LinkButton>
               ) : (
                 <>
-                  <LinkButton href="/login" color="inherit">
+                  <LinkButton
+                    href="/login"
+                    color="inherit"
+                    sx={{ px: { xs: 1.5, sm: 2.5 }, whiteSpace: "nowrap" }}
+                  >
                     Log in
                   </LinkButton>
-                  <LinkButton href="/signup" variant="contained">
+                  <LinkButton
+                    href="/signup"
+                    variant="contained"
+                    sx={{ px: { xs: 2, sm: 2.5 }, whiteSpace: "nowrap" }}
+                  >
                     Get started
                   </LinkButton>
                 </>

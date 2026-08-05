@@ -1,4 +1,7 @@
 import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
@@ -28,7 +31,8 @@ export default async function AdminAuditPage() {
         The 200 most recent actions across the platform, with actor and IP.
       </Typography>
 
-      <Card>
+      {/* Table view for md+ screens */}
+      <Card sx={{ display: { xs: "none", md: "block" } }}>
         <TableContainer>
           <Table size="small" stickyHeader>
             <TableHead>
@@ -72,6 +76,44 @@ export default async function AdminAuditPage() {
           </Table>
         </TableContainer>
       </Card>
+
+      {/* Card list for mobile / smaller screens */}
+      <Stack spacing={2} sx={{ display: { xs: "flex", md: "none" } }}>
+        {logs.map((l) => (
+          <Card key={l.id} variant="outlined">
+            <CardContent>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: 1,
+                  mb: 1,
+                }}
+              >
+                <Chip label={l.action} size="small" variant="outlined" />
+                <Typography variant="caption" color="text.secondary" sx={{ whiteSpace: "nowrap" }}>
+                  {l.createdAt.toLocaleString()}
+                </Typography>
+              </Box>
+              <Typography variant="body2">
+                <Box component="span" color="text.secondary">Actor: </Box>
+                {l.user ? l.user.name : "System"}
+                {l.user && ` (${l.user.role})`}
+              </Typography>
+              <Typography variant="body2">
+                <Box component="span" color="text.secondary">Entity: </Box>
+                {l.entityType ? l.entityType : "—"}
+                {l.entityId && ` · ${l.entityId.slice(0, 10)}…`}
+              </Typography>
+              <Typography variant="body2">
+                <Box component="span" color="text.secondary">IP: </Box>
+                {l.ip ?? "—"}
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </Stack>
     </PageTransition>
   );
 }

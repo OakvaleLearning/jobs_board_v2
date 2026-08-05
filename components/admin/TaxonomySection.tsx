@@ -89,6 +89,7 @@ export default function TaxonomySection({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
+                gap: 1.5,
                 p: 1.5,
                 border: "1px solid",
                 borderColor: "divider",

@@ -11,6 +11,9 @@ import Chip from "@mui/material/Chip";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Stack from "@mui/material/Stack";
 import { setStaffActive } from "@/app/admin/staff/actions";
 
 type StaffMember = {
@@ -60,53 +63,103 @@ export default function StaffTable({
   }
 
   return (
-    <TableContainer>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Role</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell align="right">Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {staff.map((member) => {
-            const active = member.deletedAt === null;
-            const isSelf = member.id === currentAdminId;
-            return (
-              <TableRow key={member.id} sx={{ opacity: active ? 1 : 0.6 }}>
-                <TableCell>
+    <>
+      {/* Table view for md+ screens */}
+      <TableContainer sx={{ display: { xs: "none", md: "block" } }}>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Role</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell align="right">Action</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {staff.map((member) => {
+              const active = member.deletedAt === null;
+              const isSelf = member.id === currentAdminId;
+              return (
+                <TableRow key={member.id} sx={{ opacity: active ? 1 : 0.6 }}>
+                  <TableCell>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                      {member.name}
+                      {isSelf && <Chip label="You" size="small" variant="outlined" />}
+                    </Box>
+                  </TableCell>
+                  <TableCell>{member.email}</TableCell>
+                  <TableCell>{roleLabels[member.role]}</TableCell>
+                  <TableCell>
+                    <Chip
+                      label={active ? "Active" : "Deactivated"}
+                      size="small"
+                      color={active ? "success" : "default"}
+                      variant={active ? "filled" : "outlined"}
+                    />
+                  </TableCell>
+                  <TableCell align="right">
+                    {isSelf ? (
+                      <Typography variant="body2" color="text.secondary">
+                        —
+                      </Typography>
+                    ) : (
+                      <ActiveToggle id={member.id} active={active} />
+                    )}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      {/* Card list for mobile / smaller screens */}
+      <Stack spacing={2} sx={{ display: { xs: "flex", md: "none" } }}>
+        {staff.map((member) => {
+          const active = member.deletedAt === null;
+          const isSelf = member.id === currentAdminId;
+          return (
+            <Card key={member.id} variant="outlined" sx={{ opacity: active ? 1 : 0.6 }}>
+              <CardContent>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: 1,
+                    mb: 1,
+                  }}
+                >
                   <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                    {member.name}
+                    <Typography variant="subtitle1">{member.name}</Typography>
                     {isSelf && <Chip label="You" size="small" variant="outlined" />}
                   </Box>
-                </TableCell>
-                <TableCell>{member.email}</TableCell>
-                <TableCell>{roleLabels[member.role]}</TableCell>
-                <TableCell>
                   <Chip
                     label={active ? "Active" : "Deactivated"}
                     size="small"
                     color={active ? "success" : "default"}
                     variant={active ? "filled" : "outlined"}
                   />
-                </TableCell>
-                <TableCell align="right">
-                  {isSelf ? (
-                    <Typography variant="body2" color="text.secondary">
-                      —
-                    </Typography>
-                  ) : (
-                    <ActiveToggle id={member.id} active={active} />
-                  )}
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+                </Box>
+                <Typography variant="body2" color="text.secondary">
+                  {member.email}
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 2 }}>
+                  {roleLabels[member.role]}
+                </Typography>
+                {isSelf ? (
+                  <Typography variant="body2" color="text.secondary">
+                    This is you
+                  </Typography>
+                ) : (
+                  <ActiveToggle id={member.id} active={active} />
+                )}
+              </CardContent>
+            </Card>
+          );
+        })}
+      </Stack>
+    </>
   );
 }

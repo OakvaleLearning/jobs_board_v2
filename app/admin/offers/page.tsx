@@ -89,7 +89,7 @@ export default async function AdminOffersPage() {
       <Stack spacing={1.5}>
         {others.map((o) => (
           <Card key={o.id}>
-            <CardContent sx={{ p: 2.5, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
+            <CardContent sx={{ p: 2.5, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 2 }}>
               <Box>
                 <Typography sx={{ fontWeight: 600 }}>{o.roleTitle}</Typography>
                 <Typography variant="body2" color="text.secondary">

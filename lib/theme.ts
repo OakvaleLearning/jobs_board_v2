@@ -1,6 +1,6 @@
 "use client";
 
-import { createTheme, alpha } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes, alpha } from "@mui/material/styles";
 
 // Oakvale brand: deep green + gold, light theme only (no dark mode).
 const OAKVALE_GREEN = "#1B5E20";
@@ -40,12 +40,12 @@ const theme = createTheme({
   shape: { borderRadius: 14 },
   typography: {
     fontFamily: "var(--font-geist-sans), system-ui, -apple-system, sans-serif",
-    h1: { fontWeight: 800, letterSpacing: "-0.02em" },
-    h2: { fontWeight: 800, letterSpacing: "-0.02em" },
-    h3: { fontWeight: 700, letterSpacing: "-0.01em" },
-    h4: { fontWeight: 700, letterSpacing: "-0.01em" },
-    h5: { fontWeight: 700 },
-    h6: { fontWeight: 700 },
+    h1: { fontWeight: 800, letterSpacing: "-0.02em", fontSize: "3.5rem", lineHeight: 1.1 },
+    h2: { fontWeight: 800, letterSpacing: "-0.02em", fontSize: "2.75rem", lineHeight: 1.15 },
+    h3: { fontWeight: 700, letterSpacing: "-0.01em", fontSize: "2.25rem", lineHeight: 1.2 },
+    h4: { fontWeight: 700, letterSpacing: "-0.01em", fontSize: "1.75rem", lineHeight: 1.25 },
+    h5: { fontWeight: 700, fontSize: "1.4rem", lineHeight: 1.3 },
+    h6: { fontWeight: 700, fontSize: "1.15rem", lineHeight: 1.35 },
     button: { fontWeight: 600, textTransform: "none" },
     subtitle1: { fontWeight: 600 },
   },
@@ -108,4 +108,8 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+export default responsiveFontSizes(theme, {
+  breakpoints: ["sm", "md", "lg"],
+  factor: 2.2,
+  variants: ["h1", "h2", "h3", "h4", "h5", "h6", "subtitle1", "subtitle2", "body1"],
+});

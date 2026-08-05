@@ -65,7 +65,7 @@ export default function MatchingEditor({
                     </Grid>
                   ))}
                 </Grid>
-                <Stack direction="row" spacing={1.5}>
+                <Stack direction="row" spacing={1.5} sx={{ flexWrap: "wrap", gap: 1 }}>
                   <SubmitButton>Save weights</SubmitButton>
                   <Button
                     type="button"

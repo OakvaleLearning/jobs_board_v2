@@ -139,7 +139,7 @@ export default function ApplicantActions({
                   helperText={offerState.fieldErrors?.roleTitle}
                 />
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   name="startDate"
                   type="date"
@@ -150,7 +150,7 @@ export default function ApplicantActions({
                   helperText={offerState.fieldErrors?.startDate}
                 />
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField select name="employmentType" label="Employment type" defaultValue="FULL_TIME" size="small">
                   {EMPLOYMENT_TYPES.map((t) => (
                     <MenuItem key={t} value={t}>
@@ -159,7 +159,7 @@ export default function ApplicantActions({
                   ))}
                 </TextField>
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField select name="salaryCurrency" label="Currency" defaultValue="NGN" size="small">
                   {(Object.keys(currencyLabels) as Currency[]).map((c) => (
                     <MenuItem key={c} value={c}>
@@ -168,7 +168,7 @@ export default function ApplicantActions({
                   ))}
                 </TextField>
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   name="salary"
                   type="number"
@@ -178,10 +178,10 @@ export default function ApplicantActions({
                   helperText={offerState.fieldErrors?.salary}
                 />
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField name="hours" label="Working hours" size="small" placeholder="e.g. Mon–Fri, 8am–4pm" />
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField name="location" label="Location" size="small" />
               </Grid>
               <Grid size={12}>

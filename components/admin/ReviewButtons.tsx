@@ -43,7 +43,7 @@ export default function ReviewButtons({
 
   return (
     <>
-      <Stack direction="row" spacing={1}>
+      <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: 1 }}>
         <Button
           size={size}
           variant="contained"
