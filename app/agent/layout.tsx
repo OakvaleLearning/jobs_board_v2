@@ -6,6 +6,7 @@ import AssignmentTurnedInRoundedIcon from "@mui/icons-material/AssignmentTurnedI
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
 import TravelExploreRoundedIcon from "@mui/icons-material/TravelExploreRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 
 const nav = [
   { label: "My Tasks", href: "/agent", icon: <DashboardRoundedIcon /> },
@@ -14,6 +15,7 @@ const nav = [
   { label: "Complaints", href: "/agent/complaints", icon: <ReportProblemRoundedIcon /> },
   { label: "Matching", href: "/agent/matching", icon: <TravelExploreRoundedIcon /> },
   { label: "Reviews", href: "/agent/reviews", icon: <StarRoundedIcon /> },
+  { label: "Help & Docs", href: "/docs", icon: <MenuBookRoundedIcon /> },
 ];
 
 export default async function AgentLayout({ children }: { children: React.ReactNode }) {

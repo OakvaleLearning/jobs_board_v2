@@ -19,6 +19,7 @@ import { initialFormState } from "@/lib/forms";
 import { referralSourceLabels } from "@/lib/constants";
 import { referralSources } from "@/lib/validation/auth";
 import SubmitButton from "@/components/SubmitButton";
+import PasswordField from "@/components/PasswordField";
 import { PageTransition } from "@/components/motion";
 
 export default function SignupForm({ initialRole }: { initialRole: "WORKER" | "EMPLOYER" }) {
@@ -81,9 +82,8 @@ export default function SignupForm({ initialRole }: { initialRole: "WORKER" | "E
             error={!!state.fieldErrors?.phone}
             helperText={state.fieldErrors?.phone}
           />
-          <TextField
+          <PasswordField
             name="password"
-            type="password"
             label="Create a password"
             autoComplete="new-password"
             required

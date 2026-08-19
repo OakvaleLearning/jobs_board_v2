@@ -12,6 +12,7 @@ import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
 import SupportAgentRoundedIcon from "@mui/icons-material/SupportAgentRounded";
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
+import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 
 // Operational review pages — agents and admins both work here.
 const operationalNav = [
@@ -33,13 +34,14 @@ const configNav = [
 ];
 
 const agentWorkspaceNav = { label: "Agent Workspace", href: "/agent", icon: <SupportAgentRoundedIcon /> };
+const docsNav = { label: "Help & Docs", href: "/docs", icon: <MenuBookRoundedIcon /> };
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const user = await requireRole("ADMIN", "AGENT");
   const nav =
     user.role === "ADMIN"
-      ? [configNav[0], ...operationalNav, ...configNav.slice(1), agentWorkspaceNav]
-      : [...operationalNav, agentWorkspaceNav];
+      ? [configNav[0], ...operationalNav, ...configNav.slice(1), agentWorkspaceNav, docsNav]
+      : [...operationalNav, agentWorkspaceNav, docsNav];
   return (
     <DashboardShell
       nav={nav}

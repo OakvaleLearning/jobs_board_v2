@@ -8,6 +8,7 @@ import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
 import AssignmentTurnedInRoundedIcon from "@mui/icons-material/AssignmentTurnedInRounded";
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 
 const nav = [
   { label: "Dashboard", href: "/worker", icon: <DashboardRoundedIcon /> },
@@ -18,6 +19,7 @@ const nav = [
   { label: "My Reviews", href: "/worker/reviews", icon: <StarRoundedIcon /> },
   { label: "Messages", href: "/worker/messages", icon: <ChatRoundedIcon /> },
   { label: "Complaints", href: "/worker/complaints", icon: <ReportProblemRoundedIcon /> },
+  { label: "Help & Docs", href: "/docs", icon: <MenuBookRoundedIcon /> },
 ];
 
 export default async function WorkerLayout({ children }: { children: React.ReactNode }) {

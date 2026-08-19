@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import { createStaff } from "@/app/admin/staff/actions";
 import { initialFormState } from "@/lib/forms";
 import SubmitButton from "@/components/SubmitButton";
+import PasswordField from "@/components/PasswordField";
 
 export default function AddStaffForm() {
   const [state, action] = useActionState(createStaff, initialFormState);
@@ -62,9 +63,8 @@ export default function AddStaffForm() {
           />
         </Grid>
         <Grid size={12}>
-          <TextField
+          <PasswordField
             name="password"
-            type="password"
             label="Initial password"
             autoComplete="new-password"
             error={!!state.fieldErrors?.password}

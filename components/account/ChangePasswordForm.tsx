@@ -2,12 +2,12 @@
 
 import { useActionState } from "react";
 import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import { changePassword } from "@/app/account/actions";
 import { initialFormState } from "@/lib/forms";
 import SubmitButton from "@/components/SubmitButton";
+import PasswordField from "@/components/PasswordField";
 
 export default function ChangePasswordForm() {
   const [state, action] = useActionState(changePassword, initialFormState);
@@ -21,9 +21,8 @@ export default function ChangePasswordForm() {
           </Grid>
         )}
         <Grid size={12}>
-          <TextField
+          <PasswordField
             name="currentPassword"
-            type="password"
             label="Current password"
             autoComplete="current-password"
             error={!!state.fieldErrors?.currentPassword}
@@ -31,9 +30,8 @@ export default function ChangePasswordForm() {
           />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <TextField
+          <PasswordField
             name="newPassword"
-            type="password"
             label="New password"
             autoComplete="new-password"
             error={!!state.fieldErrors?.newPassword}
@@ -41,9 +39,8 @@ export default function ChangePasswordForm() {
           />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <TextField
+          <PasswordField
             name="confirmPassword"
-            type="password"
             label="Confirm new password"
             autoComplete="new-password"
             error={!!state.fieldErrors?.confirmPassword}

@@ -11,6 +11,7 @@ import MuiLink from "@mui/material/Link";
 import { loginAction } from "../actions";
 import { initialFormState } from "@/lib/forms";
 import SubmitButton from "@/components/SubmitButton";
+import PasswordField from "@/components/PasswordField";
 import { PageTransition } from "@/components/motion";
 
 export default function LoginForm() {
@@ -37,9 +38,8 @@ export default function LoginForm() {
             error={!!state.fieldErrors?.email}
             helperText={state.fieldErrors?.email}
           />
-          <TextField
+          <PasswordField
             name="password"
-            type="password"
             label="Password"
             autoComplete="current-password"
             required

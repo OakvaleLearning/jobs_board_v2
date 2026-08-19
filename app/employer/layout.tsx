@@ -10,6 +10,7 @@ import AssignmentTurnedInRoundedIcon from "@mui/icons-material/AssignmentTurnedI
 import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
 import ReceiptLongRoundedIcon from "@mui/icons-material/ReceiptLongRounded";
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
+import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
 
 const nav = [
   { label: "Dashboard", href: "/employer", icon: <DashboardRoundedIcon /> },
@@ -22,6 +23,7 @@ const nav = [
   { label: "Messages", href: "/employer/messages", icon: <ChatRoundedIcon /> },
   { label: "Complaints", href: "/employer/complaints", icon: <ReportProblemRoundedIcon /> },
   { label: "Company Profile", href: "/employer/onboarding", icon: <BusinessRoundedIcon /> },
+  { label: "Help & Docs", href: "/docs", icon: <MenuBookRoundedIcon /> },
 ];
 
 export default async function EmployerLayout({ children }: { children: React.ReactNode }) {
