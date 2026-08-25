@@ -30,7 +30,18 @@ function createClient() {
       // and keep sockets alive, to reduce the P1017 race window.
       idleTimeoutMillis: 5_000,
       keepAlive: true,
-      max: 10,
+      // The Prisma Postgres DIRECT endpoint (db.prisma.io) caps at ~20
+      // connections for the role. This pool is only one consumer — Prisma
+      // Studio, `prisma migrate`, seeds, and every other running process each
+      // open their own connections against the same cap, so a greedy pool here
+      // causes P2037 "too many connections" the moment two of them overlap.
+      // Keep this small (override with DB_POOL_MAX per environment) and release
+      // idle sockets quickly so the cap is shared. For high-concurrency
+      // production, front the app with a real pooler instead of the direct URL.
+      max: Number(process.env.DB_POOL_MAX ?? 5),
+      // Don't let a request queue forever when the cap is momentarily reached;
+      // fail fast so it can be retried instead of piling up more waiters.
+      connectionTimeoutMillis: 10_000,
     },
     {
       // Prevent a dropped background connection from becoming an
