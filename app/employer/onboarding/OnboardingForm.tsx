@@ -7,6 +7,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
 import Alert from "@mui/material/Alert";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
@@ -18,7 +19,7 @@ import { initialFormState } from "@/lib/forms";
 import SubmitButton from "@/components/SubmitButton";
 import FileUploadField from "@/components/FileUploadField";
 import StatusBadge from "@/components/StatusBadge";
-import { verificationStatusMeta } from "@/lib/constants";
+import { verificationStatusMeta, EMPLOYER_SECTORS } from "@/lib/constants";
 import type { EmployerKind, VerificationStatus } from "@/generated/prisma/client";
 
 type Props = {
@@ -88,12 +89,21 @@ export default function OnboardingForm({ defaults, verificationStatus, cacFileNa
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
                   <TextField
+                    select
                     name="sector"
                     label="Sector / industry"
-                    defaultValue={defaults.sector}
+                    defaultValue={
+                      EMPLOYER_SECTORS.includes(defaults.sector) ? defaults.sector : ""
+                    }
                     error={!!state.fieldErrors?.sector}
                     helperText={state.fieldErrors?.sector}
-                  />
+                  >
+                    {EMPLOYER_SECTORS.map((s) => (
+                      <MenuItem key={s} value={s}>
+                        {s}
+                      </MenuItem>
+                    ))}
+                  </TextField>
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
                   <TextField

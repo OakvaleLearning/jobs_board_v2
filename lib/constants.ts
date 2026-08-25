@@ -39,6 +39,25 @@ export const LANGUAGES = ["English", "Hausa", "Yoruba", "Igbo", "Pidgin"];
 
 export const EXPERIENCE_LEVELS = ["Entry", "Intermediate", "Experienced"];
 
+export const EMPLOYER_SECTORS = [
+  "Healthcare & Medical",
+  "Home & Domestic Care",
+  "Childcare & Early Years",
+  "Elderly & Disability Care",
+  "Hospitality & Catering",
+  "Education & Training",
+  "Facilities & Cleaning",
+  "Security Services",
+  "Retail & Sales",
+  "Construction & Trades",
+  "Agriculture & Farming",
+  "Manufacturing & Industry",
+  "Transport & Logistics",
+  "Non-profit & NGO",
+  "Government & Public Sector",
+  "Other",
+];
+
 export const employmentTypeLabels: Record<EmploymentType, string> = {
   FULL_TIME: "Full-time",
   PART_TIME: "Part-time",
