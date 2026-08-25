@@ -35,6 +35,9 @@ export async function saveEmployerOnboarding(
   });
 
   const isNew = !existing;
+  // A previously declined employer editing their profile is resubmitting for
+  // review: move them back into the admin's verification queue.
+  const isResubmission = existing?.verificationStatus === "REJECTED";
   const profile = await prisma.employerProfile.upsert({
     where: { userId: user.id },
     update: {
@@ -46,6 +49,9 @@ export async function saveEmployerOnboarding(
       orgName: data.kind === "ORGANIZATION" ? data.orgName : null,
       sector: data.kind === "ORGANIZATION" ? data.sector : null,
       cacNumber: data.kind === "ORGANIZATION" ? data.cacNumber : null,
+      // Keep reviewNotes so the admin still sees why it was declined, but put
+      // it back in the pending queue so the resubmission is reviewable.
+      ...(isResubmission ? { verificationStatus: "PENDING" } : {}),
     },
     create: {
       userId: user.id,
@@ -89,14 +95,16 @@ export async function saveEmployerOnboarding(
     entityId: profile.id,
   });
 
-  if (isNew) {
+  if (isNew || isResubmission) {
     await notifyAdmins({
       type: "employer.registered",
-      title: "New employer registration",
+      title: isResubmission ? "Employer resubmitted for verification" : "New employer registration",
       body: `${data.orgName ?? data.contactName} (${data.kind.toLowerCase()}) needs verification.`,
       link: "/admin/employers",
     });
   }
+
+  if (isResubmission) revalidatePath("/admin/employers");
 
   revalidatePath("/employer");
   revalidatePath("/employer/onboarding");
@@ -105,8 +113,9 @@ export async function saveEmployerOnboarding(
   revalidatePath("/employer/assessment");
   return {
     ok: true,
-    message: isNew
-      ? "Profile submitted. Oakvale will verify your account within 2 working days."
-      : "Company profile updated.",
+    message:
+      isNew || isResubmission
+        ? "Profile submitted. Oakvale will verify your account within 2 working days."
+        : "Company profile updated.",
   };
 }

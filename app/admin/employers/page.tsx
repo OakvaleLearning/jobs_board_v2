@@ -61,6 +61,9 @@ export default async function AdminEmployersPage() {
                         {e.orgName ?? e.contactName ?? e.user.name}
                       </Typography>
                       <Chip label={e.kind === "ORGANIZATION" ? "Organization" : "Individual"} size="small" />
+                      {e.reviewNotes && (
+                        <Chip label="Resubmitted" size="small" color="info" variant="outlined" />
+                      )}
                     </Stack>
                     <Typography variant="body2" color="text.secondary">
                       {e.user.email} · {e.country ?? "—"} · registered {formatDate(e.createdAt)}
@@ -73,6 +76,11 @@ export default async function AdminEmployersPage() {
                     {e.address && (
                       <Typography variant="body2" color="text.secondary">
                         {e.address}
+                      </Typography>
+                    )}
+                    {e.reviewNotes && (
+                      <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, fontStyle: "italic" }}>
+                        Previous decline note: {e.reviewNotes}
                       </Typography>
                     )}
                     <Box sx={{ mt: 1.5 }}>
