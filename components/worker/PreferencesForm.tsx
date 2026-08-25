@@ -14,7 +14,7 @@ import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import { savePreferences } from "@/app/worker/actions";
-import { initialFormState } from "@/lib/forms";
+import { initialFormState, keepValue, keepValues } from "@/lib/forms";
 import { LANGUAGES, EXPERIENCE_LEVELS, employmentTypeLabels, currencyLabels } from "@/lib/constants";
 import SubmitButton from "@/components/SubmitButton";
 import type { EmploymentType, Currency } from "@/generated/prisma/client";
@@ -53,7 +53,7 @@ export default function PreferencesForm({ categories, defaults }: Props) {
             select
             name="workforceCategoryId"
             label="Type of care work"
-            defaultValue={defaults.workforceCategoryId}
+            defaultValue={keepValue(state.values, "workforceCategoryId", defaults.workforceCategoryId)}
             error={!!state.fieldErrors?.workforceCategoryId}
             helperText={state.fieldErrors?.workforceCategoryId}
           >
@@ -69,7 +69,7 @@ export default function PreferencesForm({ categories, defaults }: Props) {
             select
             name="experienceLevel"
             label="Experience level"
-            defaultValue={defaults.experienceLevel}
+            defaultValue={keepValue(state.values, "experienceLevel", defaults.experienceLevel)}
             error={!!state.fieldErrors?.experienceLevel}
             helperText={state.fieldErrors?.experienceLevel}
           >
@@ -94,7 +94,11 @@ export default function PreferencesForm({ categories, defaults }: Props) {
                     <Checkbox
                       name="employmentTypes"
                       value={t}
-                      defaultChecked={defaults.employmentTypes.includes(t)}
+                      defaultChecked={keepValues(
+                        state.values,
+                        "employmentTypes",
+                        defaults.employmentTypes,
+                      ).includes(t)}
                     />
                   }
                   label={employmentTypeLabels[t]}
@@ -117,7 +121,11 @@ export default function PreferencesForm({ categories, defaults }: Props) {
                 <FormControlLabel
                   key={l}
                   control={
-                    <Checkbox name="languages" value={l} defaultChecked={defaults.languages.includes(l)} />
+                    <Checkbox
+                      name="languages"
+                      value={l}
+                      defaultChecked={keepValues(state.values, "languages", defaults.languages).includes(l)}
+                    />
                   }
                   label={l}
                 />
@@ -134,7 +142,7 @@ export default function PreferencesForm({ categories, defaults }: Props) {
             select
             name="salaryCurrency"
             label="Currency"
-            defaultValue={defaults.salaryCurrency}
+            defaultValue={keepValue(state.values, "salaryCurrency", defaults.salaryCurrency)}
           >
             {(Object.keys(currencyLabels) as Currency[]).map((c) => (
               <MenuItem key={c} value={c}>
@@ -148,7 +156,7 @@ export default function PreferencesForm({ categories, defaults }: Props) {
             name="expectedSalaryMin"
             type="number"
             label="Expected salary (min, monthly)"
-            defaultValue={defaults.expectedSalaryMin}
+            defaultValue={keepValue(state.values, "expectedSalaryMin", defaults.expectedSalaryMin)}
             error={!!state.fieldErrors?.expectedSalaryMin}
             helperText={state.fieldErrors?.expectedSalaryMin}
           />
@@ -158,7 +166,7 @@ export default function PreferencesForm({ categories, defaults }: Props) {
             name="expectedSalaryMax"
             type="number"
             label="Expected salary (max, optional)"
-            defaultValue={defaults.expectedSalaryMax}
+            defaultValue={keepValue(state.values, "expectedSalaryMax", defaults.expectedSalaryMax)}
           />
         </Grid>
 
@@ -167,13 +175,24 @@ export default function PreferencesForm({ categories, defaults }: Props) {
             name="availabilityDate"
             type="date"
             label="Available from"
-            defaultValue={defaults.availabilityDate}
+            defaultValue={keepValue(state.values, "availabilityDate", defaults.availabilityDate)}
             slotProps={{ inputLabel: { shrink: true } }}
           />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }} sx={{ display: "flex", alignItems: "center" }}>
           <FormControlLabel
-            control={<Switch name="willingToRelocate" defaultChecked={defaults.willingToRelocate} />}
+            control={
+              <Switch
+                name="willingToRelocate"
+                // On error `state.values` is set: an unchecked switch is absent
+                // from the submission, so fall back to unchecked, not the default.
+                defaultChecked={
+                  state.values
+                    ? state.values.willingToRelocate === "on"
+                    : defaults.willingToRelocate
+                }
+              />
+            }
             label="I'm willing to relocate"
           />
         </Grid>
@@ -185,7 +204,7 @@ export default function PreferencesForm({ categories, defaults }: Props) {
             placeholder="Tell employers about your experience, strengths, and approach to care…"
             multiline
             minRows={4}
-            defaultValue={defaults.personalStatement}
+            defaultValue={keepValue(state.values, "personalStatement", defaults.personalStatement)}
             error={!!state.fieldErrors?.personalStatement}
             helperText={state.fieldErrors?.personalStatement}
           />

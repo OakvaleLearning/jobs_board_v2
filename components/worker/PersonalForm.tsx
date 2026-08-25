@@ -7,7 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import { savePersonal } from "@/app/worker/actions";
-import { initialFormState } from "@/lib/forms";
+import { initialFormState, keepValue } from "@/lib/forms";
 import { NIGERIAN_STATES } from "@/lib/constants";
 import SubmitButton from "@/components/SubmitButton";
 
@@ -37,7 +37,7 @@ export default function PersonalForm({ defaults }: Props) {
             name="dateOfBirth"
             type="date"
             label="Date of birth"
-            defaultValue={defaults.dateOfBirth}
+            defaultValue={keepValue(state.values, "dateOfBirth", defaults.dateOfBirth)}
             slotProps={{ inputLabel: { shrink: true } }}
             error={!!state.fieldErrors?.dateOfBirth}
             helperText={state.fieldErrors?.dateOfBirth}
@@ -48,7 +48,7 @@ export default function PersonalForm({ defaults }: Props) {
             select
             name="gender"
             label="Gender"
-            defaultValue={defaults.gender}
+            defaultValue={keepValue(state.values, "gender", defaults.gender)}
             error={!!state.fieldErrors?.gender}
             helperText={state.fieldErrors?.gender}
           >
@@ -64,7 +64,7 @@ export default function PersonalForm({ defaults }: Props) {
             select
             name="state"
             label="State"
-            defaultValue={defaults.state}
+            defaultValue={keepValue(state.values, "state", defaults.state)}
             error={!!state.fieldErrors?.state}
             helperText={state.fieldErrors?.state}
           >
@@ -79,7 +79,7 @@ export default function PersonalForm({ defaults }: Props) {
           <TextField
             name="lga"
             label="Local Government Area (LGA)"
-            defaultValue={defaults.lga}
+            defaultValue={keepValue(state.values, "lga", defaults.lga)}
             error={!!state.fieldErrors?.lga}
             helperText={state.fieldErrors?.lga}
           />
@@ -90,7 +90,7 @@ export default function PersonalForm({ defaults }: Props) {
             label="Home address"
             multiline
             minRows={2}
-            defaultValue={defaults.address}
+            defaultValue={keepValue(state.values, "address", defaults.address)}
             error={!!state.fieldErrors?.address}
             helperText={state.fieldErrors?.address}
           />

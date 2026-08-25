@@ -14,7 +14,7 @@ import {
   experienceSchema,
   certificateDetailsSchema,
 } from "@/lib/validation/worker";
-import { zodFieldErrors, type FormState } from "@/lib/forms";
+import { invalidForm, type FormState } from "@/lib/forms";
 import type { DocumentType, EmploymentType } from "@/generated/prisma/client";
 
 async function requireWorkerProfile() {
@@ -43,7 +43,7 @@ export async function savePersonal(_prev: FormState, formData: FormData): Promis
     lga: formData.get("lga"),
     address: formData.get("address"),
   });
-  if (!parsed.success) return { ok: false, fieldErrors: zodFieldErrors(parsed.error) };
+  if (!parsed.success) return invalidForm(formData, parsed.error);
 
   await prisma.workerProfile.update({
     where: { id: profile.id },
@@ -73,7 +73,8 @@ export async function savePreferences(_prev: FormState, formData: FormData): Pro
     salaryCurrency: formData.get("salaryCurrency"),
     personalStatement: formData.get("personalStatement"),
   });
-  if (!parsed.success) return { ok: false, fieldErrors: zodFieldErrors(parsed.error) };
+  if (!parsed.success)
+    return invalidForm(formData, parsed.error, ["employmentTypes", "languages"]);
 
   await prisma.workerProfile.update({
     where: { id: profile.id },
@@ -102,7 +103,7 @@ export async function addEducation(_prev: FormState, formData: FormData): Promis
     startYear: formData.get("startYear") || undefined,
     endYear: formData.get("endYear") || undefined,
   });
-  if (!parsed.success) return { ok: false, fieldErrors: zodFieldErrors(parsed.error) };
+  if (!parsed.success) return invalidForm(formData, parsed.error);
 
   await prisma.education.create({ data: { workerId: profile.id, ...parsed.data } });
   await afterProfileChange(profile.id, user.id, "worker.profile.education_added");
@@ -125,7 +126,7 @@ export async function addExperience(_prev: FormState, formData: FormData): Promi
     current: formData.get("current") === "on",
     description: formData.get("description") || undefined,
   });
-  if (!parsed.success) return { ok: false, fieldErrors: zodFieldErrors(parsed.error) };
+  if (!parsed.success) return invalidForm(formData, parsed.error);
 
   await prisma.experience.create({
     data: {

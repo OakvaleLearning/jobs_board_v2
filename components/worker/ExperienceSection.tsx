@@ -12,7 +12,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import { addExperience, removeExperience } from "@/app/worker/actions";
-import { initialFormState } from "@/lib/forms";
+import { initialFormState, keepValue } from "@/lib/forms";
 import SubmitButton from "@/components/SubmitButton";
 import EmptyState from "@/components/EmptyState";
 
@@ -91,6 +91,7 @@ export default function ExperienceSection({ items }: { items: Item[] }) {
             <TextField
               name="employer"
               label="Employer / household"
+              defaultValue={keepValue(state.values, "employer")}
               error={!!state.fieldErrors?.employer}
               helperText={state.fieldErrors?.employer}
             />
@@ -99,6 +100,7 @@ export default function ExperienceSection({ items }: { items: Item[] }) {
             <TextField
               name="roleTitle"
               label="Role"
+              defaultValue={keepValue(state.values, "roleTitle")}
               error={!!state.fieldErrors?.roleTitle}
               helperText={state.fieldErrors?.roleTitle}
             />
@@ -108,6 +110,7 @@ export default function ExperienceSection({ items }: { items: Item[] }) {
               name="startDate"
               type="date"
               label="Start"
+              defaultValue={keepValue(state.values, "startDate")}
               slotProps={{ inputLabel: { shrink: true } }}
             />
           </Grid>
@@ -116,14 +119,24 @@ export default function ExperienceSection({ items }: { items: Item[] }) {
               name="endDate"
               type="date"
               label="End"
+              defaultValue={keepValue(state.values, "endDate")}
               slotProps={{ inputLabel: { shrink: true } }}
             />
           </Grid>
           <Grid size={{ xs: 12, sm: 6 }} sx={{ display: "flex", alignItems: "center" }}>
-            <FormControlLabel control={<Checkbox name="current" />} label="I currently work here" />
+            <FormControlLabel
+              control={<Checkbox name="current" defaultChecked={state.values?.current === "on"} />}
+              label="I currently work here"
+            />
           </Grid>
           <Grid size={12}>
-            <TextField name="description" label="What did you do? (optional)" multiline minRows={2} />
+            <TextField
+              name="description"
+              label="What did you do? (optional)"
+              multiline
+              minRows={2}
+              defaultValue={keepValue(state.values, "description")}
+            />
           </Grid>
           <Grid size={12}>
             <SubmitButton variant="outlined">Add experience</SubmitButton>

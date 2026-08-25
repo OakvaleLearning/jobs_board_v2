@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import { addEducation, removeEducation } from "@/app/worker/actions";
-import { initialFormState } from "@/lib/forms";
+import { initialFormState, keepValue } from "@/lib/forms";
 import SubmitButton from "@/components/SubmitButton";
 import EmptyState from "@/components/EmptyState";
 
@@ -78,6 +78,7 @@ export default function EducationSection({ items }: { items: Item[] }) {
             <TextField
               name="institution"
               label="School / institution"
+              defaultValue={keepValue(state.values, "institution")}
               error={!!state.fieldErrors?.institution}
               helperText={state.fieldErrors?.institution}
             />
@@ -86,15 +87,30 @@ export default function EducationSection({ items }: { items: Item[] }) {
             <TextField
               name="qualification"
               label="Qualification"
+              defaultValue={keepValue(state.values, "qualification")}
               error={!!state.fieldErrors?.qualification}
               helperText={state.fieldErrors?.qualification}
             />
           </Grid>
           <Grid size={{ xs: 6, sm: 3 }}>
-            <TextField name="startYear" type="number" label="Start year" />
+            <TextField
+              name="startYear"
+              type="number"
+              label="Start year"
+              defaultValue={keepValue(state.values, "startYear")}
+              error={!!state.fieldErrors?.startYear}
+              helperText={state.fieldErrors?.startYear}
+            />
           </Grid>
           <Grid size={{ xs: 6, sm: 3 }}>
-            <TextField name="endYear" type="number" label="End year" />
+            <TextField
+              name="endYear"
+              type="number"
+              label="End year"
+              defaultValue={keepValue(state.values, "endYear")}
+              error={!!state.fieldErrors?.endYear}
+              helperText={state.fieldErrors?.endYear}
+            />
           </Grid>
           <Grid size={12}>
             <SubmitButton variant="outlined">Add education</SubmitButton>
