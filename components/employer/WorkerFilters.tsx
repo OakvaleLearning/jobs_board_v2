@@ -11,12 +11,14 @@ export default function WorkerFilters({
   categories,
   states,
   languages,
+  employmentTypes,
   values,
 }: {
   categories: { id: string; name: string }[];
   states: string[];
   languages: string[];
-  values: { category: string; state: string; language: string };
+  employmentTypes: { value: string; label: string }[];
+  values: { category: string; state: string; language: string; employmentType: string };
 }) {
   const router = useRouter();
 
@@ -29,7 +31,7 @@ export default function WorkerFilters({
 
   return (
     <Grid container spacing={2} sx={{ alignItems: "center" }}>
-      <Grid size={{ xs: 12, sm: 4 }}>
+      <Grid size={{ xs: 12, sm: 3 }}>
         <TextField
           select
           size="small"
@@ -45,7 +47,23 @@ export default function WorkerFilters({
           ))}
         </TextField>
       </Grid>
-      <Grid size={{ xs: 6, sm: 3 }}>
+      <Grid size={{ xs: 12, sm: 3 }}>
+        <TextField
+          select
+          size="small"
+          label="Work arrangement"
+          value={values.employmentType}
+          onChange={(e) => update("employmentType", e.target.value)}
+        >
+          <MenuItem value="">Any arrangement</MenuItem>
+          {employmentTypes.map((t) => (
+            <MenuItem key={t.value} value={t.value}>
+              {t.label}
+            </MenuItem>
+          ))}
+        </TextField>
+      </Grid>
+      <Grid size={{ xs: 6, sm: 2 }}>
         <TextField
           select
           size="small"
@@ -61,7 +79,7 @@ export default function WorkerFilters({
           ))}
         </TextField>
       </Grid>
-      <Grid size={{ xs: 6, sm: 3 }}>
+      <Grid size={{ xs: 6, sm: 2 }}>
         <TextField
           select
           size="small"

@@ -7,7 +7,16 @@ import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import LinkButton from "@/components/LinkButton";
+import UserMenu from "@/components/shell/UserMenu";
 import { getSessionUser, roleHome } from "@/lib/session";
+import type { Role } from "@/generated/prisma/client";
+
+const roleLabels: Record<Role, string> = {
+  WORKER: "Worker",
+  EMPLOYER: "Employer",
+  AGENT: "Agent",
+  ADMIN: "Admin",
+};
 
 export default async function MarketingLayout({
   children,
@@ -27,13 +36,12 @@ export default async function MarketingLayout({
             <Box sx={{ flexGrow: 1 }} />
             <Stack direction="row" spacing={{ xs: 0.5, sm: 1 }} sx={{ alignItems: "center" }}>
               {user ? (
-                <LinkButton
-                  href={roleHome(user.role)}
-                  variant="contained"
-                  sx={{ px: { xs: 2, sm: 2.5 }, whiteSpace: "nowrap" }}
-                >
-                  My dashboard
-                </LinkButton>
+                <UserMenu
+                  userName={user.name ?? "Account"}
+                  roleLabel={roleLabels[user.role]}
+                  dashboardHref={roleHome(user.role)}
+                  image={user.image}
+                />
               ) : (
                 <>
                   <LinkButton

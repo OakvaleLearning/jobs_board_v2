@@ -82,7 +82,14 @@ export async function getMatchingWeights(): Promise<MatchWeights> {
 export async function rankWorkers(criteria: MatchCriteria, limit = 20): Promise<ScoredWorker[]> {
   const weights = await getMatchingWeights();
   const workers = await prisma.workerProfile.findMany({
-    where: { searchable: true, profileStatus: "APPROVED", deletedAt: null },
+    where: {
+      searchable: true,
+      profileStatus: "APPROVED",
+      deletedAt: null,
+      // A worker is only visible for the arrangements they've opted into. If the
+      // role has an employment type, exclude workers who don't accept it.
+      ...(criteria.employmentType ? { employmentTypes: { has: criteria.employmentType } } : {}),
+    },
     include: { user: { select: { name: true } }, workforceCategory: { select: { name: true } } },
     take: 100,
   });

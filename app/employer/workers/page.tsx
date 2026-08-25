@@ -7,13 +7,15 @@ import Box from "@mui/material/Box";
 import { requireRole } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { getEmployerProfileByUserId, employerBlockReason } from "@/lib/employer";
-import { NIGERIAN_STATES, LANGUAGES } from "@/lib/constants";
+import { NIGERIAN_STATES, LANGUAGES, employmentTypeLabels } from "@/lib/constants";
 import EmptyState from "@/components/EmptyState";
 import LinkButton from "@/components/LinkButton";
 import WorkerCard from "@/components/employer/WorkerCard";
 import WorkerFilters from "@/components/employer/WorkerFilters";
 import { PageTransition } from "@/components/motion";
-import type { Prisma } from "@/generated/prisma/client";
+import type { Prisma, EmploymentType } from "@/generated/prisma/client";
+
+const EMPLOYMENT_TYPES: EmploymentType[] = ["FULL_TIME", "PART_TIME", "SHIFT", "LIVE_IN", "CONTRACT"];
 
 export default async function EmployerWorkersPage({ searchParams }: PageProps<"/employer/workers">) {
   const user = await requireRole("EMPLOYER");
@@ -25,6 +27,10 @@ export default async function EmployerWorkersPage({ searchParams }: PageProps<"/
   const categoryId = q("category");
   const state = q("state");
   const language = q("language");
+  const employmentTypeParam = q("employmentType");
+  const employmentType = (EMPLOYMENT_TYPES as string[]).includes(employmentTypeParam)
+    ? (employmentTypeParam as EmploymentType)
+    : "";
 
   const categories = await prisma.workforceCategory.findMany({
     where: { active: true, deletedAt: null },
@@ -53,6 +59,8 @@ export default async function EmployerWorkersPage({ searchParams }: PageProps<"/
       ...(categoryId ? { workforceCategoryId: categoryId } : {}),
       ...(state ? { state } : {}),
       ...(language ? { languages: { has: language } } : {}),
+      // Workers are only surfaced for the work arrangements they've opted into.
+      ...(employmentType ? { employmentTypes: { has: employmentType } } : {}),
     };
 
     const [rows, shortlisted] = await Promise.all([
@@ -120,7 +128,8 @@ export default async function EmployerWorkersPage({ searchParams }: PageProps<"/
                 categories={categories}
                 states={NIGERIAN_STATES}
                 languages={LANGUAGES}
-                values={{ category: categoryId, state, language }}
+                employmentTypes={EMPLOYMENT_TYPES.map((t) => ({ value: t, label: employmentTypeLabels[t] }))}
+                values={{ category: categoryId, state, language, employmentType }}
               />
             </CardContent>
           </Card>
