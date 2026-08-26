@@ -804,3 +804,9 @@ Developer to be available for a minimum of 4 weeks post-launch for:
 
 
 <!-- http://localhost:3001/employer/onboarding while onboarding sync my forms data with other sections of the form. Like after selecting "elderly care" in my sector selection is till see "creche" in another form's description - workforce assessment -->
+
+
+
+<!-- I want my emloyers to be able window-shop for workers then whenever they try 
+
+I want to have a dedicated page to see employer hiring activities and be billing and payment history and also be able to suspend their account. -->

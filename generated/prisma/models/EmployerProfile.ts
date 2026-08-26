@@ -49,6 +49,8 @@ export type EmployerProfileMinAggregateOutputType = {
   country: string | null
   verificationStatus: $Enums.VerificationStatus | null
   reviewNotes: string | null
+  suspendedAt: Date | null
+  suspendedReason: string | null
   ratingAvg: number | null
   ratingCount: number | null
   assignedAgentId: string | null
@@ -70,6 +72,8 @@ export type EmployerProfileMaxAggregateOutputType = {
   country: string | null
   verificationStatus: $Enums.VerificationStatus | null
   reviewNotes: string | null
+  suspendedAt: Date | null
+  suspendedReason: string | null
   ratingAvg: number | null
   ratingCount: number | null
   assignedAgentId: string | null
@@ -91,6 +95,8 @@ export type EmployerProfileCountAggregateOutputType = {
   country: number
   verificationStatus: number
   reviewNotes: number
+  suspendedAt: number
+  suspendedReason: number
   ratingAvg: number
   ratingCount: number
   assignedAgentId: number
@@ -124,6 +130,8 @@ export type EmployerProfileMinAggregateInputType = {
   country?: true
   verificationStatus?: true
   reviewNotes?: true
+  suspendedAt?: true
+  suspendedReason?: true
   ratingAvg?: true
   ratingCount?: true
   assignedAgentId?: true
@@ -145,6 +153,8 @@ export type EmployerProfileMaxAggregateInputType = {
   country?: true
   verificationStatus?: true
   reviewNotes?: true
+  suspendedAt?: true
+  suspendedReason?: true
   ratingAvg?: true
   ratingCount?: true
   assignedAgentId?: true
@@ -166,6 +176,8 @@ export type EmployerProfileCountAggregateInputType = {
   country?: true
   verificationStatus?: true
   reviewNotes?: true
+  suspendedAt?: true
+  suspendedReason?: true
   ratingAvg?: true
   ratingCount?: true
   assignedAgentId?: true
@@ -274,6 +286,8 @@ export type EmployerProfileGroupByOutputType = {
   country: string | null
   verificationStatus: $Enums.VerificationStatus
   reviewNotes: string | null
+  suspendedAt: Date | null
+  suspendedReason: string | null
   ratingAvg: number | null
   ratingCount: number
   assignedAgentId: string | null
@@ -318,6 +332,8 @@ export type EmployerProfileWhereInput = {
   country?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFilter<"EmployerProfile"> | $Enums.VerificationStatus
   reviewNotes?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
+  suspendedAt?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
+  suspendedReason?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   ratingAvg?: Prisma.FloatNullableFilter<"EmployerProfile"> | number | null
   ratingCount?: Prisma.IntFilter<"EmployerProfile"> | number
   assignedAgentId?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
@@ -348,6 +364,8 @@ export type EmployerProfileOrderByWithRelationInput = {
   country?: Prisma.SortOrderInput | Prisma.SortOrder
   verificationStatus?: Prisma.SortOrder
   reviewNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  suspendedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  suspendedReason?: Prisma.SortOrderInput | Prisma.SortOrder
   ratingAvg?: Prisma.SortOrderInput | Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
   assignedAgentId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -381,6 +399,8 @@ export type EmployerProfileWhereUniqueInput = Prisma.AtLeast<{
   country?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFilter<"EmployerProfile"> | $Enums.VerificationStatus
   reviewNotes?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
+  suspendedAt?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
+  suspendedReason?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   ratingAvg?: Prisma.FloatNullableFilter<"EmployerProfile"> | number | null
   ratingCount?: Prisma.IntFilter<"EmployerProfile"> | number
   assignedAgentId?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
@@ -411,6 +431,8 @@ export type EmployerProfileOrderByWithAggregationInput = {
   country?: Prisma.SortOrderInput | Prisma.SortOrder
   verificationStatus?: Prisma.SortOrder
   reviewNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  suspendedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  suspendedReason?: Prisma.SortOrderInput | Prisma.SortOrder
   ratingAvg?: Prisma.SortOrderInput | Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
   assignedAgentId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -440,6 +462,8 @@ export type EmployerProfileScalarWhereWithAggregatesInput = {
   country?: Prisma.StringNullableWithAggregatesFilter<"EmployerProfile"> | string | null
   verificationStatus?: Prisma.EnumVerificationStatusWithAggregatesFilter<"EmployerProfile"> | $Enums.VerificationStatus
   reviewNotes?: Prisma.StringNullableWithAggregatesFilter<"EmployerProfile"> | string | null
+  suspendedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EmployerProfile"> | Date | string | null
+  suspendedReason?: Prisma.StringNullableWithAggregatesFilter<"EmployerProfile"> | string | null
   ratingAvg?: Prisma.FloatNullableWithAggregatesFilter<"EmployerProfile"> | number | null
   ratingCount?: Prisma.IntWithAggregatesFilter<"EmployerProfile"> | number
   assignedAgentId?: Prisma.StringNullableWithAggregatesFilter<"EmployerProfile"> | string | null
@@ -459,6 +483,8 @@ export type EmployerProfileCreateInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -488,6 +514,8 @@ export type EmployerProfileUncheckedCreateInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   assignedAgentId?: string | null
@@ -513,6 +541,8 @@ export type EmployerProfileUpdateInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -542,6 +572,8 @@ export type EmployerProfileUncheckedUpdateInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -569,6 +601,8 @@ export type EmployerProfileCreateManyInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   assignedAgentId?: string | null
@@ -588,6 +622,8 @@ export type EmployerProfileUpdateManyMutationInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -608,6 +644,8 @@ export type EmployerProfileUncheckedUpdateManyInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -644,6 +682,8 @@ export type EmployerProfileCountOrderByAggregateInput = {
   country?: Prisma.SortOrder
   verificationStatus?: Prisma.SortOrder
   reviewNotes?: Prisma.SortOrder
+  suspendedAt?: Prisma.SortOrder
+  suspendedReason?: Prisma.SortOrder
   ratingAvg?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
   assignedAgentId?: Prisma.SortOrder
@@ -670,6 +710,8 @@ export type EmployerProfileMaxOrderByAggregateInput = {
   country?: Prisma.SortOrder
   verificationStatus?: Prisma.SortOrder
   reviewNotes?: Prisma.SortOrder
+  suspendedAt?: Prisma.SortOrder
+  suspendedReason?: Prisma.SortOrder
   ratingAvg?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
   assignedAgentId?: Prisma.SortOrder
@@ -691,6 +733,8 @@ export type EmployerProfileMinOrderByAggregateInput = {
   country?: Prisma.SortOrder
   verificationStatus?: Prisma.SortOrder
   reviewNotes?: Prisma.SortOrder
+  suspendedAt?: Prisma.SortOrder
+  suspendedReason?: Prisma.SortOrder
   ratingAvg?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
   assignedAgentId?: Prisma.SortOrder
@@ -924,6 +968,8 @@ export type EmployerProfileCreateWithoutUserInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -951,6 +997,8 @@ export type EmployerProfileUncheckedCreateWithoutUserInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   assignedAgentId?: string | null
@@ -981,6 +1029,8 @@ export type EmployerProfileCreateWithoutAssignedAgentInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -1009,6 +1059,8 @@ export type EmployerProfileUncheckedCreateWithoutAssignedAgentInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -1054,6 +1106,8 @@ export type EmployerProfileUpdateWithoutUserInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1081,6 +1135,8 @@ export type EmployerProfileUncheckedUpdateWithoutUserInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1127,6 +1183,8 @@ export type EmployerProfileScalarWhereInput = {
   country?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFilter<"EmployerProfile"> | $Enums.VerificationStatus
   reviewNotes?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
+  suspendedAt?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
+  suspendedReason?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   ratingAvg?: Prisma.FloatNullableFilter<"EmployerProfile"> | number | null
   ratingCount?: Prisma.IntFilter<"EmployerProfile"> | number
   assignedAgentId?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
@@ -1146,6 +1204,8 @@ export type EmployerProfileCreateWithoutDocumentsInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -1174,6 +1234,8 @@ export type EmployerProfileUncheckedCreateWithoutDocumentsInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   assignedAgentId?: string | null
@@ -1214,6 +1276,8 @@ export type EmployerProfileUpdateWithoutDocumentsInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1242,6 +1306,8 @@ export type EmployerProfileUncheckedUpdateWithoutDocumentsInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1266,6 +1332,8 @@ export type EmployerProfileCreateWithoutEmployerTypeInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -1293,6 +1361,8 @@ export type EmployerProfileUncheckedCreateWithoutEmployerTypeInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   assignedAgentId?: string | null
@@ -1344,6 +1414,8 @@ export type EmployerProfileCreateWithoutJobsInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -1372,6 +1444,8 @@ export type EmployerProfileUncheckedCreateWithoutJobsInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   assignedAgentId?: string | null
@@ -1412,6 +1486,8 @@ export type EmployerProfileUpdateWithoutJobsInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1440,6 +1516,8 @@ export type EmployerProfileUncheckedUpdateWithoutJobsInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1464,6 +1542,8 @@ export type EmployerProfileCreateWithoutShortlistsInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -1492,6 +1572,8 @@ export type EmployerProfileUncheckedCreateWithoutShortlistsInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   assignedAgentId?: string | null
@@ -1532,6 +1614,8 @@ export type EmployerProfileUpdateWithoutShortlistsInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1560,6 +1644,8 @@ export type EmployerProfileUncheckedUpdateWithoutShortlistsInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1584,6 +1670,8 @@ export type EmployerProfileCreateWithoutPlacementsInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -1612,6 +1700,8 @@ export type EmployerProfileUncheckedCreateWithoutPlacementsInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   assignedAgentId?: string | null
@@ -1652,6 +1742,8 @@ export type EmployerProfileUpdateWithoutPlacementsInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1680,6 +1772,8 @@ export type EmployerProfileUncheckedUpdateWithoutPlacementsInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1704,6 +1798,8 @@ export type EmployerProfileCreateWithoutInvoicesInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -1732,6 +1828,8 @@ export type EmployerProfileUncheckedCreateWithoutInvoicesInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   assignedAgentId?: string | null
@@ -1772,6 +1870,8 @@ export type EmployerProfileUpdateWithoutInvoicesInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1800,6 +1900,8 @@ export type EmployerProfileUncheckedUpdateWithoutInvoicesInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1824,6 +1926,8 @@ export type EmployerProfileCreateWithoutAssessmentsInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -1852,6 +1956,8 @@ export type EmployerProfileUncheckedCreateWithoutAssessmentsInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   assignedAgentId?: string | null
@@ -1892,6 +1998,8 @@ export type EmployerProfileUpdateWithoutAssessmentsInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1920,6 +2028,8 @@ export type EmployerProfileUncheckedUpdateWithoutAssessmentsInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1946,6 +2056,8 @@ export type EmployerProfileCreateManyAssignedAgentInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   createdAt?: Date | string
@@ -1964,6 +2076,8 @@ export type EmployerProfileUpdateWithoutAssignedAgentInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1992,6 +2106,8 @@ export type EmployerProfileUncheckedUpdateWithoutAssignedAgentInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2018,6 +2134,8 @@ export type EmployerProfileUncheckedUpdateManyWithoutAssignedAgentInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2037,6 +2155,8 @@ export type EmployerProfileCreateManyEmployerTypeInput = {
   country?: string | null
   verificationStatus?: $Enums.VerificationStatus
   reviewNotes?: string | null
+  suspendedAt?: Date | string | null
+  suspendedReason?: string | null
   ratingAvg?: number | null
   ratingCount?: number
   assignedAgentId?: string | null
@@ -2056,6 +2176,8 @@ export type EmployerProfileUpdateWithoutEmployerTypeInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2083,6 +2205,8 @@ export type EmployerProfileUncheckedUpdateWithoutEmployerTypeInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2109,6 +2233,8 @@ export type EmployerProfileUncheckedUpdateManyWithoutEmployerTypeInput = {
   country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  suspendedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  suspendedReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
   assignedAgentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2206,6 +2332,8 @@ export type EmployerProfileSelect<ExtArgs extends runtime.Types.Extensions.Inter
   country?: boolean
   verificationStatus?: boolean
   reviewNotes?: boolean
+  suspendedAt?: boolean
+  suspendedReason?: boolean
   ratingAvg?: boolean
   ratingCount?: boolean
   assignedAgentId?: boolean
@@ -2237,6 +2365,8 @@ export type EmployerProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   country?: boolean
   verificationStatus?: boolean
   reviewNotes?: boolean
+  suspendedAt?: boolean
+  suspendedReason?: boolean
   ratingAvg?: boolean
   ratingCount?: boolean
   assignedAgentId?: boolean
@@ -2261,6 +2391,8 @@ export type EmployerProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   country?: boolean
   verificationStatus?: boolean
   reviewNotes?: boolean
+  suspendedAt?: boolean
+  suspendedReason?: boolean
   ratingAvg?: boolean
   ratingCount?: boolean
   assignedAgentId?: boolean
@@ -2285,6 +2417,8 @@ export type EmployerProfileSelectScalar = {
   country?: boolean
   verificationStatus?: boolean
   reviewNotes?: boolean
+  suspendedAt?: boolean
+  suspendedReason?: boolean
   ratingAvg?: boolean
   ratingCount?: boolean
   assignedAgentId?: boolean
@@ -2293,7 +2427,7 @@ export type EmployerProfileSelectScalar = {
   deletedAt?: boolean
 }
 
-export type EmployerProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "kind" | "employerTypeId" | "orgName" | "sector" | "cacNumber" | "contactName" | "address" | "country" | "verificationStatus" | "reviewNotes" | "ratingAvg" | "ratingCount" | "assignedAgentId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["employerProfile"]>
+export type EmployerProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "kind" | "employerTypeId" | "orgName" | "sector" | "cacNumber" | "contactName" | "address" | "country" | "verificationStatus" | "reviewNotes" | "suspendedAt" | "suspendedReason" | "ratingAvg" | "ratingCount" | "assignedAgentId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["employerProfile"]>
 export type EmployerProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   employerType?: boolean | Prisma.EmployerProfile$employerTypeArgs<ExtArgs>
@@ -2343,6 +2477,8 @@ export type $EmployerProfilePayload<ExtArgs extends runtime.Types.Extensions.Int
     country: string | null
     verificationStatus: $Enums.VerificationStatus
     reviewNotes: string | null
+    suspendedAt: Date | null
+    suspendedReason: string | null
     ratingAvg: number | null
     ratingCount: number
     assignedAgentId: string | null
@@ -2793,6 +2929,8 @@ export interface EmployerProfileFieldRefs {
   readonly country: Prisma.FieldRef<"EmployerProfile", 'String'>
   readonly verificationStatus: Prisma.FieldRef<"EmployerProfile", 'VerificationStatus'>
   readonly reviewNotes: Prisma.FieldRef<"EmployerProfile", 'String'>
+  readonly suspendedAt: Prisma.FieldRef<"EmployerProfile", 'DateTime'>
+  readonly suspendedReason: Prisma.FieldRef<"EmployerProfile", 'String'>
   readonly ratingAvg: Prisma.FieldRef<"EmployerProfile", 'Float'>
   readonly ratingCount: Prisma.FieldRef<"EmployerProfile", 'Int'>
   readonly assignedAgentId: Prisma.FieldRef<"EmployerProfile", 'String'>

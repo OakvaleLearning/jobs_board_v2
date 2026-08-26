@@ -225,6 +225,8 @@ export const EmployerProfileScalarFieldEnum = {
   country: 'country',
   verificationStatus: 'verificationStatus',
   reviewNotes: 'reviewNotes',
+  suspendedAt: 'suspendedAt',
+  suspendedReason: 'suspendedReason',
   ratingAvg: 'ratingAvg',
   ratingCount: 'ratingCount',
   assignedAgentId: 'assignedAgentId',

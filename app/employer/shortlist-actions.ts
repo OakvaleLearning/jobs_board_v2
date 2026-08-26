@@ -13,7 +13,7 @@ async function requireEmployer() {
 
 export async function toggleShortlist(workerId: string) {
   const { user, employer } = await requireEmployer();
-  if (!employer || employer.verificationStatus !== "APPROVED") return;
+  if (!employer || employer.verificationStatus !== "APPROVED" || employer.suspendedAt) return;
 
   const existing = await prisma.shortlist.findFirst({
     where: { employerId: employer.id, workerId, jobId: null },

@@ -430,6 +430,11 @@ model EmployerProfile {
   verificationStatus VerificationStatus @default(PENDING)
   reviewNotes        String?
 
+  // Admin suspension — independent of the verification lifecycle so a verified
+  // account can be paused (and later restored) without losing its status.
+  suspendedAt     DateTime?
+  suspendedReason String?
+
   // Stage 3 — rating cache (recomputed from published reviews)
   ratingAvg   Float?
   ratingCount Int    @default(0)

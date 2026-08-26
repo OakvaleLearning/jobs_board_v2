@@ -8,6 +8,8 @@ import { prisma } from "@/lib/prisma";
 import StatusBadge from "@/components/StatusBadge";
 import EmptyState from "@/components/EmptyState";
 import AssignManagerButton from "@/components/agent/AssignManagerButton";
+import IssueSubscriptionButton from "@/components/agent/IssueSubscriptionButton";
+import LinkButton from "@/components/LinkButton";
 import { PageTransition } from "@/components/motion";
 import { verificationStatusMeta, assessmentTypeLabels } from "@/lib/constants";
 
@@ -67,6 +69,12 @@ export default async function AgentAccountsPage() {
                       agentId={user.id}
                       assigned={e.assignedAgent?.id === user.id}
                     />
+                    {e.kind === "ORGANIZATION" && e.verificationStatus === "APPROVED" && (
+                      <IssueSubscriptionButton employerId={e.id} />
+                    )}
+                    <LinkButton href={`/agent/accounts/${e.id}`} size="small" variant="outlined">
+                      View account
+                    </LinkButton>
                   </Stack>
                 </Box>
               </CardContent>

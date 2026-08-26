@@ -39,6 +39,52 @@ export async function decideEmployer(employerId: string, approve: boolean, notes
   revalidatePath("/admin/employers");
 }
 
+export async function suspendEmployer(employerId: string, notes?: string) {
+  const admin = await requireRole("ADMIN", "AGENT");
+  const employer = await prisma.employerProfile.update({
+    where: { id: employerId },
+    data: { suspendedAt: new Date(), suspendedReason: notes || null },
+  });
+  await audit({
+    userId: admin.id,
+    action: "employer.suspended",
+    entityType: "EmployerProfile",
+    entityId: employerId,
+  });
+  await notify({
+    userId: employer.userId,
+    type: "employer.suspended",
+    title: "Your account has been suspended",
+    body: notes || "Contact Oakvale support for details.",
+    link: "/employer",
+    email: true,
+  });
+  revalidatePath("/admin/employers");
+}
+
+export async function unsuspendEmployer(employerId: string) {
+  const admin = await requireRole("ADMIN", "AGENT");
+  const employer = await prisma.employerProfile.update({
+    where: { id: employerId },
+    data: { suspendedAt: null, suspendedReason: null },
+  });
+  await audit({
+    userId: admin.id,
+    action: "employer.unsuspended",
+    entityType: "EmployerProfile",
+    entityId: employerId,
+  });
+  await notify({
+    userId: employer.userId,
+    type: "employer.verification",
+    title: "Your account has been reinstated",
+    body: "Your account is active again. You can post jobs and search workers.",
+    link: "/employer",
+    email: true,
+  });
+  revalidatePath("/admin/employers");
+}
+
 // ---------------------------------------------------------------------------
 // Worker profile approval
 // ---------------------------------------------------------------------------

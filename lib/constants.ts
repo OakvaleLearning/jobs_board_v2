@@ -170,6 +170,10 @@ export const GUARANTEE_DAYS = 90;
 export const CPD_CYCLE_MONTHS_DEFAULT = 12;
 /** Placement fee (NGN) charged per placement when the employer type has none set. */
 export const DEFAULT_PLACEMENT_FEE_NGN = 150000;
+/** Annual partnership subscription fee (NGN) when the employer type has none set. */
+export const DEFAULT_SUBSCRIPTION_FEE_NGN = 500000;
+/** CPD refresh fee (NGN) charged per placed worker per cycle when none is set. */
+export const DEFAULT_CPD_REFRESH_FEE_NGN = 25000;
 
 export const contractTypeLabels: Record<ContractType, string> = {
   WORKER_PLACEMENT: "Worker Placement Agreement",

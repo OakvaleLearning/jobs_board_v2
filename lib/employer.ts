@@ -13,9 +13,13 @@ export async function getEmployerProfileByUserId(userId: string) {
  */
 export function employerBlockReason(profile: {
   verificationStatus: string;
+  suspendedAt?: Date | null;
 } | null): string | null {
   if (!profile) {
     return "Complete your company profile to get started.";
+  }
+  if (profile.suspendedAt) {
+    return "Your account has been suspended. Please contact Oakvale support.";
   }
   if (profile.verificationStatus === "REJECTED") {
     return "Your account verification was declined. Please contact Oakvale support.";

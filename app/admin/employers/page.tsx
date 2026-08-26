@@ -13,6 +13,7 @@ import StatusBadge from "@/components/StatusBadge";
 import EmptyState from "@/components/EmptyState";
 import DocLinks from "@/components/admin/DocLinks";
 import ReviewButtons from "@/components/admin/ReviewButtons";
+import SuspendEmployerButton from "@/components/admin/SuspendEmployerButton";
 import { decideEmployer } from "@/app/admin/actions";
 import { PageTransition } from "@/components/motion";
 
@@ -111,15 +112,28 @@ export default async function AdminEmployersPage() {
         {others.map((e) => (
           <Card key={e.id}>
             <CardContent sx={{ p: 2.5, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 2 }}>
-              <Box>
-                <Typography sx={{ fontWeight: 600 }}>
-                  {e.orgName ?? e.contactName ?? e.user.name}
-                </Typography>
+              <Box sx={{ minWidth: 0 }}>
+                <Stack direction="row" spacing={1} sx={{ alignItems: "center", mb: 0.25 }}>
+                  <Typography sx={{ fontWeight: 600 }}>
+                    {e.orgName ?? e.contactName ?? e.user.name}
+                  </Typography>
+                  {e.suspendedAt && (
+                    <Chip label="Suspended" size="small" color="error" />
+                  )}
+                </Stack>
                 <Typography variant="body2" color="text.secondary">
                   {e.user.email} · {e._count.jobs} job{e._count.jobs === 1 ? "" : "s"}
                 </Typography>
+                {e.suspendedAt && e.suspendedReason && (
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, fontStyle: "italic" }}>
+                    Suspended {formatDate(e.suspendedAt)}: {e.suspendedReason}
+                  </Typography>
+                )}
               </Box>
-              <StatusBadge meta={verificationStatusMeta[e.verificationStatus]} />
+              <Stack direction="row" spacing={1.5} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
+                <StatusBadge meta={verificationStatusMeta[e.verificationStatus]} />
+                <SuspendEmployerButton id={e.id} suspended={!!e.suspendedAt} />
+              </Stack>
             </CardContent>
           </Card>
         ))}

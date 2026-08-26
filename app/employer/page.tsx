@@ -67,7 +67,11 @@ export default async function EmployerDashboard() {
 
       {block && (
         <Alert
-          severity={profile?.verificationStatus === "REJECTED" ? "error" : "info"}
+          severity={
+            profile?.suspendedAt || profile?.verificationStatus === "REJECTED"
+              ? "error"
+              : "info"
+          }
           sx={{ mb: 3 }}
           action={
             !profile ? (

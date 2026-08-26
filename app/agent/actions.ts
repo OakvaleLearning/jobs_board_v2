@@ -8,6 +8,7 @@ import { notify, notifyAdmins } from "@/lib/notifications";
 import { renderDocumentPdf } from "@/lib/pdf";
 import { storage } from "@/lib/storage";
 import { cpdCycleMonths } from "@/lib/placement";
+import { issueSubscriptionInvoice, issueCpdRefreshInvoice } from "@/lib/billing";
 import { formatDate } from "@/lib/format";
 import { welfareMethodLabels, wellbeingMeta } from "@/lib/constants";
 import type { FormState } from "@/lib/forms";
@@ -123,7 +124,57 @@ export async function markCpdComplete(placementId: string, workerId: string) {
     title: "CPD refresh recorded",
     body: `Your CPD is up to date. Next refresh due ${formatDate(next)}.`,
   });
+
+  // Bill the employer for the CPD refresh (annually per placed worker, brief §10.2).
+  const invoice = await issueCpdRefreshInvoice(placementId);
+  if (invoice) {
+    const placement = await prisma.placement.findUnique({
+      where: { id: placementId },
+      include: { employer: { select: { userId: true } } },
+    });
+    if (placement) {
+      await audit({ userId: agent.id, action: "invoice.issued", entityType: "Invoice", entityId: invoice.id, meta: { type: "CPD_REFRESH" } });
+      await notify({
+        userId: placement.employer.userId,
+        type: "invoice.issued",
+        title: `Invoice ${invoice.number} — CPD refresh fee`,
+        body: `A CPD refresh invoice of ₦${invoice.amount.toLocaleString()} is now due (30-day terms).`,
+        link: "/employer/billing",
+        email: true,
+      });
+    }
+  }
+
   revalidatePath(`/agent/placements/${placementId}`);
+  revalidatePath("/employer/billing");
+}
+
+/** Issues the annual partnership subscription invoice for a corporate employer (brief §10.2). */
+export async function issueEmployerSubscription(employerId: string): Promise<FormState> {
+  const agent = await requireAgent();
+  const invoice = await issueSubscriptionInvoice(employerId);
+  if (!invoice) return { ok: false, message: "Employer not found." };
+
+  const employer = await prisma.employerProfile.findUnique({
+    where: { id: employerId },
+    include: { user: { select: { id: true } } },
+  });
+
+  await audit({ userId: agent.id, action: "invoice.issued", entityType: "Invoice", entityId: invoice.id, meta: { type: "SUBSCRIPTION" } });
+  if (employer) {
+    await notify({
+      userId: employer.user.id,
+      type: "invoice.issued",
+      title: `Invoice ${invoice.number} — annual subscription`,
+      body: `Your annual partnership subscription invoice of ₦${invoice.amount.toLocaleString()} is now due (30-day terms).`,
+      link: "/employer/billing",
+      email: true,
+    });
+  }
+
+  revalidatePath("/agent/accounts");
+  revalidatePath("/employer/billing");
+  return { ok: true, message: `Subscription invoice ${invoice.number} issued.` };
 }
 
 /** Assigns (or reassigns) an account manager to an employer account. */
