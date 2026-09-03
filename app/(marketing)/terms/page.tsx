@@ -26,7 +26,7 @@ export default function TermsPage() {
       <Divider sx={{ my: 4 }} />
 
       <Box sx={{ "& h2": { mt: 5, mb: 1.5 }, "& p": { mb: 2 }, "& ul": { mb: 2, pl: 3 }, "& li": { mb: 1 } }}>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           These Terms &amp; Conditions (the "Terms") govern your access to and use of the Oakvale Jobs
           platform at jobs.oakvaleltd.com (the "Platform"), operated by Oakvale Learning Ltd ("Oakvale",
           "we", "us", or "our"). By creating an account or using the Platform, you agree to these Terms.
@@ -36,7 +36,7 @@ export default function TermsPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           1. Who we are and what we do
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           Oakvale connects certified childcare and care workers with families, employers, and agents.
           We verify identity, conduct, and credentials, and help coordinate placements. Oakvale is a
           facilitator; unless expressly stated, any engagement or contract for care services is between
@@ -56,7 +56,7 @@ export default function TermsPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           3. Verification and screening
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           Workers may be required to submit identity documents, qualifications, references, and background
           checks. You agree that the information you provide is truthful and that we may verify it. While
           we take reasonable steps to screen and credential workers, we do not guarantee the suitability,
@@ -78,7 +78,7 @@ export default function TermsPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           5. Placements, contracts, and payments
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           Placements and contracts arranged through the Platform are subject to the specific terms agreed
           between the parties and any applicable fees we disclose to you. You agree to honour the
           commitments you make through the Platform, including agreed schedules, payments, and conduct
@@ -88,7 +88,7 @@ export default function TermsPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           6. Reviews, complaints, and disputes
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           The Platform provides tools for reviews and complaints. Reviews must be honest and based on
           genuine experience. We may investigate complaints and take action, including suspending or
           removing accounts, to protect the safety and integrity of the community.
@@ -97,7 +97,7 @@ export default function TermsPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           7. Content and intellectual property
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           You retain ownership of the content you submit but grant Oakvale a licence to use it as needed
           to operate the Platform and provide our services. The Platform, its branding, and its software
           remain the property of Oakvale and its licensors and may not be copied or used without
@@ -107,7 +107,7 @@ export default function TermsPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           8. Suspension and termination
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           We may suspend or terminate your access if you breach these Terms, create risk to others, or use
           the Platform unlawfully. You may close your account at any time. Some obligations, such as those
           relating to completed placements, may survive termination.
@@ -116,7 +116,7 @@ export default function TermsPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           9. Disclaimers and limitation of liability
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           The Platform is provided "as is" without warranties of any kind. To the fullest extent permitted
           by law, Oakvale is not liable for the acts or omissions of users, for indirect or consequential
           losses, or for any loss arising from a placement or engagement made through the Platform. Nothing
@@ -126,7 +126,7 @@ export default function TermsPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           10. Changes to these Terms
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           We may update these Terms from time to time. When we make material changes, we will update the
           "last updated" date and, where appropriate, notify you. Continued use of the Platform after
           changes take effect constitutes acceptance of the updated Terms.
@@ -135,7 +135,7 @@ export default function TermsPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           11. Contact us
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           Questions about these Terms can be sent to Oakvale Learning Ltd at{" "}
           <Link href="mailto:support@oakvaleltd.com">support@oakvaleltd.com</Link>.
         </Typography>

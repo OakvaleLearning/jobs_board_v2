@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
       <Divider sx={{ my: 4 }} />
 
       <Box sx={{ "& h2": { mt: 5, mb: 1.5 }, "& p": { mb: 2 }, "& ul": { mb: 2, pl: 3 }, "& li": { mb: 1 } }}>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           Oakvale Learning Ltd ("Oakvale", "we", "us", or "our") operates the Oakvale Jobs platform at
           jobs.oakvaleltd.com (the "Platform"), which connects childcare and care workers with families
           and employers. This policy explains what personal data we collect, how we use it, and the
@@ -36,7 +36,7 @@ export default function PrivacyPolicyPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           1. Information we collect
         </Typography>
-        <Typography paragraph>We collect the following categories of personal data:</Typography>
+        <Typography component="p" sx={{ mb: 2 }}>We collect the following categories of personal data:</Typography>
         <Box component="ul">
           <li>
             <strong>Account details</strong> — name, email address, phone number, password, and the role
@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           3. Legal bases
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           We process your data where it is necessary to perform our contract with you, where we have a
           legitimate interest in operating and improving the Platform, where you have given consent, and
           where we are required to comply with a legal obligation. Because of the safeguarding nature of
@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           4. Sharing your data
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           We share relevant profile and verification information with employers or agents involved in a
           placement so they can make informed hiring decisions. We also use trusted service providers
           (for example hosting, background checks, email, and payment processing) who process data on our
@@ -94,7 +94,7 @@ export default function PrivacyPolicyPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           5. International transfers
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           Oakvale connects workers in Nigeria with families and diaspora employers, so your data may be
           transferred and stored across borders. Where we transfer data internationally, we take steps to
           ensure it remains protected in line with applicable data-protection laws.
@@ -103,7 +103,7 @@ export default function PrivacyPolicyPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           6. Data retention
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           We keep personal data for as long as your account is active and as needed to provide the
           Platform, resolve disputes, and comply with legal and safeguarding obligations. When data is no
           longer needed, we delete or anonymise it.
@@ -112,7 +112,7 @@ export default function PrivacyPolicyPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           7. Your rights
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           Depending on your location, you may have the right to access, correct, delete, or restrict the
           processing of your personal data, to object to processing, and to data portability. You can
           exercise these rights by contacting us using the details below. You also have the right to
@@ -122,7 +122,7 @@ export default function PrivacyPolicyPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           8. Security
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           We use technical and organisational measures to protect your data, including encrypted
           connections and access controls. No system is completely secure, but we work to safeguard your
           information and respond promptly to any incident.
@@ -131,7 +131,7 @@ export default function PrivacyPolicyPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           9. Changes to this policy
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           We may update this policy from time to time. When we make material changes, we will update the
           "last updated" date and, where appropriate, notify you.
         </Typography>
@@ -139,7 +139,7 @@ export default function PrivacyPolicyPage() {
         <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
           10. Contact us
         </Typography>
-        <Typography paragraph>
+        <Typography component="p" sx={{ mb: 2 }}>
           If you have questions about this policy or how we handle your data, contact Oakvale Learning Ltd
           at{" "}
           <Link href="mailto:privacy@oakvaleltd.com">privacy@oakvaleltd.com</Link>.
