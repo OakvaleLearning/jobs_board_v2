@@ -80,9 +80,35 @@ export default async function MarketingLayout({
             }}
           >
             <Logo size={20} />
-            <Typography variant="body2" color="text.secondary">
-              © {new Date().getFullYear()} Oakvale Learning Ltd · jobs.oakvaleltd.com
-            </Typography>
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={{ xs: 1, sm: 3 }}
+              sx={{ alignItems: { xs: "flex-start", sm: "center" } }}
+            >
+              <Stack direction="row" spacing={2}>
+                <Typography
+                  component={Link}
+                  href="/privacy"
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
+                >
+                  Privacy Policy
+                </Typography>
+                <Typography
+                  component={Link}
+                  href="/terms"
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
+                >
+                  Terms &amp; Conditions
+                </Typography>
+              </Stack>
+              <Typography variant="body2" color="text.secondary">
+                © {new Date().getFullYear()} Oakvale Learning Ltd · jobs.oakvaleltd.com
+              </Typography>
+            </Stack>
           </Stack>
         </Container>
       </Box>

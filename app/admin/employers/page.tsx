@@ -5,6 +5,9 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
+import Button from "@mui/material/Button";
+import NextLink from "next/link";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import { requireRole } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { verificationStatusMeta } from "@/lib/constants";
@@ -90,12 +93,22 @@ export default async function AdminEmployersPage() {
                       />
                     </Box>
                   </Box>
-                  <ReviewButtons
-                    id={e.id}
-                    action={decideEmployer}
-                    approveLabel="Verify"
-                    rejectLabel="Decline"
-                  />
+                  <Stack spacing={1} sx={{ alignItems: "flex-end" }}>
+                    <ReviewButtons
+                      id={e.id}
+                      action={decideEmployer}
+                      approveLabel="Verify"
+                      rejectLabel="Decline"
+                    />
+                    <Button
+                      component={NextLink}
+                      href={`/admin/employers/${e.id}`}
+                      size="small"
+                      endIcon={<ArrowForwardRoundedIcon />}
+                    >
+                      Manage
+                    </Button>
+                  </Stack>
                 </Box>
               </CardContent>
             </Card>
@@ -133,6 +146,15 @@ export default async function AdminEmployersPage() {
               <Stack direction="row" spacing={1.5} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
                 <StatusBadge meta={verificationStatusMeta[e.verificationStatus]} />
                 <SuspendEmployerButton id={e.id} suspended={!!e.suspendedAt} />
+                <Button
+                  component={NextLink}
+                  href={`/admin/employers/${e.id}`}
+                  size="small"
+                  variant="outlined"
+                  endIcon={<ArrowForwardRoundedIcon />}
+                >
+                  Manage
+                </Button>
               </Stack>
             </CardContent>
           </Card>

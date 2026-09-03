@@ -122,6 +122,18 @@ export default function SignupForm({ initialRole }: { initialRole: "WORKER" | "E
           <SubmitButton size="large" fullWidth>
             Create account
           </SubmitButton>
+
+          <Typography variant="body2" color="text.secondary" sx={{ textAlign: "center" }}>
+            By creating an account, you agree to our{" "}
+            <MuiLink component={Link} href="/terms" sx={{ fontWeight: 600 }}>
+              Terms &amp; Conditions
+            </MuiLink>{" "}
+            and{" "}
+            <MuiLink component={Link} href="/privacy" sx={{ fontWeight: 600 }}>
+              Privacy Policy
+            </MuiLink>
+            .
+          </Typography>
         </Stack>
       </Box>
 
