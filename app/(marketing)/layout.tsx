@@ -86,24 +86,24 @@ export default async function MarketingLayout({
               sx={{ alignItems: { xs: "flex-start", sm: "center" } }}
             >
               <Stack direction="row" spacing={2}>
-                <Typography
-                  component={Link}
-                  href="/privacy"
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
-                >
-                  Privacy Policy
-                </Typography>
-                <Typography
-                  component={Link}
-                  href="/terms"
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
-                >
-                  Terms &amp; Conditions
-                </Typography>
+                <Link href="/privacy" style={{ textDecoration: "none" }}>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ "&:hover": { textDecoration: "underline" } }}
+                  >
+                    Privacy Policy
+                  </Typography>
+                </Link>
+                <Link href="/terms" style={{ textDecoration: "none" }}>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ "&:hover": { textDecoration: "underline" } }}
+                  >
+                    Terms &amp; Conditions
+                  </Typography>
+                </Link>
               </Stack>
               <Typography variant="body2" color="text.secondary">
                 © {new Date().getFullYear()} Oakvale Learning Ltd · jobs.oakvaleltd.com
