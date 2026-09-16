@@ -11,6 +11,8 @@ import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
 import ReceiptLongRoundedIcon from "@mui/icons-material/ReceiptLongRounded";
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
+import WorkspacePremiumRoundedIcon from "@mui/icons-material/WorkspacePremiumRounded";
+import MonitorHeartRoundedIcon from "@mui/icons-material/MonitorHeartRounded";
 
 const nav = [
   { label: "Dashboard", href: "/employer", icon: <DashboardRoundedIcon /> },
@@ -18,7 +20,9 @@ const nav = [
   { label: "Find Workers", href: "/employer/workers", icon: <PeopleAltRoundedIcon /> },
   { label: "Shortlists", href: "/employer/shortlists", icon: <BookmarkRoundedIcon /> },
   { label: "Placements", href: "/employer/placements", icon: <AssignmentTurnedInRoundedIcon /> },
+  { label: "Care Oversight", href: "/employer/care-logs", icon: <MonitorHeartRoundedIcon /> },
   { label: "Assessment", href: "/employer/assessment", icon: <AssignmentRoundedIcon /> },
+  { label: "Plans", href: "/employer/plans", icon: <WorkspacePremiumRoundedIcon /> },
   { label: "Billing", href: "/employer/billing", icon: <ReceiptLongRoundedIcon /> },
   { label: "Messages", href: "/employer/messages", icon: <ChatRoundedIcon /> },
   { label: "Complaints", href: "/employer/complaints", icon: <ReportProblemRoundedIcon /> },

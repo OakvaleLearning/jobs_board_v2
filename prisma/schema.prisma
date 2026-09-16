@@ -80,6 +80,35 @@ enum Currency {
   NGN
   GBP
   USD
+  CAD
+}
+
+// PRD §2 — an employer's hiring context decides their currency, gateway and
+// which feature set they see. Set at signup, immutable-ish afterwards.
+enum AccountType {
+  LOCAL_NG
+  DIASPORA_GLOBAL
+}
+
+enum PlanTier {
+  STANDARD
+  PREMIUM
+}
+
+enum SubscriptionStatus {
+  INACTIVE
+  ACTIVE
+  PAST_DUE
+  CANCELLED
+}
+
+// Which gateway an account's checkouts are routed to. NGN accounts use the
+// Nigerian rails; diaspora accounts the FX rails.
+enum PaymentProvider {
+  PAYSTACK
+  FLUTTERWAVE
+  STRIPE
+  PAYPAL
 }
 
 enum EmploymentType {
@@ -233,6 +262,8 @@ enum InvoiceType {
   PLACEMENT_FEE
   SUBSCRIPTION
   CPD_REFRESH
+  PLAN_SUBSCRIPTION
+  INTERVIEW_CREDIT
 }
 
 enum AssessmentType {
@@ -350,6 +381,7 @@ model WorkerProfile {
   applications Application[]
   shortlists   Shortlist[]
   placements   Placement[]
+  careLogs     CareLogEntry[]
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -416,6 +448,29 @@ model EmployerProfile {
   kind           EmployerKind
   employerTypeId String?
   employerType   EmployerType? @relation(fields: [employerTypeId], references: [id])
+
+  // --- PRD §2 / US-1.1: hiring context drives currency, gateway and features ---
+  accountType AccountType @default(LOCAL_NG)
+  // Billing currency. Local accounts are always NGN; diaspora accounts pick one
+  // of USD / GBP / CAD at signup.
+  currency    Currency    @default(NGN)
+  countryCode String?
+
+  // --- Subscription state (monthly plan access) ---
+  planTier           PlanTier?
+  subscriptionStatus SubscriptionStatus @default(INACTIVE)
+  subscribedAt       DateTime?
+  // End of the paid period. Also the boundary at which the monthly interview
+  // allowance is re-granted (see lib/subscription.ts).
+  periodEnd          DateTime?
+
+  // --- Interview credits (US-3.1) ---
+  // Two buckets, because they behave differently at a period boundary: the
+  // monthly allowance is replaced, purchased credits carry over untouched.
+  // Spendable balance is the sum; spending draws on the allowance first.
+  allowanceCredits Int       @default(0)
+  purchasedCredits Int       @default(0)
+  creditsGrantedAt DateTime?
 
   // Organization fields
   orgName   String?
@@ -617,8 +672,13 @@ model Interview {
   status        InterviewStatus @default(PROPOSED)
   outcome       String?
   notes         String?
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+
+  // US-3.1 — virtual interviews consume one credit. Recorded so a reschedule
+  // of an already-paid-for interview is never charged twice.
+  creditCharged Boolean  @default(false)
+  meetingUrl    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Offer {
@@ -679,6 +739,8 @@ model Placement {
   complaints    Complaint[]
   invoices      Invoice[]
   reviews       Review[]
+
+  careLogWorkspace CareLogWorkspace?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -850,8 +912,16 @@ model Invoice {
 
   dueAt       DateTime?
   paidAt      DateTime?
+  // Legacy NGN placement-fee reference, kept so existing rows stay resolvable.
   paystackRef String?
+  // Gateway-agnostic reference used by every new checkout (plans, credits).
+  provider    PaymentProvider?
+  providerRef String?
   lineItems   Json?
+  // What this invoice buys, structurally — e.g. { kind: "PLAN_SUBSCRIPTION",
+  // tier: "PREMIUM" } or { kind: "INTERVIEW_CREDIT", quantity: 3 }. Read at
+  // fulfilment so a callback, a webhook and an admin replay all agree.
+  purchase    Json?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -876,6 +946,63 @@ model Assessment {
   updatedAt DateTime @updatedAt
 
   @@unique([employerId, type])
+}
+
+// ----------------------------------------------------------------------------
+// Module 4 — Remote Care Oversight (Diaspora exclusive)
+// ----------------------------------------------------------------------------
+
+/**
+ * US-4.1 — created automatically when a DIASPORA_GLOBAL employer's placement
+ * goes active. The shared space where the caregiver files routine updates and
+ * the sponsor reads them from abroad.
+ */
+model CareLogWorkspace {
+  id          String    @id @default(cuid())
+  placementId String    @unique
+  placement   Placement @relation(fields: [placementId], references: [id], onDelete: Cascade)
+
+  active       Boolean   @default(true)
+  // Sponsors receive a digest rather than an email per entry; this marks the
+  // watermark of what has already been sent.
+  lastDigestAt DateTime?
+
+  entries CareLogEntry[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CareLogEntry {
+  id          String           @id @default(cuid())
+  workspaceId String
+  workspace   CareLogWorkspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  // The caregiver who filed the entry.
+  workerId String
+  worker   WorkerProfile @relation(fields: [workerId], references: [id], onDelete: Cascade)
+
+  loggedFor DateTime @default(now())
+
+  // Health metrics — all optional; a caregiver logs what was actually taken.
+  bloodPressure String?
+  temperature   Float?
+  pulse         Int?
+  weight        Float?
+
+  // Routine care
+  medicationsTaken String?
+  medicationTime   String?
+  meals            String?
+  activities       String?
+  mood             String?
+  notes            String?
+  // Set by the caregiver when something needs the sponsor's attention now.
+  concernFlag      Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@index([workspaceId, loggedFor])
 }
 
 // ----------------------------------------------------------------------------

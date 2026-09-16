@@ -6,7 +6,13 @@ import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import { requireRole } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
-import { getEmployerProfileByUserId, employerBlockReason } from "@/lib/employer";
+import { employerBlockReason } from "@/lib/employer";
+import {
+  getBillingProfile,
+  subscriptionBlockReason,
+  currentFeatures,
+  isDiasporaReady,
+} from "@/lib/subscription";
 import { NIGERIAN_STATES, LANGUAGES, employmentTypeLabels } from "@/lib/constants";
 import EmptyState from "@/components/EmptyState";
 import LinkButton from "@/components/LinkButton";
@@ -19,8 +25,16 @@ const EMPLOYMENT_TYPES: EmploymentType[] = ["FULL_TIME", "PART_TIME", "SHIFT", "
 
 export default async function EmployerWorkersPage({ searchParams }: PageProps<"/employer/workers">) {
   const user = await requireRole("EMPLOYER");
-  const profile = await getEmployerProfileByUserId(user.id);
+  const profile = await getBillingProfile(user.id);
   const block = employerBlockReason(profile);
+  // The directory stays open to every verified employer; the subscription
+  // prompt is a banner rather than a wall, so existing accounts don't lose
+  // access the moment plans go live. Metered actions (virtual interviews)
+  // remain gated on an active plan.
+  const planPrompt = block ? null : subscriptionBlockReason(profile);
+  // PRD §2 — diaspora accounts browse the "Full Verified + Diaspora-Ready"
+  // pool, where candidates assessable remotely are called out.
+  const showDiasporaReady = currentFeatures(profile).diasporaReadyPool;
 
   const sp = await searchParams;
   const q = (k: string) => (typeof sp[k] === "string" ? (sp[k] as string) : "");
@@ -50,6 +64,7 @@ export default async function EmployerWorkersPage({ searchParams }: PageProps<"/
     certified: boolean;
     backgroundClear: boolean;
     shortlisted: boolean;
+    diasporaReady?: boolean;
   }[] = [];
 
   if (!block && profile) {
@@ -69,7 +84,10 @@ export default async function EmployerWorkersPage({ searchParams }: PageProps<"/
         include: {
           user: { select: { name: true } },
           workforceCategory: { select: { name: true } },
-          documents: { where: { type: "SELFIE" }, select: { fileUrl: true }, take: 1 },
+          documents: {
+            where: { type: { in: ["SELFIE", "VIDEO_INTRO"] } },
+            select: { fileUrl: true, type: true },
+          },
         },
         orderBy: { updatedAt: "desc" },
         take: 60,
@@ -86,7 +104,7 @@ export default async function EmployerWorkersPage({ searchParams }: PageProps<"/
     workers = rows.map((w) => ({
       id: w.id,
       name: w.user.name,
-      photoUrl: w.documents[0]?.fileUrl ?? null,
+      photoUrl: w.documents.find((d) => d.type === "SELFIE")?.fileUrl ?? null,
       category: w.workforceCategory?.name ?? null,
       state: w.state,
       lga: w.lga,
@@ -95,6 +113,7 @@ export default async function EmployerWorkersPage({ searchParams }: PageProps<"/
       certified: w.certStatus === "APPROVED",
       backgroundClear: w.backgroundCheckStatus === "CLEAR",
       shortlisted: shortlistedIds.has(w.id),
+      diasporaReady: showDiasporaReady ? isDiasporaReady(w.documents) : undefined,
     }));
   }
 
@@ -122,6 +141,20 @@ export default async function EmployerWorkersPage({ searchParams }: PageProps<"/
         </Alert>
       ) : (
         <>
+          {planPrompt && (
+            <Alert
+              severity="warning"
+              sx={{ mb: 3 }}
+              action={
+                <LinkButton href="/employer/plans" color="inherit" size="small">
+                  View plans
+                </LinkButton>
+              }
+            >
+              {planPrompt}
+            </Alert>
+          )}
+
           <Card sx={{ mb: 3 }}>
             <CardContent sx={{ p: 2.5 }}>
               <WorkerFilters

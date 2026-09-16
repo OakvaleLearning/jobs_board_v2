@@ -13,6 +13,9 @@ import { zodFieldErrors, type FormState } from "@/lib/forms";
 export async function signupAction(_prev: FormState, formData: FormData): Promise<FormState> {
   const raw = {
     role: formData.get("role"),
+    accountType: formData.get("accountType") || undefined,
+    currency: formData.get("currency") || undefined,
+    countryCode: formData.get("countryCode") || undefined,
     name: formData.get("name"),
     email: formData.get("email"),
     phone: formData.get("phone"),
@@ -45,10 +48,33 @@ export async function signupAction(_prev: FormState, formData: FormData): Promis
       referrerName: data.referralSource === "PERSONAL_REFERRAL" ? data.referrerName : null,
       // Workers get a draft profile immediately so onboarding can auto-save.
       workerProfile: data.role === "WORKER" ? { create: {} } : undefined,
+      // US-1.1 AC4 — the employer's account type, currency and country are
+      // recorded at signup so plan pricing and gateway routing are settled
+      // before they reach the dashboard. `kind` is provisional: the onboarding
+      // step immediately asks whether they are an individual or organization.
+      employerProfile:
+        data.role === "EMPLOYER"
+          ? {
+              create: {
+                kind: "INDIVIDUAL",
+                accountType: data.accountType!,
+                currency: data.currency!,
+                countryCode:
+                  data.accountType === "LOCAL_NG" ? "NG" : data.countryCode!.toUpperCase(),
+                country: data.accountType === "LOCAL_NG" ? "Nigeria" : null,
+              },
+            }
+          : undefined,
     },
   });
 
-  await audit({ userId: user.id, action: "user.signup", entityType: "User", entityId: user.id, meta: { role: data.role } });
+  await audit({
+    userId: user.id,
+    action: "user.signup",
+    entityType: "User",
+    entityId: user.id,
+    meta: { role: data.role, accountType: data.accountType, currency: data.currency },
+  });
 
   if (data.role === "WORKER") {
     await notifyAdmins({

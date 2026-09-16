@@ -7,6 +7,13 @@ import { audit } from "@/lib/audit";
 import { notify, notifyAdmins } from "@/lib/notifications";
 import { zodFieldErrors, type FormState } from "@/lib/forms";
 import { z } from "zod";
+import {
+  spendInterviewCredit,
+  refreshCreditsIfDue,
+  subscriptionActive,
+} from "@/lib/subscription";
+import { meetingUrlFor } from "@/lib/interviews";
+import { CURRENCIES } from "@/lib/constants";
 import type { EmploymentType, InterviewFormat } from "@/generated/prisma/client";
 
 /** Confirms the application belongs to a job owned by the current employer. */
@@ -22,6 +29,17 @@ const interviewSchema = z.object({
   times: z.array(z.string().min(1)).min(1, "Propose at least one time.").max(5),
 });
 
+/**
+ * US-3.1 — schedules an interview.
+ *
+ * Virtual (video) interviews draw on the employer's plan allowance: one credit
+ * per interview, deducted on first request. Rescheduling an interview already
+ * paid for is free, so `creditCharged` is the thing consulted, not the status.
+ * Phone and in-person interviews are not metered.
+ *
+ * When the balance is exhausted the action returns `outOfCredits` so the UI can
+ * offer the two documented routes out: upgrade to Premium, or buy one credit.
+ */
 export async function requestInterview(_prev: FormState, formData: FormData): Promise<FormState> {
   const user = await requireRole("EMPLOYER");
   const applicationId = String(formData.get("applicationId") || "");
@@ -32,34 +50,92 @@ export async function requestInterview(_prev: FormState, formData: FormData): Pr
   const parsed = interviewSchema.safeParse({ format: formData.get("format"), times });
   if (!parsed.success) return { ok: false, fieldErrors: zodFieldErrors(parsed.error) };
 
+  const format = parsed.data.format as InterviewFormat;
+  const existing = await prisma.interview.findUnique({ where: { applicationId } });
+
+  const employer = await prisma.employerProfile.findUnique({ where: { userId: user.id } });
+  if (!employer) return { ok: false, message: "Complete your company profile first." };
+
+  const metered = format === "VIDEO";
+  // Only charge once per interview, even across reschedules and format changes.
+  const mustCharge = metered && !existing?.creditCharged;
+  let meetingUrl = existing?.meetingUrl ?? null;
+
+  if (metered) {
+    const fresh = await refreshCreditsIfDue(employer);
+    if (!subscriptionActive(fresh)) {
+      return {
+        ok: false,
+        code: "NO_SUBSCRIPTION",
+        message: "An active subscription is required to schedule virtual interviews.",
+      };
+    }
+    if (mustCharge) {
+      const spend = await spendInterviewCredit(employer.id);
+      if (!spend.ok) {
+        // The client turns this into the upgrade / buy-a-credit dialog.
+        return spend.reason === "no_credits"
+          ? {
+              ok: false,
+              code: "OUT_OF_CREDITS",
+              message: "You have no interview credits left this month.",
+            }
+          : {
+              ok: false,
+              code: "NO_SUBSCRIPTION",
+              message: "An active subscription is required to schedule virtual interviews.",
+            };
+      }
+    }
+    meetingUrl ??= meetingUrlFor(applicationId);
+  }
+
   await prisma.interview.upsert({
     where: { applicationId },
     update: {
-      format: parsed.data.format as InterviewFormat,
+      format,
       proposedTimes: parsed.data.times,
       status: "PROPOSED",
       confirmedTime: null,
+      ...(mustCharge ? { creditCharged: true } : {}),
+      meetingUrl,
     },
     create: {
       applicationId,
-      format: parsed.data.format as InterviewFormat,
+      format,
       proposedTimes: parsed.data.times,
+      creditCharged: mustCharge,
+      meetingUrl,
     },
   });
   await prisma.application.update({ where: { id: applicationId }, data: { status: "INTERVIEW" } });
 
-  await audit({ userId: user.id, action: "interview.requested", entityType: "Application", entityId: applicationId });
+  await audit({
+    userId: user.id,
+    action: "interview.requested",
+    entityType: "Application",
+    entityId: applicationId,
+    meta: { format, creditCharged: mustCharge },
+  });
   await notify({
     userId: app.worker.user.id,
     type: "interview.requested",
     title: "Interview requested",
-    body: `You've been invited to interview for "${app.job.title}". Choose a time.`,
+    body: `You've been invited to a ${
+      format === "VIDEO" ? "virtual" : format === "PHONE" ? "phone" : "in-person"
+    } interview for "${app.job.title}". Choose a time.`,
     link: "/worker/applications",
     email: true,
   });
 
   revalidatePath(`/employer/jobs/${app.jobId}`);
-  return { ok: true, message: "Interview request sent to the worker." };
+  revalidatePath("/employer/billing");
+  return {
+    ok: true,
+    message: mustCharge
+      ? "Interview request sent. One interview credit was used."
+      : "Interview request sent to the worker.",
+  };
 }
 
 const offerSchema = z.object({
@@ -67,7 +143,7 @@ const offerSchema = z.object({
   startDate: z.string().min(1, "Choose a start date."),
   employmentType: z.enum(["FULL_TIME", "PART_TIME", "SHIFT", "LIVE_IN", "CONTRACT"]),
   salary: z.coerce.number().int().positive("Enter a salary."),
-  salaryCurrency: z.enum(["NGN", "GBP", "USD"]),
+  salaryCurrency: z.enum(CURRENCIES),
   hours: z.string().trim().optional(),
   location: z.string().trim().optional(),
   conditions: z.string().trim().optional(),

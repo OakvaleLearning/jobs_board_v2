@@ -18,6 +18,7 @@ import { requestInterview, makeOffer, setApplicationStatus } from "@/app/employe
 import { initialFormState } from "@/lib/forms";
 import { employmentTypeLabels, currencyLabels } from "@/lib/constants";
 import SubmitButton from "@/components/SubmitButton";
+import OutOfCreditsDialog from "@/components/employer/OutOfCreditsDialog";
 import type { EmploymentType, Currency } from "@/generated/prisma/client";
 
 const EMPLOYMENT_TYPES: EmploymentType[] = ["FULL_TIME", "PART_TIME", "SHIFT", "LIVE_IN", "CONTRACT"];
@@ -27,18 +28,34 @@ export default function ApplicantActions({
   workerProfileId,
   status,
   jobTitle,
+  interviewCredits,
+  creditPriceLabel,
+  isPremium,
 }: {
   applicationId: string;
   workerProfileId: string;
   status: string;
   jobTitle: string;
+  /** Current balance, shown so the cost of a virtual interview is never a surprise. */
+  interviewCredits: number;
+  creditPriceLabel: string;
+  isPremium: boolean;
 }) {
   const [interviewOpen, setInterviewOpen] = useState(false);
   const [offerOpen, setOfferOpen] = useState(false);
+  const [format, setFormat] = useState("VIDEO");
   const [pending, startTransition] = useTransition();
 
   const [ivState, ivAction] = useActionState(requestInterview, initialFormState);
   const [offerState, offerAction] = useActionState(makeOffer, initialFormState);
+
+  // An exhausted allowance isn't an error to read — it's a decision to make, so
+  // it opens the upgrade/buy dialog rather than showing a message. Derived from
+  // the action result rather than synced via an effect; `useActionState` hands
+  // back a fresh object per run, so remembering the dismissed one is enough to
+  // keep the dialog closed until the next attempt.
+  const [dismissedCredits, setDismissedCredits] = useState<typeof ivState | null>(null);
+  const outOfCredits = ivState.code === "OUT_OF_CREDITS" && dismissedCredits !== ivState;
 
   useEffect(() => {
     if (ivState.ok) setInterviewOpen(false);
@@ -85,18 +102,39 @@ export default function ApplicantActions({
       </Stack>
 
       {/* Interview dialog */}
-      <Dialog open={interviewOpen} onClose={() => setInterviewOpen(false)} fullWidth maxWidth="sm">
+      <Dialog
+        open={interviewOpen && !outOfCredits}
+        onClose={() => setInterviewOpen(false)}
+        fullWidth
+        maxWidth="sm"
+      >
         <DialogTitle>Request an interview</DialogTitle>
         <form action={ivAction}>
           <DialogContent>
             <input type="hidden" name="applicationId" value={applicationId} />
             <Stack spacing={2} sx={{ mt: 1 }}>
-              {ivState.message && !ivState.ok && <Alert severity="error">{ivState.message}</Alert>}
-              <TextField select name="format" label="Interview format" defaultValue="VIDEO" size="small">
-                <MenuItem value="VIDEO">Video call</MenuItem>
+              {ivState.message && !ivState.ok && ivState.code !== "OUT_OF_CREDITS" && (
+                <Alert severity="error">{ivState.message}</Alert>
+              )}
+              <TextField
+                select
+                name="format"
+                label="Interview format"
+                value={format}
+                onChange={(e) => setFormat(e.target.value)}
+                size="small"
+              >
+                <MenuItem value="VIDEO">Video call (uses 1 interview credit)</MenuItem>
                 <MenuItem value="PHONE">Phone call</MenuItem>
                 <MenuItem value="IN_PERSON">In person</MenuItem>
               </TextField>
+              {format === "VIDEO" && (
+                <Alert severity={interviewCredits > 0 ? "info" : "warning"}>
+                  {status === "INTERVIEW"
+                    ? "Rescheduling an interview you've already paid for doesn't use another credit."
+                    : `A virtual interview uses 1 credit. You have ${interviewCredits} remaining.`}
+                </Alert>
+              )}
               <TextField
                 name="times"
                 type="datetime-local"
@@ -195,6 +233,19 @@ export default function ApplicantActions({
           </DialogActions>
         </form>
       </Dialog>
+
+      <OutOfCreditsDialog
+        open={outOfCredits}
+        onClose={() => setDismissedCredits(ivState)}
+        creditPriceLabel={creditPriceLabel}
+        isPremium={isPremium}
+        // A credit just purchased should land the employer back in the
+        // interview dialog, ready to resubmit.
+        onPurchased={() => {
+          setDismissedCredits(ivState);
+          setInterviewOpen(true);
+        }}
+      />
     </>
   );
 }

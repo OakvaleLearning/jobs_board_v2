@@ -9,6 +9,7 @@ import AssignmentTurnedInRoundedIcon from "@mui/icons-material/AssignmentTurnedI
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import MenuBookRoundedIcon from "@mui/icons-material/MenuBookRounded";
+import MonitorHeartRoundedIcon from "@mui/icons-material/MonitorHeartRounded";
 
 const nav = [
   { label: "Dashboard", href: "/worker", icon: <DashboardRoundedIcon /> },
@@ -16,6 +17,7 @@ const nav = [
   { label: "Browse Jobs", href: "/worker/jobs", icon: <WorkRoundedIcon /> },
   { label: "My Applications", href: "/worker/applications", icon: <DescriptionRoundedIcon /> },
   { label: "My Placements", href: "/worker/placements", icon: <AssignmentTurnedInRoundedIcon /> },
+  { label: "Care Logs", href: "/worker/care-logs", icon: <MonitorHeartRoundedIcon /> },
   { label: "My Reviews", href: "/worker/reviews", icon: <StarRoundedIcon /> },
   { label: "Messages", href: "/worker/messages", icon: <ChatRoundedIcon /> },
   { label: "Complaints", href: "/worker/complaints", icon: <ReportProblemRoundedIcon /> },

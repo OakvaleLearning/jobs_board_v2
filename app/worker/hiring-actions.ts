@@ -8,6 +8,7 @@ import { notify } from "@/lib/notifications";
 import { applicationBlockReason } from "@/lib/worker";
 import { generatePlacementContracts } from "@/lib/contracts";
 import { issuePlacementInvoice } from "@/lib/billing";
+import { ensureCareLogWorkspace } from "@/lib/carelogs";
 import { guaranteeWindowEnds, cpdCycleMonths } from "@/lib/placement";
 import type { FormState } from "@/lib/forms";
 
@@ -145,6 +146,9 @@ export async function respondToOffer(offerId: string, decision: "ACCEPTED" | "DE
   if (decision === "ACCEPTED" && placementId) {
     await generatePlacementContracts(placementId);
     await issuePlacementInvoice(placementId);
+    // US-4.1 — a Diaspora Sponsor's placement gets a shared care log workspace.
+    // Returns null (and does nothing) for accounts without remote oversight.
+    await ensureCareLogWorkspace(placementId);
     await notify({
       userId: user.id,
       type: "contract.ready",

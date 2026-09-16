@@ -1,3 +1,4 @@
+import type { Currency } from "@/generated/prisma/client";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -16,7 +17,7 @@ type Row = {
   status: keyof typeof placementStatusMeta;
   startDate: Date;
   salary: number | null;
-  salaryCurrency: "NGN" | "GBP" | "USD";
+  salaryCurrency: Currency;
   guaranteeWindowEnds: Date | null;
   worker: { user: { name: string }; cpdNextDueAt: Date | null };
   employer: { orgName: string | null; user: { name: string } };

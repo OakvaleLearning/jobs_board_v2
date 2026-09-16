@@ -25,6 +25,8 @@ import ReviewList from "@/components/reviews/ReviewList";
 import { visibleReviewsForWorker } from "@/lib/reviews";
 import { PageTransition } from "@/components/motion";
 import { startConversationWithWorker } from "@/app/messages-actions";
+import VettingPackSection from "@/components/employer/VettingPackSection";
+import { canViewVettingPack } from "@/lib/subscription";
 
 export default async function WorkerProfileView({ params }: PageProps<"/employer/workers/[id]">) {
   const user = await requireRole("EMPLOYER");
@@ -39,7 +41,11 @@ export default async function WorkerProfileView({ params }: PageProps<"/employer
       workforceCategory: true,
       educations: { orderBy: { createdAt: "asc" } },
       experiences: { orderBy: { createdAt: "asc" } },
-      documents: { where: { type: { in: ["SELFIE", "VIDEO_INTRO"] } } },
+      documents: {
+        where: {
+          type: { in: ["SELFIE", "VIDEO_INTRO", "POLICE_REPORT", "AFFIDAVIT", "NIN", "PASSPORT", "VOTER_CARD", "DRIVERS_LICENCE"] },
+        },
+      },
     },
   });
   if (!worker) notFound();
@@ -50,6 +56,36 @@ export default async function WorkerProfileView({ params }: PageProps<"/employer
 
   const reviews = await visibleReviewsForWorker(worker.userId);
   const selfie = worker.documents.find((d) => d.type === "SELFIE");
+
+  // US-2.1 — the pack itself is Diaspora-only, but the section is rendered for
+  // everyone so a local employer gets the explanation rather than silence.
+  const vettingUnlocked = canViewVettingPack(profile);
+  const videoIntro = worker.documents.find((d) => d.type === "VIDEO_INTRO");
+  const hasDoc = (types: string[]) => worker.documents.some((d) => types.includes(d.type));
+  const vettingChecks = [
+    {
+      label: "Government ID",
+      value: hasDoc(["NIN", "PASSPORT", "VOTER_CARD", "DRIVERS_LICENCE"])
+        ? "On file"
+        : "Not submitted",
+      ok: hasDoc(["NIN", "PASSPORT", "VOTER_CARD", "DRIVERS_LICENCE"]),
+    },
+    {
+      label: "Police clearance",
+      value: backgroundCheckMeta[worker.backgroundCheckStatus].label,
+      ok: worker.backgroundCheckStatus === "CLEAR",
+    },
+    {
+      label: "Oakvale certification",
+      value: certStatusMeta[worker.certStatus].label,
+      ok: worker.certStatus === "APPROVED",
+    },
+    {
+      label: "Video introduction",
+      value: videoIntro ? "Available" : "Not submitted",
+      ok: !!videoIntro,
+    },
+  ];
 
   return (
     <PageTransition sx={{ maxWidth: 900, mx: "auto" }}>
@@ -184,6 +220,14 @@ export default async function WorkerProfileView({ params }: PageProps<"/employer
               />
             </CardContent>
           </Card>
+
+          <VettingPackSection
+            workerId={worker.id}
+            workerName={worker.user.name}
+            unlocked={vettingUnlocked}
+            videoUrl={videoIntro?.fileUrl ?? null}
+            checks={vettingChecks}
+          />
         </Grid>
       </Grid>
     </PageTransition>

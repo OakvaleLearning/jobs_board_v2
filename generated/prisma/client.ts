@@ -172,6 +172,19 @@ export type Invoice = Prisma.InvoiceModel
  */
 export type Assessment = Prisma.AssessmentModel
 /**
+ * Model CareLogWorkspace
+ * *
+ *  * US-4.1 — created automatically when a DIASPORA_GLOBAL employer's placement
+ *  * goes active. The shared space where the caregiver files routine updates and
+ *  * the sponsor reads them from abroad.
+ */
+export type CareLogWorkspace = Prisma.CareLogWorkspaceModel
+/**
+ * Model CareLogEntry
+ * 
+ */
+export type CareLogEntry = Prisma.CareLogEntryModel
+/**
  * Model Conversation
  * 
  */

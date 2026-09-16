@@ -77,6 +77,8 @@ export const ModelName = {
   ComplaintDocument: 'ComplaintDocument',
   Invoice: 'Invoice',
   Assessment: 'Assessment',
+  CareLogWorkspace: 'CareLogWorkspace',
+  CareLogEntry: 'CareLogEntry',
   Conversation: 'Conversation',
   Message: 'Message',
   Notification: 'Notification',
@@ -217,6 +219,16 @@ export const EmployerProfileScalarFieldEnum = {
   userId: 'userId',
   kind: 'kind',
   employerTypeId: 'employerTypeId',
+  accountType: 'accountType',
+  currency: 'currency',
+  countryCode: 'countryCode',
+  planTier: 'planTier',
+  subscriptionStatus: 'subscriptionStatus',
+  subscribedAt: 'subscribedAt',
+  periodEnd: 'periodEnd',
+  allowanceCredits: 'allowanceCredits',
+  purchasedCredits: 'purchasedCredits',
+  creditsGrantedAt: 'creditsGrantedAt',
   orgName: 'orgName',
   sector: 'sector',
   cacNumber: 'cacNumber',
@@ -366,6 +378,8 @@ export const InterviewScalarFieldEnum = {
   status: 'status',
   outcome: 'outcome',
   notes: 'notes',
+  creditCharged: 'creditCharged',
+  meetingUrl: 'meetingUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -532,7 +546,10 @@ export const InvoiceScalarFieldEnum = {
   dueAt: 'dueAt',
   paidAt: 'paidAt',
   paystackRef: 'paystackRef',
+  provider: 'provider',
+  providerRef: 'providerRef',
   lineItems: 'lineItems',
+  purchase: 'purchase',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -551,6 +568,40 @@ export const AssessmentScalarFieldEnum = {
 } as const
 
 export type AssessmentScalarFieldEnum = (typeof AssessmentScalarFieldEnum)[keyof typeof AssessmentScalarFieldEnum]
+
+
+export const CareLogWorkspaceScalarFieldEnum = {
+  id: 'id',
+  placementId: 'placementId',
+  active: 'active',
+  lastDigestAt: 'lastDigestAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CareLogWorkspaceScalarFieldEnum = (typeof CareLogWorkspaceScalarFieldEnum)[keyof typeof CareLogWorkspaceScalarFieldEnum]
+
+
+export const CareLogEntryScalarFieldEnum = {
+  id: 'id',
+  workspaceId: 'workspaceId',
+  workerId: 'workerId',
+  loggedFor: 'loggedFor',
+  bloodPressure: 'bloodPressure',
+  temperature: 'temperature',
+  pulse: 'pulse',
+  weight: 'weight',
+  medicationsTaken: 'medicationsTaken',
+  medicationTime: 'medicationTime',
+  meals: 'meals',
+  activities: 'activities',
+  mood: 'mood',
+  notes: 'notes',
+  concernFlag: 'concernFlag',
+  createdAt: 'createdAt'
+} as const
+
+export type CareLogEntryScalarFieldEnum = (typeof CareLogEntryScalarFieldEnum)[keyof typeof CareLogEntryScalarFieldEnum]
 
 
 export const ConversationScalarFieldEnum = {

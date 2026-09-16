@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { CURRENCIES } from "@/lib/constants";
 
 export const jobSchema = z
   .object({
@@ -11,7 +12,7 @@ export const jobSchema = z
     employmentType: z.enum(["FULL_TIME", "PART_TIME", "SHIFT", "LIVE_IN", "CONTRACT"]),
     salaryMin: z.coerce.number().int().positive().optional(),
     salaryMax: z.coerce.number().int().positive().optional(),
-    salaryCurrency: z.enum(["NGN", "GBP", "USD"]),
+    salaryCurrency: z.enum(CURRENCIES),
     backgroundCheckRequired: z.boolean(),
     visibility: z.enum(["PUBLIC", "RESTRICTED"]),
   })

@@ -340,6 +340,7 @@ export type PlacementWhereInput = {
   complaints?: Prisma.ComplaintListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   reviews?: Prisma.ReviewListRelationFilter
+  careLogWorkspace?: Prisma.XOR<Prisma.CareLogWorkspaceNullableScalarRelationFilter, Prisma.CareLogWorkspaceWhereInput> | null
 }
 
 export type PlacementOrderByWithRelationInput = {
@@ -374,6 +375,7 @@ export type PlacementOrderByWithRelationInput = {
   complaints?: Prisma.ComplaintOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
   reviews?: Prisma.ReviewOrderByRelationAggregateInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceOrderByWithRelationInput
 }
 
 export type PlacementWhereUniqueInput = Prisma.AtLeast<{
@@ -411,6 +413,7 @@ export type PlacementWhereUniqueInput = Prisma.AtLeast<{
   complaints?: Prisma.ComplaintListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   reviews?: Prisma.ReviewListRelationFilter
+  careLogWorkspace?: Prisma.XOR<Prisma.CareLogWorkspaceNullableScalarRelationFilter, Prisma.CareLogWorkspaceWhereInput> | null
 }, "id" | "offerId" | "replacesId">
 
 export type PlacementOrderByWithAggregationInput = {
@@ -491,6 +494,7 @@ export type PlacementCreateInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateInput = {
@@ -519,6 +523,7 @@ export type PlacementUncheckedCreateInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUpdateInput = {
@@ -547,6 +552,7 @@ export type PlacementUpdateInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateInput = {
@@ -575,6 +581,7 @@ export type PlacementUncheckedUpdateInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementCreateManyInput = {
@@ -1043,6 +1050,20 @@ export type PlacementUpdateOneWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlacementUpdateToOneWithWhereWithoutInvoicesInput, Prisma.PlacementUpdateWithoutInvoicesInput>, Prisma.PlacementUncheckedUpdateWithoutInvoicesInput>
 }
 
+export type PlacementCreateNestedOneWithoutCareLogWorkspaceInput = {
+  create?: Prisma.XOR<Prisma.PlacementCreateWithoutCareLogWorkspaceInput, Prisma.PlacementUncheckedCreateWithoutCareLogWorkspaceInput>
+  connectOrCreate?: Prisma.PlacementCreateOrConnectWithoutCareLogWorkspaceInput
+  connect?: Prisma.PlacementWhereUniqueInput
+}
+
+export type PlacementUpdateOneRequiredWithoutCareLogWorkspaceNestedInput = {
+  create?: Prisma.XOR<Prisma.PlacementCreateWithoutCareLogWorkspaceInput, Prisma.PlacementUncheckedCreateWithoutCareLogWorkspaceInput>
+  connectOrCreate?: Prisma.PlacementCreateOrConnectWithoutCareLogWorkspaceInput
+  upsert?: Prisma.PlacementUpsertWithoutCareLogWorkspaceInput
+  connect?: Prisma.PlacementWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PlacementUpdateToOneWithWhereWithoutCareLogWorkspaceInput, Prisma.PlacementUpdateWithoutCareLogWorkspaceInput>, Prisma.PlacementUncheckedUpdateWithoutCareLogWorkspaceInput>
+}
+
 export type PlacementCreateNestedOneWithoutReviewsInput = {
   create?: Prisma.XOR<Prisma.PlacementCreateWithoutReviewsInput, Prisma.PlacementUncheckedCreateWithoutReviewsInput>
   connectOrCreate?: Prisma.PlacementCreateOrConnectWithoutReviewsInput
@@ -1082,6 +1103,7 @@ export type PlacementCreateWithoutAccountManagerInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutAccountManagerInput = {
@@ -1109,6 +1131,7 @@ export type PlacementUncheckedCreateWithoutAccountManagerInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutAccountManagerInput = {
@@ -1187,6 +1210,7 @@ export type PlacementCreateWithoutWorkerInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutWorkerInput = {
@@ -1214,6 +1238,7 @@ export type PlacementUncheckedCreateWithoutWorkerInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutWorkerInput = {
@@ -1267,6 +1292,7 @@ export type PlacementCreateWithoutEmployerInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutEmployerInput = {
@@ -1294,6 +1320,7 @@ export type PlacementUncheckedCreateWithoutEmployerInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutEmployerInput = {
@@ -1347,6 +1374,7 @@ export type PlacementCreateWithoutJobInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutJobInput = {
@@ -1374,6 +1402,7 @@ export type PlacementUncheckedCreateWithoutJobInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutJobInput = {
@@ -1427,6 +1456,7 @@ export type PlacementCreateWithoutOfferInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutOfferInput = {
@@ -1454,6 +1484,7 @@ export type PlacementUncheckedCreateWithoutOfferInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutOfferInput = {
@@ -1497,6 +1528,7 @@ export type PlacementUpdateWithoutOfferInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutOfferInput = {
@@ -1524,6 +1556,7 @@ export type PlacementUncheckedUpdateWithoutOfferInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementCreateWithoutReplacedByInput = {
@@ -1551,6 +1584,7 @@ export type PlacementCreateWithoutReplacedByInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutReplacedByInput = {
@@ -1578,6 +1612,7 @@ export type PlacementUncheckedCreateWithoutReplacedByInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutReplacedByInput = {
@@ -1610,6 +1645,7 @@ export type PlacementCreateWithoutReplacesInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutReplacesInput = {
@@ -1637,6 +1673,7 @@ export type PlacementUncheckedCreateWithoutReplacesInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutReplacesInput = {
@@ -1680,6 +1717,7 @@ export type PlacementUpdateWithoutReplacedByInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutReplacedByInput = {
@@ -1707,6 +1745,7 @@ export type PlacementUncheckedUpdateWithoutReplacedByInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUpsertWithoutReplacesInput = {
@@ -1745,6 +1784,7 @@ export type PlacementUpdateWithoutReplacesInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutReplacesInput = {
@@ -1772,6 +1812,7 @@ export type PlacementUncheckedUpdateWithoutReplacesInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementCreateWithoutContractsInput = {
@@ -1799,6 +1840,7 @@ export type PlacementCreateWithoutContractsInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutContractsInput = {
@@ -1826,6 +1868,7 @@ export type PlacementUncheckedCreateWithoutContractsInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutContractsInput = {
@@ -1869,6 +1912,7 @@ export type PlacementUpdateWithoutContractsInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutContractsInput = {
@@ -1896,6 +1940,7 @@ export type PlacementUncheckedUpdateWithoutContractsInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementCreateWithoutWelfareChecksInput = {
@@ -1923,6 +1968,7 @@ export type PlacementCreateWithoutWelfareChecksInput = {
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutWelfareChecksInput = {
@@ -1950,6 +1996,7 @@ export type PlacementUncheckedCreateWithoutWelfareChecksInput = {
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutWelfareChecksInput = {
@@ -1993,6 +2040,7 @@ export type PlacementUpdateWithoutWelfareChecksInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutWelfareChecksInput = {
@@ -2020,6 +2068,7 @@ export type PlacementUncheckedUpdateWithoutWelfareChecksInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementCreateWithoutComplaintsInput = {
@@ -2047,6 +2096,7 @@ export type PlacementCreateWithoutComplaintsInput = {
   welfareChecks?: Prisma.WelfareCheckCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutComplaintsInput = {
@@ -2074,6 +2124,7 @@ export type PlacementUncheckedCreateWithoutComplaintsInput = {
   welfareChecks?: Prisma.WelfareCheckUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutComplaintsInput = {
@@ -2117,6 +2168,7 @@ export type PlacementUpdateWithoutComplaintsInput = {
   welfareChecks?: Prisma.WelfareCheckUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutComplaintsInput = {
@@ -2144,6 +2196,7 @@ export type PlacementUncheckedUpdateWithoutComplaintsInput = {
   welfareChecks?: Prisma.WelfareCheckUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementCreateWithoutInvoicesInput = {
@@ -2171,6 +2224,7 @@ export type PlacementCreateWithoutInvoicesInput = {
   welfareChecks?: Prisma.WelfareCheckCreateNestedManyWithoutPlacementInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutInvoicesInput = {
@@ -2198,6 +2252,7 @@ export type PlacementUncheckedCreateWithoutInvoicesInput = {
   welfareChecks?: Prisma.WelfareCheckUncheckedCreateNestedManyWithoutPlacementInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutInvoicesInput = {
@@ -2241,6 +2296,7 @@ export type PlacementUpdateWithoutInvoicesInput = {
   welfareChecks?: Prisma.WelfareCheckUpdateManyWithoutPlacementNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutInvoicesInput = {
@@ -2267,6 +2323,135 @@ export type PlacementUncheckedUpdateWithoutInvoicesInput = {
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutPlacementNestedInput
   welfareChecks?: Prisma.WelfareCheckUncheckedUpdateManyWithoutPlacementNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
+}
+
+export type PlacementCreateWithoutCareLogWorkspaceInput = {
+  id?: string
+  roleTitle: string
+  startDate: Date | string
+  status?: $Enums.PlacementStatus
+  expectedEndDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  salary?: number | null
+  salaryCurrency?: $Enums.Currency
+  guaranteeWindowEnds?: Date | string | null
+  performanceNotes?: string | null
+  replacementReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  worker: Prisma.WorkerProfileCreateNestedOneWithoutPlacementsInput
+  employer: Prisma.EmployerProfileCreateNestedOneWithoutPlacementsInput
+  job: Prisma.JobCreateNestedOneWithoutPlacementsInput
+  offer: Prisma.OfferCreateNestedOneWithoutPlacementInput
+  accountManager?: Prisma.UserCreateNestedOneWithoutManagedPlacementsInput
+  replaces?: Prisma.PlacementCreateNestedOneWithoutReplacedByInput
+  replacedBy?: Prisma.PlacementCreateNestedOneWithoutReplacesInput
+  contracts?: Prisma.ContractCreateNestedManyWithoutPlacementInput
+  welfareChecks?: Prisma.WelfareCheckCreateNestedManyWithoutPlacementInput
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutPlacementInput
+}
+
+export type PlacementUncheckedCreateWithoutCareLogWorkspaceInput = {
+  id?: string
+  workerId: string
+  employerId: string
+  jobId: string
+  offerId: string
+  roleTitle: string
+  startDate: Date | string
+  status?: $Enums.PlacementStatus
+  expectedEndDate?: Date | string | null
+  actualEndDate?: Date | string | null
+  salary?: number | null
+  salaryCurrency?: $Enums.Currency
+  guaranteeWindowEnds?: Date | string | null
+  performanceNotes?: string | null
+  accountManagerId?: string | null
+  replacesId?: string | null
+  replacementReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  replacedBy?: Prisma.PlacementUncheckedCreateNestedOneWithoutReplacesInput
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutPlacementInput
+  welfareChecks?: Prisma.WelfareCheckUncheckedCreateNestedManyWithoutPlacementInput
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutPlacementInput
+}
+
+export type PlacementCreateOrConnectWithoutCareLogWorkspaceInput = {
+  where: Prisma.PlacementWhereUniqueInput
+  create: Prisma.XOR<Prisma.PlacementCreateWithoutCareLogWorkspaceInput, Prisma.PlacementUncheckedCreateWithoutCareLogWorkspaceInput>
+}
+
+export type PlacementUpsertWithoutCareLogWorkspaceInput = {
+  update: Prisma.XOR<Prisma.PlacementUpdateWithoutCareLogWorkspaceInput, Prisma.PlacementUncheckedUpdateWithoutCareLogWorkspaceInput>
+  create: Prisma.XOR<Prisma.PlacementCreateWithoutCareLogWorkspaceInput, Prisma.PlacementUncheckedCreateWithoutCareLogWorkspaceInput>
+  where?: Prisma.PlacementWhereInput
+}
+
+export type PlacementUpdateToOneWithWhereWithoutCareLogWorkspaceInput = {
+  where?: Prisma.PlacementWhereInput
+  data: Prisma.XOR<Prisma.PlacementUpdateWithoutCareLogWorkspaceInput, Prisma.PlacementUncheckedUpdateWithoutCareLogWorkspaceInput>
+}
+
+export type PlacementUpdateWithoutCareLogWorkspaceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  roleTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumPlacementStatusFieldUpdateOperationsInput | $Enums.PlacementStatus
+  expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  salaryCurrency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  guaranteeWindowEnds?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  performanceNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacementReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  worker?: Prisma.WorkerProfileUpdateOneRequiredWithoutPlacementsNestedInput
+  employer?: Prisma.EmployerProfileUpdateOneRequiredWithoutPlacementsNestedInput
+  job?: Prisma.JobUpdateOneRequiredWithoutPlacementsNestedInput
+  offer?: Prisma.OfferUpdateOneRequiredWithoutPlacementNestedInput
+  accountManager?: Prisma.UserUpdateOneWithoutManagedPlacementsNestedInput
+  replaces?: Prisma.PlacementUpdateOneWithoutReplacedByNestedInput
+  replacedBy?: Prisma.PlacementUpdateOneWithoutReplacesNestedInput
+  contracts?: Prisma.ContractUpdateManyWithoutPlacementNestedInput
+  welfareChecks?: Prisma.WelfareCheckUpdateManyWithoutPlacementNestedInput
+  complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+}
+
+export type PlacementUncheckedUpdateWithoutCareLogWorkspaceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  workerId?: Prisma.StringFieldUpdateOperationsInput | string
+  employerId?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  offerId?: Prisma.StringFieldUpdateOperationsInput | string
+  roleTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumPlacementStatusFieldUpdateOperationsInput | $Enums.PlacementStatus
+  expectedEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  actualEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  salaryCurrency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  guaranteeWindowEnds?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  performanceNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacesId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  replacementReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  replacedBy?: Prisma.PlacementUncheckedUpdateOneWithoutReplacesNestedInput
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutPlacementNestedInput
+  welfareChecks?: Prisma.WelfareCheckUncheckedUpdateManyWithoutPlacementNestedInput
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
 }
 
@@ -2295,6 +2480,7 @@ export type PlacementCreateWithoutReviewsInput = {
   welfareChecks?: Prisma.WelfareCheckCreateNestedManyWithoutPlacementInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementUncheckedCreateWithoutReviewsInput = {
@@ -2322,6 +2508,7 @@ export type PlacementUncheckedCreateWithoutReviewsInput = {
   welfareChecks?: Prisma.WelfareCheckUncheckedCreateNestedManyWithoutPlacementInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutPlacementInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutPlacementInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedCreateNestedOneWithoutPlacementInput
 }
 
 export type PlacementCreateOrConnectWithoutReviewsInput = {
@@ -2365,6 +2552,7 @@ export type PlacementUpdateWithoutReviewsInput = {
   welfareChecks?: Prisma.WelfareCheckUpdateManyWithoutPlacementNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutReviewsInput = {
@@ -2392,6 +2580,7 @@ export type PlacementUncheckedUpdateWithoutReviewsInput = {
   welfareChecks?: Prisma.WelfareCheckUncheckedUpdateManyWithoutPlacementNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementCreateManyAccountManagerInput = {
@@ -2440,6 +2629,7 @@ export type PlacementUpdateWithoutAccountManagerInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutAccountManagerInput = {
@@ -2467,6 +2657,7 @@ export type PlacementUncheckedUpdateWithoutAccountManagerInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateManyWithoutAccountManagerInput = {
@@ -2536,6 +2727,7 @@ export type PlacementUpdateWithoutWorkerInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutWorkerInput = {
@@ -2563,6 +2755,7 @@ export type PlacementUncheckedUpdateWithoutWorkerInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateManyWithoutWorkerInput = {
@@ -2632,6 +2825,7 @@ export type PlacementUpdateWithoutEmployerInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutEmployerInput = {
@@ -2659,6 +2853,7 @@ export type PlacementUncheckedUpdateWithoutEmployerInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateManyWithoutEmployerInput = {
@@ -2728,6 +2923,7 @@ export type PlacementUpdateWithoutJobInput = {
   complaints?: Prisma.ComplaintUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateWithoutJobInput = {
@@ -2755,6 +2951,7 @@ export type PlacementUncheckedUpdateWithoutJobInput = {
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutPlacementNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutPlacementNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutPlacementNestedInput
+  careLogWorkspace?: Prisma.CareLogWorkspaceUncheckedUpdateOneWithoutPlacementNestedInput
 }
 
 export type PlacementUncheckedUpdateManyWithoutJobInput = {
@@ -2877,6 +3074,7 @@ export type PlacementSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   complaints?: boolean | Prisma.Placement$complaintsArgs<ExtArgs>
   invoices?: boolean | Prisma.Placement$invoicesArgs<ExtArgs>
   reviews?: boolean | Prisma.Placement$reviewsArgs<ExtArgs>
+  careLogWorkspace?: boolean | Prisma.Placement$careLogWorkspaceArgs<ExtArgs>
   _count?: boolean | Prisma.PlacementCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["placement"]>
 
@@ -2972,6 +3170,7 @@ export type PlacementInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   complaints?: boolean | Prisma.Placement$complaintsArgs<ExtArgs>
   invoices?: boolean | Prisma.Placement$invoicesArgs<ExtArgs>
   reviews?: boolean | Prisma.Placement$reviewsArgs<ExtArgs>
+  careLogWorkspace?: boolean | Prisma.Placement$careLogWorkspaceArgs<ExtArgs>
   _count?: boolean | Prisma.PlacementCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PlacementIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3006,6 +3205,7 @@ export type $PlacementPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     complaints: Prisma.$ComplaintPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
     reviews: Prisma.$ReviewPayload<ExtArgs>[]
+    careLogWorkspace: Prisma.$CareLogWorkspacePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3433,6 +3633,7 @@ export interface Prisma__PlacementClient<T, Null = never, ExtArgs extends runtim
   complaints<T extends Prisma.Placement$complaintsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Placement$complaintsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplaintPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.Placement$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Placement$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviews<T extends Prisma.Placement$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Placement$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  careLogWorkspace<T extends Prisma.Placement$careLogWorkspaceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Placement$careLogWorkspaceArgs<ExtArgs>>): Prisma.Prisma__CareLogWorkspaceClient<runtime.Types.Result.GetResult<Prisma.$CareLogWorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4056,6 +4257,25 @@ export type Placement$reviewsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
+}
+
+/**
+ * Placement.careLogWorkspace
+ */
+export type Placement$careLogWorkspaceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CareLogWorkspace
+   */
+  select?: Prisma.CareLogWorkspaceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CareLogWorkspace
+   */
+  omit?: Prisma.CareLogWorkspaceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CareLogWorkspaceInclude<ExtArgs> | null
+  where?: Prisma.CareLogWorkspaceWhereInput
 }
 
 /**

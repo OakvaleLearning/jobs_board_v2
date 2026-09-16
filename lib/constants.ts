@@ -37,6 +37,25 @@ export const NIGERIAN_STATES = [
 
 export const LANGUAGES = ["English", "Hausa", "Yoruba", "Igbo", "Pidgin"];
 
+/**
+ * Countries a Diaspora Sponsor can sponsor from, with the billing currency
+ * each one defaults to. ISO 3166-1 alpha-2 codes are stored on the profile.
+ */
+export const DIASPORA_COUNTRIES: { code: string; name: string; currency: Currency }[] = [
+  { code: "GB", name: "United Kingdom", currency: "GBP" },
+  { code: "US", name: "United States", currency: "USD" },
+  { code: "CA", name: "Canada", currency: "CAD" },
+  { code: "IE", name: "Ireland", currency: "GBP" },
+  { code: "DE", name: "Germany", currency: "USD" },
+  { code: "FR", name: "France", currency: "USD" },
+  { code: "NL", name: "Netherlands", currency: "USD" },
+  { code: "IT", name: "Italy", currency: "USD" },
+  { code: "ES", name: "Spain", currency: "USD" },
+  { code: "AU", name: "Australia", currency: "USD" },
+  { code: "AE", name: "United Arab Emirates", currency: "USD" },
+  { code: "ZA", name: "South Africa", currency: "USD" },
+];
+
 export const EXPERIENCE_LEVELS = ["Entry", "Intermediate", "Experienced"];
 
 export const EMPLOYER_SECTORS = [ 
@@ -52,16 +71,21 @@ export const employmentTypeLabels: Record<EmploymentType, string> = {
   CONTRACT: "Contract",
 };
 
+/** Every billing/salary currency the platform supports, as a runtime list. */
+export const CURRENCIES = ["NGN", "GBP", "USD", "CAD"] as const;
+
 export const currencyLabels: Record<Currency, string> = {
   NGN: "₦ NGN",
   GBP: "£ GBP",
   USD: "$ USD",
+  CAD: "CA$ CAD",
 };
 
 export const currencySymbols: Record<Currency, string> = {
   NGN: "₦",
   GBP: "£",
   USD: "$",
+  CAD: "CA$",
 };
 
 export const referralSourceLabels: Record<ReferralSource, string> = {
@@ -253,7 +277,9 @@ export const complaintStageLabels: Record<ComplaintStage, string> = {
 
 export const invoiceTypeLabels: Record<InvoiceType, string> = {
   PLACEMENT_FEE: "Placement fee",
-  SUBSCRIPTION: "Subscription",
+  SUBSCRIPTION: "Annual partnership subscription",
+  PLAN_SUBSCRIPTION: "Plan subscription",
+  INTERVIEW_CREDIT: "Interview credits",
   CPD_REFRESH: "CPD refresh fee",
 };
 

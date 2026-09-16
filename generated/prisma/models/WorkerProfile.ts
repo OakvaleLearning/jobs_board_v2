@@ -469,6 +469,7 @@ export type WorkerProfileWhereInput = {
   applications?: Prisma.ApplicationListRelationFilter
   shortlists?: Prisma.ShortlistListRelationFilter
   placements?: Prisma.PlacementListRelationFilter
+  careLogs?: Prisma.CareLogEntryListRelationFilter
 }
 
 export type WorkerProfileOrderByWithRelationInput = {
@@ -515,6 +516,7 @@ export type WorkerProfileOrderByWithRelationInput = {
   applications?: Prisma.ApplicationOrderByRelationAggregateInput
   shortlists?: Prisma.ShortlistOrderByRelationAggregateInput
   placements?: Prisma.PlacementOrderByRelationAggregateInput
+  careLogs?: Prisma.CareLogEntryOrderByRelationAggregateInput
 }
 
 export type WorkerProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -564,6 +566,7 @@ export type WorkerProfileWhereUniqueInput = Prisma.AtLeast<{
   applications?: Prisma.ApplicationListRelationFilter
   shortlists?: Prisma.ShortlistListRelationFilter
   placements?: Prisma.PlacementListRelationFilter
+  careLogs?: Prisma.CareLogEntryListRelationFilter
 }, "id" | "userId">
 
 export type WorkerProfileOrderByWithAggregationInput = {
@@ -690,6 +693,7 @@ export type WorkerProfileCreateInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileUncheckedCreateInput = {
@@ -734,6 +738,7 @@ export type WorkerProfileUncheckedCreateInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistUncheckedCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementUncheckedCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryUncheckedCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileUpdateInput = {
@@ -778,6 +783,7 @@ export type WorkerProfileUpdateInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileUncheckedUpdateInput = {
@@ -822,6 +828,7 @@ export type WorkerProfileUncheckedUpdateInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUncheckedUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUncheckedUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUncheckedUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileCreateManyInput = {
@@ -1328,6 +1335,20 @@ export type WorkerProfileUpdateOneRequiredWithoutPlacementsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkerProfileUpdateToOneWithWhereWithoutPlacementsInput, Prisma.WorkerProfileUpdateWithoutPlacementsInput>, Prisma.WorkerProfileUncheckedUpdateWithoutPlacementsInput>
 }
 
+export type WorkerProfileCreateNestedOneWithoutCareLogsInput = {
+  create?: Prisma.XOR<Prisma.WorkerProfileCreateWithoutCareLogsInput, Prisma.WorkerProfileUncheckedCreateWithoutCareLogsInput>
+  connectOrCreate?: Prisma.WorkerProfileCreateOrConnectWithoutCareLogsInput
+  connect?: Prisma.WorkerProfileWhereUniqueInput
+}
+
+export type WorkerProfileUpdateOneRequiredWithoutCareLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkerProfileCreateWithoutCareLogsInput, Prisma.WorkerProfileUncheckedCreateWithoutCareLogsInput>
+  connectOrCreate?: Prisma.WorkerProfileCreateOrConnectWithoutCareLogsInput
+  upsert?: Prisma.WorkerProfileUpsertWithoutCareLogsInput
+  connect?: Prisma.WorkerProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkerProfileUpdateToOneWithWhereWithoutCareLogsInput, Prisma.WorkerProfileUpdateWithoutCareLogsInput>, Prisma.WorkerProfileUncheckedUpdateWithoutCareLogsInput>
+}
+
 export type WorkerProfileCreateWithoutUserInput = {
   id?: string
   dateOfBirth?: Date | string | null
@@ -1369,6 +1390,7 @@ export type WorkerProfileCreateWithoutUserInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileUncheckedCreateWithoutUserInput = {
@@ -1412,6 +1434,7 @@ export type WorkerProfileUncheckedCreateWithoutUserInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistUncheckedCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementUncheckedCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryUncheckedCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileCreateOrConnectWithoutUserInput = {
@@ -1471,6 +1494,7 @@ export type WorkerProfileUpdateWithoutUserInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileUncheckedUpdateWithoutUserInput = {
@@ -1514,6 +1538,7 @@ export type WorkerProfileUncheckedUpdateWithoutUserInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUncheckedUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUncheckedUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUncheckedUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileCreateWithoutEducationsInput = {
@@ -1557,6 +1582,7 @@ export type WorkerProfileCreateWithoutEducationsInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileUncheckedCreateWithoutEducationsInput = {
@@ -1600,6 +1626,7 @@ export type WorkerProfileUncheckedCreateWithoutEducationsInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistUncheckedCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementUncheckedCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryUncheckedCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileCreateOrConnectWithoutEducationsInput = {
@@ -1659,6 +1686,7 @@ export type WorkerProfileUpdateWithoutEducationsInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileUncheckedUpdateWithoutEducationsInput = {
@@ -1702,6 +1730,7 @@ export type WorkerProfileUncheckedUpdateWithoutEducationsInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUncheckedUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUncheckedUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUncheckedUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileCreateWithoutExperiencesInput = {
@@ -1745,6 +1774,7 @@ export type WorkerProfileCreateWithoutExperiencesInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileUncheckedCreateWithoutExperiencesInput = {
@@ -1788,6 +1818,7 @@ export type WorkerProfileUncheckedCreateWithoutExperiencesInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistUncheckedCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementUncheckedCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryUncheckedCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileCreateOrConnectWithoutExperiencesInput = {
@@ -1847,6 +1878,7 @@ export type WorkerProfileUpdateWithoutExperiencesInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileUncheckedUpdateWithoutExperiencesInput = {
@@ -1890,6 +1922,7 @@ export type WorkerProfileUncheckedUpdateWithoutExperiencesInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUncheckedUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUncheckedUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUncheckedUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileCreateWithoutReferencesInput = {
@@ -1933,6 +1966,7 @@ export type WorkerProfileCreateWithoutReferencesInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileUncheckedCreateWithoutReferencesInput = {
@@ -1976,6 +2010,7 @@ export type WorkerProfileUncheckedCreateWithoutReferencesInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistUncheckedCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementUncheckedCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryUncheckedCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileCreateOrConnectWithoutReferencesInput = {
@@ -2035,6 +2070,7 @@ export type WorkerProfileUpdateWithoutReferencesInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileUncheckedUpdateWithoutReferencesInput = {
@@ -2078,6 +2114,7 @@ export type WorkerProfileUncheckedUpdateWithoutReferencesInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUncheckedUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUncheckedUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUncheckedUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileCreateWithoutDocumentsInput = {
@@ -2121,6 +2158,7 @@ export type WorkerProfileCreateWithoutDocumentsInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileUncheckedCreateWithoutDocumentsInput = {
@@ -2164,6 +2202,7 @@ export type WorkerProfileUncheckedCreateWithoutDocumentsInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistUncheckedCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementUncheckedCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryUncheckedCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileCreateOrConnectWithoutDocumentsInput = {
@@ -2223,6 +2262,7 @@ export type WorkerProfileUpdateWithoutDocumentsInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileUncheckedUpdateWithoutDocumentsInput = {
@@ -2266,6 +2306,7 @@ export type WorkerProfileUncheckedUpdateWithoutDocumentsInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUncheckedUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUncheckedUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUncheckedUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileCreateWithoutWorkforceCategoryInput = {
@@ -2309,6 +2350,7 @@ export type WorkerProfileCreateWithoutWorkforceCategoryInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileUncheckedCreateWithoutWorkforceCategoryInput = {
@@ -2352,6 +2394,7 @@ export type WorkerProfileUncheckedCreateWithoutWorkforceCategoryInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistUncheckedCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementUncheckedCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryUncheckedCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileCreateOrConnectWithoutWorkforceCategoryInput = {
@@ -2461,6 +2504,7 @@ export type WorkerProfileCreateWithoutApplicationsInput = {
   documents?: Prisma.WorkerDocumentCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileUncheckedCreateWithoutApplicationsInput = {
@@ -2504,6 +2548,7 @@ export type WorkerProfileUncheckedCreateWithoutApplicationsInput = {
   documents?: Prisma.WorkerDocumentUncheckedCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistUncheckedCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementUncheckedCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryUncheckedCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileCreateOrConnectWithoutApplicationsInput = {
@@ -2563,6 +2608,7 @@ export type WorkerProfileUpdateWithoutApplicationsInput = {
   documents?: Prisma.WorkerDocumentUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileUncheckedUpdateWithoutApplicationsInput = {
@@ -2606,6 +2652,7 @@ export type WorkerProfileUncheckedUpdateWithoutApplicationsInput = {
   documents?: Prisma.WorkerDocumentUncheckedUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUncheckedUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUncheckedUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUncheckedUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileCreateWithoutShortlistsInput = {
@@ -2649,6 +2696,7 @@ export type WorkerProfileCreateWithoutShortlistsInput = {
   documents?: Prisma.WorkerDocumentCreateNestedManyWithoutWorkerInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileUncheckedCreateWithoutShortlistsInput = {
@@ -2692,6 +2740,7 @@ export type WorkerProfileUncheckedCreateWithoutShortlistsInput = {
   documents?: Prisma.WorkerDocumentUncheckedCreateNestedManyWithoutWorkerInput
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutWorkerInput
   placements?: Prisma.PlacementUncheckedCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryUncheckedCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileCreateOrConnectWithoutShortlistsInput = {
@@ -2751,6 +2800,7 @@ export type WorkerProfileUpdateWithoutShortlistsInput = {
   documents?: Prisma.WorkerDocumentUpdateManyWithoutWorkerNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileUncheckedUpdateWithoutShortlistsInput = {
@@ -2794,6 +2844,7 @@ export type WorkerProfileUncheckedUpdateWithoutShortlistsInput = {
   documents?: Prisma.WorkerDocumentUncheckedUpdateManyWithoutWorkerNestedInput
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUncheckedUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUncheckedUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileCreateWithoutPlacementsInput = {
@@ -2837,6 +2888,7 @@ export type WorkerProfileCreateWithoutPlacementsInput = {
   documents?: Prisma.WorkerDocumentCreateNestedManyWithoutWorkerInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileUncheckedCreateWithoutPlacementsInput = {
@@ -2880,6 +2932,7 @@ export type WorkerProfileUncheckedCreateWithoutPlacementsInput = {
   documents?: Prisma.WorkerDocumentUncheckedCreateNestedManyWithoutWorkerInput
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutWorkerInput
   shortlists?: Prisma.ShortlistUncheckedCreateNestedManyWithoutWorkerInput
+  careLogs?: Prisma.CareLogEntryUncheckedCreateNestedManyWithoutWorkerInput
 }
 
 export type WorkerProfileCreateOrConnectWithoutPlacementsInput = {
@@ -2939,6 +2992,7 @@ export type WorkerProfileUpdateWithoutPlacementsInput = {
   documents?: Prisma.WorkerDocumentUpdateManyWithoutWorkerNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileUncheckedUpdateWithoutPlacementsInput = {
@@ -2982,6 +3036,199 @@ export type WorkerProfileUncheckedUpdateWithoutPlacementsInput = {
   documents?: Prisma.WorkerDocumentUncheckedUpdateManyWithoutWorkerNestedInput
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUncheckedUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUncheckedUpdateManyWithoutWorkerNestedInput
+}
+
+export type WorkerProfileCreateWithoutCareLogsInput = {
+  id?: string
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  state?: string | null
+  lga?: string | null
+  address?: string | null
+  employmentTypes?: Prisma.WorkerProfileCreateemploymentTypesInput | $Enums.EmploymentType[]
+  languages?: Prisma.WorkerProfileCreatelanguagesInput | string[]
+  willingToRelocate?: boolean
+  availabilityDate?: Date | string | null
+  experienceLevel?: string | null
+  expectedSalaryMin?: number | null
+  expectedSalaryMax?: number | null
+  salaryCurrency?: $Enums.Currency
+  personalStatement?: string | null
+  certificateNumber?: string | null
+  certProgramme?: string | null
+  certCompletionDate?: Date | string | null
+  cpdHours?: number | null
+  cpdLastCompletedAt?: Date | string | null
+  cpdNextDueAt?: Date | string | null
+  completionPercent?: number
+  profileStatus?: $Enums.ProfileStatus
+  certStatus?: $Enums.CertStatus
+  backgroundCheckStatus?: $Enums.BackgroundCheckStatus
+  searchable?: boolean
+  reviewNotes?: string | null
+  ratingAvg?: number | null
+  ratingCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  user: Prisma.UserCreateNestedOneWithoutWorkerProfileInput
+  workforceCategory?: Prisma.WorkforceCategoryCreateNestedOneWithoutWorkersInput
+  educations?: Prisma.EducationCreateNestedManyWithoutWorkerInput
+  experiences?: Prisma.ExperienceCreateNestedManyWithoutWorkerInput
+  references?: Prisma.ReferenceCreateNestedManyWithoutWorkerInput
+  documents?: Prisma.WorkerDocumentCreateNestedManyWithoutWorkerInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutWorkerInput
+  shortlists?: Prisma.ShortlistCreateNestedManyWithoutWorkerInput
+  placements?: Prisma.PlacementCreateNestedManyWithoutWorkerInput
+}
+
+export type WorkerProfileUncheckedCreateWithoutCareLogsInput = {
+  id?: string
+  userId: string
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  state?: string | null
+  lga?: string | null
+  address?: string | null
+  workforceCategoryId?: string | null
+  employmentTypes?: Prisma.WorkerProfileCreateemploymentTypesInput | $Enums.EmploymentType[]
+  languages?: Prisma.WorkerProfileCreatelanguagesInput | string[]
+  willingToRelocate?: boolean
+  availabilityDate?: Date | string | null
+  experienceLevel?: string | null
+  expectedSalaryMin?: number | null
+  expectedSalaryMax?: number | null
+  salaryCurrency?: $Enums.Currency
+  personalStatement?: string | null
+  certificateNumber?: string | null
+  certProgramme?: string | null
+  certCompletionDate?: Date | string | null
+  cpdHours?: number | null
+  cpdLastCompletedAt?: Date | string | null
+  cpdNextDueAt?: Date | string | null
+  completionPercent?: number
+  profileStatus?: $Enums.ProfileStatus
+  certStatus?: $Enums.CertStatus
+  backgroundCheckStatus?: $Enums.BackgroundCheckStatus
+  searchable?: boolean
+  reviewNotes?: string | null
+  ratingAvg?: number | null
+  ratingCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  educations?: Prisma.EducationUncheckedCreateNestedManyWithoutWorkerInput
+  experiences?: Prisma.ExperienceUncheckedCreateNestedManyWithoutWorkerInput
+  references?: Prisma.ReferenceUncheckedCreateNestedManyWithoutWorkerInput
+  documents?: Prisma.WorkerDocumentUncheckedCreateNestedManyWithoutWorkerInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutWorkerInput
+  shortlists?: Prisma.ShortlistUncheckedCreateNestedManyWithoutWorkerInput
+  placements?: Prisma.PlacementUncheckedCreateNestedManyWithoutWorkerInput
+}
+
+export type WorkerProfileCreateOrConnectWithoutCareLogsInput = {
+  where: Prisma.WorkerProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.WorkerProfileCreateWithoutCareLogsInput, Prisma.WorkerProfileUncheckedCreateWithoutCareLogsInput>
+}
+
+export type WorkerProfileUpsertWithoutCareLogsInput = {
+  update: Prisma.XOR<Prisma.WorkerProfileUpdateWithoutCareLogsInput, Prisma.WorkerProfileUncheckedUpdateWithoutCareLogsInput>
+  create: Prisma.XOR<Prisma.WorkerProfileCreateWithoutCareLogsInput, Prisma.WorkerProfileUncheckedCreateWithoutCareLogsInput>
+  where?: Prisma.WorkerProfileWhereInput
+}
+
+export type WorkerProfileUpdateToOneWithWhereWithoutCareLogsInput = {
+  where?: Prisma.WorkerProfileWhereInput
+  data: Prisma.XOR<Prisma.WorkerProfileUpdateWithoutCareLogsInput, Prisma.WorkerProfileUncheckedUpdateWithoutCareLogsInput>
+}
+
+export type WorkerProfileUpdateWithoutCareLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lga?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentTypes?: Prisma.WorkerProfileUpdateemploymentTypesInput | $Enums.EmploymentType[]
+  languages?: Prisma.WorkerProfileUpdatelanguagesInput | string[]
+  willingToRelocate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  availabilityDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  experienceLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedSalaryMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  expectedSalaryMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  salaryCurrency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  personalStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  certificateNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  certProgramme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  certCompletionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cpdHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cpdLastCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cpdNextDueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completionPercent?: Prisma.IntFieldUpdateOperationsInput | number
+  profileStatus?: Prisma.EnumProfileStatusFieldUpdateOperationsInput | $Enums.ProfileStatus
+  certStatus?: Prisma.EnumCertStatusFieldUpdateOperationsInput | $Enums.CertStatus
+  backgroundCheckStatus?: Prisma.EnumBackgroundCheckStatusFieldUpdateOperationsInput | $Enums.BackgroundCheckStatus
+  searchable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutWorkerProfileNestedInput
+  workforceCategory?: Prisma.WorkforceCategoryUpdateOneWithoutWorkersNestedInput
+  educations?: Prisma.EducationUpdateManyWithoutWorkerNestedInput
+  experiences?: Prisma.ExperienceUpdateManyWithoutWorkerNestedInput
+  references?: Prisma.ReferenceUpdateManyWithoutWorkerNestedInput
+  documents?: Prisma.WorkerDocumentUpdateManyWithoutWorkerNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutWorkerNestedInput
+  shortlists?: Prisma.ShortlistUpdateManyWithoutWorkerNestedInput
+  placements?: Prisma.PlacementUpdateManyWithoutWorkerNestedInput
+}
+
+export type WorkerProfileUncheckedUpdateWithoutCareLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lga?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workforceCategoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentTypes?: Prisma.WorkerProfileUpdateemploymentTypesInput | $Enums.EmploymentType[]
+  languages?: Prisma.WorkerProfileUpdatelanguagesInput | string[]
+  willingToRelocate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  availabilityDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  experienceLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expectedSalaryMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  expectedSalaryMax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  salaryCurrency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  personalStatement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  certificateNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  certProgramme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  certCompletionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cpdHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cpdLastCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cpdNextDueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completionPercent?: Prisma.IntFieldUpdateOperationsInput | number
+  profileStatus?: Prisma.EnumProfileStatusFieldUpdateOperationsInput | $Enums.ProfileStatus
+  certStatus?: Prisma.EnumCertStatusFieldUpdateOperationsInput | $Enums.CertStatus
+  backgroundCheckStatus?: Prisma.EnumBackgroundCheckStatusFieldUpdateOperationsInput | $Enums.BackgroundCheckStatus
+  searchable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reviewNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ratingAvg?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ratingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  educations?: Prisma.EducationUncheckedUpdateManyWithoutWorkerNestedInput
+  experiences?: Prisma.ExperienceUncheckedUpdateManyWithoutWorkerNestedInput
+  references?: Prisma.ReferenceUncheckedUpdateManyWithoutWorkerNestedInput
+  documents?: Prisma.WorkerDocumentUncheckedUpdateManyWithoutWorkerNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutWorkerNestedInput
+  shortlists?: Prisma.ShortlistUncheckedUpdateManyWithoutWorkerNestedInput
+  placements?: Prisma.PlacementUncheckedUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileCreateManyWorkforceCategoryInput = {
@@ -3061,6 +3308,7 @@ export type WorkerProfileUpdateWithoutWorkforceCategoryInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileUncheckedUpdateWithoutWorkforceCategoryInput = {
@@ -3104,6 +3352,7 @@ export type WorkerProfileUncheckedUpdateWithoutWorkforceCategoryInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutWorkerNestedInput
   shortlists?: Prisma.ShortlistUncheckedUpdateManyWithoutWorkerNestedInput
   placements?: Prisma.PlacementUncheckedUpdateManyWithoutWorkerNestedInput
+  careLogs?: Prisma.CareLogEntryUncheckedUpdateManyWithoutWorkerNestedInput
 }
 
 export type WorkerProfileUncheckedUpdateManyWithoutWorkforceCategoryInput = {
@@ -3155,6 +3404,7 @@ export type WorkerProfileCountOutputType = {
   applications: number
   shortlists: number
   placements: number
+  careLogs: number
 }
 
 export type WorkerProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3165,6 +3415,7 @@ export type WorkerProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Ext
   applications?: boolean | WorkerProfileCountOutputTypeCountApplicationsArgs
   shortlists?: boolean | WorkerProfileCountOutputTypeCountShortlistsArgs
   placements?: boolean | WorkerProfileCountOutputTypeCountPlacementsArgs
+  careLogs?: boolean | WorkerProfileCountOutputTypeCountCareLogsArgs
 }
 
 /**
@@ -3226,6 +3477,13 @@ export type WorkerProfileCountOutputTypeCountPlacementsArgs<ExtArgs extends runt
   where?: Prisma.PlacementWhereInput
 }
 
+/**
+ * WorkerProfileCountOutputType without action
+ */
+export type WorkerProfileCountOutputTypeCountCareLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CareLogEntryWhereInput
+}
+
 
 export type WorkerProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3271,6 +3529,7 @@ export type WorkerProfileSelect<ExtArgs extends runtime.Types.Extensions.Interna
   applications?: boolean | Prisma.WorkerProfile$applicationsArgs<ExtArgs>
   shortlists?: boolean | Prisma.WorkerProfile$shortlistsArgs<ExtArgs>
   placements?: boolean | Prisma.WorkerProfile$placementsArgs<ExtArgs>
+  careLogs?: boolean | Prisma.WorkerProfile$careLogsArgs<ExtArgs>
   _count?: boolean | Prisma.WorkerProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["workerProfile"]>
 
@@ -3400,6 +3659,7 @@ export type WorkerProfileInclude<ExtArgs extends runtime.Types.Extensions.Intern
   applications?: boolean | Prisma.WorkerProfile$applicationsArgs<ExtArgs>
   shortlists?: boolean | Prisma.WorkerProfile$shortlistsArgs<ExtArgs>
   placements?: boolean | Prisma.WorkerProfile$placementsArgs<ExtArgs>
+  careLogs?: boolean | Prisma.WorkerProfile$careLogsArgs<ExtArgs>
   _count?: boolean | Prisma.WorkerProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type WorkerProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3423,6 +3683,7 @@ export type $WorkerProfilePayload<ExtArgs extends runtime.Types.Extensions.Inter
     applications: Prisma.$ApplicationPayload<ExtArgs>[]
     shortlists: Prisma.$ShortlistPayload<ExtArgs>[]
     placements: Prisma.$PlacementPayload<ExtArgs>[]
+    careLogs: Prisma.$CareLogEntryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3862,6 +4123,7 @@ export interface Prisma__WorkerProfileClient<T, Null = never, ExtArgs extends ru
   applications<T extends Prisma.WorkerProfile$applicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkerProfile$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   shortlists<T extends Prisma.WorkerProfile$shortlistsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkerProfile$shortlistsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShortlistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   placements<T extends Prisma.WorkerProfile$placementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkerProfile$placementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlacementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  careLogs<T extends Prisma.WorkerProfile$careLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkerProfile$careLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CareLogEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4510,6 +4772,30 @@ export type WorkerProfile$placementsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.PlacementScalarFieldEnum | Prisma.PlacementScalarFieldEnum[]
+}
+
+/**
+ * WorkerProfile.careLogs
+ */
+export type WorkerProfile$careLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CareLogEntry
+   */
+  select?: Prisma.CareLogEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CareLogEntry
+   */
+  omit?: Prisma.CareLogEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CareLogEntryInclude<ExtArgs> | null
+  where?: Prisma.CareLogEntryWhereInput
+  orderBy?: Prisma.CareLogEntryOrderByWithRelationInput | Prisma.CareLogEntryOrderByWithRelationInput[]
+  cursor?: Prisma.CareLogEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CareLogEntryScalarFieldEnum | Prisma.CareLogEntryScalarFieldEnum[]
 }
 
 /**

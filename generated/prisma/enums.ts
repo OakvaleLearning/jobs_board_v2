@@ -97,10 +97,47 @@ export type EmployerDocType = (typeof EmployerDocType)[keyof typeof EmployerDocT
 export const Currency = {
   NGN: 'NGN',
   GBP: 'GBP',
-  USD: 'USD'
+  USD: 'USD',
+  CAD: 'CAD'
 } as const
 
 export type Currency = (typeof Currency)[keyof typeof Currency]
+
+
+export const AccountType = {
+  LOCAL_NG: 'LOCAL_NG',
+  DIASPORA_GLOBAL: 'DIASPORA_GLOBAL'
+} as const
+
+export type AccountType = (typeof AccountType)[keyof typeof AccountType]
+
+
+export const PlanTier = {
+  STANDARD: 'STANDARD',
+  PREMIUM: 'PREMIUM'
+} as const
+
+export type PlanTier = (typeof PlanTier)[keyof typeof PlanTier]
+
+
+export const SubscriptionStatus = {
+  INACTIVE: 'INACTIVE',
+  ACTIVE: 'ACTIVE',
+  PAST_DUE: 'PAST_DUE',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus]
+
+
+export const PaymentProvider = {
+  PAYSTACK: 'PAYSTACK',
+  FLUTTERWAVE: 'FLUTTERWAVE',
+  STRIPE: 'STRIPE',
+  PAYPAL: 'PAYPAL'
+} as const
+
+export type PaymentProvider = (typeof PaymentProvider)[keyof typeof PaymentProvider]
 
 
 export const EmploymentType = {
@@ -308,7 +345,9 @@ export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
 export const InvoiceType = {
   PLACEMENT_FEE: 'PLACEMENT_FEE',
   SUBSCRIPTION: 'SUBSCRIPTION',
-  CPD_REFRESH: 'CPD_REFRESH'
+  CPD_REFRESH: 'CPD_REFRESH',
+  PLAN_SUBSCRIPTION: 'PLAN_SUBSCRIPTION',
+  INTERVIEW_CREDIT: 'INTERVIEW_CREDIT'
 } as const
 
 export type InvoiceType = (typeof InvoiceType)[keyof typeof InvoiceType]

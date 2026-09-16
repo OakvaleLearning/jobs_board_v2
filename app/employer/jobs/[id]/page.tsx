@@ -18,6 +18,9 @@ import {
   formatSalaryRange,
 } from "@/lib/constants";
 import { formatDate } from "@/lib/format";
+import { formatMoney } from "@/lib/constants";
+import { refreshCreditsIfDue, creditBalance } from "@/lib/subscription";
+import { creditPrice } from "@/lib/plans";
 import StatusBadge from "@/components/StatusBadge";
 import EmptyState from "@/components/EmptyState";
 import LinkButton from "@/components/LinkButton";
@@ -28,6 +31,10 @@ export default async function EmployerJobApplicantsPage({ params }: PageProps<"/
   const user = await requireRole("EMPLOYER");
   const employer = await getEmployerProfileByUserId(user.id);
   const { id } = await params;
+
+  // Top up a lapsed monthly allowance before reading the balance, so the
+  // applicant actions show what the employer can actually spend right now.
+  const billing = employer ? await refreshCreditsIfDue(employer) : null;
 
   const job = await prisma.job.findFirst({
     where: { id, employerId: employer?.id, deletedAt: null },
@@ -120,6 +127,12 @@ export default async function EmployerJobApplicantsPage({ params }: PageProps<"/
                   workerProfileId={a.workerId}
                   status={a.status}
                   jobTitle={job.title}
+                  interviewCredits={creditBalance(billing)}
+                  creditPriceLabel={formatMoney(
+                    creditPrice(billing?.currency ?? "NGN"),
+                    billing?.currency ?? "NGN",
+                  )}
+                  isPremium={billing?.planTier === "PREMIUM"}
                 />
 
                 {a.offer && a.offer.status === "PENDING_ADMIN" && (

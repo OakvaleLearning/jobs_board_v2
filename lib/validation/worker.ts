@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { CURRENCIES } from "@/lib/constants";
 
 export const personalSchema = z.object({
   dateOfBirth: z.string().min(1, "Enter your date of birth."),
@@ -17,7 +18,7 @@ export const preferencesSchema = z.object({
   experienceLevel: z.string().min(1, "Select your experience level."),
   expectedSalaryMin: z.coerce.number().int().positive("Enter your minimum expected salary."),
   expectedSalaryMax: z.coerce.number().int().positive().optional(),
-  salaryCurrency: z.enum(["NGN", "GBP", "USD"]),
+  salaryCurrency: z.enum(CURRENCIES),
   personalStatement: z
     .string()
     .trim()

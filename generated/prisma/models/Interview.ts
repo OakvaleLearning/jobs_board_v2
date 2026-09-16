@@ -32,6 +32,8 @@ export type InterviewMinAggregateOutputType = {
   status: $Enums.InterviewStatus | null
   outcome: string | null
   notes: string | null
+  creditCharged: boolean | null
+  meetingUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,6 +46,8 @@ export type InterviewMaxAggregateOutputType = {
   status: $Enums.InterviewStatus | null
   outcome: string | null
   notes: string | null
+  creditCharged: boolean | null
+  meetingUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -57,6 +61,8 @@ export type InterviewCountAggregateOutputType = {
   status: number
   outcome: number
   notes: number
+  creditCharged: number
+  meetingUrl: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -71,6 +77,8 @@ export type InterviewMinAggregateInputType = {
   status?: true
   outcome?: true
   notes?: true
+  creditCharged?: true
+  meetingUrl?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -83,6 +91,8 @@ export type InterviewMaxAggregateInputType = {
   status?: true
   outcome?: true
   notes?: true
+  creditCharged?: true
+  meetingUrl?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -96,6 +106,8 @@ export type InterviewCountAggregateInputType = {
   status?: true
   outcome?: true
   notes?: true
+  creditCharged?: true
+  meetingUrl?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -182,6 +194,8 @@ export type InterviewGroupByOutputType = {
   status: $Enums.InterviewStatus
   outcome: string | null
   notes: string | null
+  creditCharged: boolean
+  meetingUrl: string | null
   createdAt: Date
   updatedAt: Date
   _count: InterviewCountAggregateOutputType | null
@@ -216,6 +230,8 @@ export type InterviewWhereInput = {
   status?: Prisma.EnumInterviewStatusFilter<"Interview"> | $Enums.InterviewStatus
   outcome?: Prisma.StringNullableFilter<"Interview"> | string | null
   notes?: Prisma.StringNullableFilter<"Interview"> | string | null
+  creditCharged?: Prisma.BoolFilter<"Interview"> | boolean
+  meetingUrl?: Prisma.StringNullableFilter<"Interview"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Interview"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Interview"> | Date | string
   application?: Prisma.XOR<Prisma.ApplicationScalarRelationFilter, Prisma.ApplicationWhereInput>
@@ -230,6 +246,8 @@ export type InterviewOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   outcome?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  creditCharged?: Prisma.SortOrder
+  meetingUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   application?: Prisma.ApplicationOrderByWithRelationInput
@@ -247,6 +265,8 @@ export type InterviewWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumInterviewStatusFilter<"Interview"> | $Enums.InterviewStatus
   outcome?: Prisma.StringNullableFilter<"Interview"> | string | null
   notes?: Prisma.StringNullableFilter<"Interview"> | string | null
+  creditCharged?: Prisma.BoolFilter<"Interview"> | boolean
+  meetingUrl?: Prisma.StringNullableFilter<"Interview"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Interview"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Interview"> | Date | string
   application?: Prisma.XOR<Prisma.ApplicationScalarRelationFilter, Prisma.ApplicationWhereInput>
@@ -261,6 +281,8 @@ export type InterviewOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   outcome?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  creditCharged?: Prisma.SortOrder
+  meetingUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.InterviewCountOrderByAggregateInput
@@ -280,6 +302,8 @@ export type InterviewScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumInterviewStatusWithAggregatesFilter<"Interview"> | $Enums.InterviewStatus
   outcome?: Prisma.StringNullableWithAggregatesFilter<"Interview"> | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"Interview"> | string | null
+  creditCharged?: Prisma.BoolWithAggregatesFilter<"Interview"> | boolean
+  meetingUrl?: Prisma.StringNullableWithAggregatesFilter<"Interview"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Interview"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Interview"> | Date | string
 }
@@ -292,6 +316,8 @@ export type InterviewCreateInput = {
   status?: $Enums.InterviewStatus
   outcome?: string | null
   notes?: string | null
+  creditCharged?: boolean
+  meetingUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   application: Prisma.ApplicationCreateNestedOneWithoutInterviewInput
@@ -306,6 +332,8 @@ export type InterviewUncheckedCreateInput = {
   status?: $Enums.InterviewStatus
   outcome?: string | null
   notes?: string | null
+  creditCharged?: boolean
+  meetingUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -318,6 +346,8 @@ export type InterviewUpdateInput = {
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   outcome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creditCharged?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  meetingUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   application?: Prisma.ApplicationUpdateOneRequiredWithoutInterviewNestedInput
@@ -332,6 +362,8 @@ export type InterviewUncheckedUpdateInput = {
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   outcome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creditCharged?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  meetingUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -345,6 +377,8 @@ export type InterviewCreateManyInput = {
   status?: $Enums.InterviewStatus
   outcome?: string | null
   notes?: string | null
+  creditCharged?: boolean
+  meetingUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -357,6 +391,8 @@ export type InterviewUpdateManyMutationInput = {
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   outcome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creditCharged?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  meetingUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -370,6 +406,8 @@ export type InterviewUncheckedUpdateManyInput = {
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   outcome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creditCharged?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  meetingUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -388,6 +426,8 @@ export type InterviewCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   outcome?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  creditCharged?: Prisma.SortOrder
+  meetingUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -400,6 +440,8 @@ export type InterviewMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   outcome?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  creditCharged?: Prisma.SortOrder
+  meetingUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -412,6 +454,8 @@ export type InterviewMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   outcome?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  creditCharged?: Prisma.SortOrder
+  meetingUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -464,6 +508,8 @@ export type InterviewCreateWithoutApplicationInput = {
   status?: $Enums.InterviewStatus
   outcome?: string | null
   notes?: string | null
+  creditCharged?: boolean
+  meetingUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -476,6 +522,8 @@ export type InterviewUncheckedCreateWithoutApplicationInput = {
   status?: $Enums.InterviewStatus
   outcome?: string | null
   notes?: string | null
+  creditCharged?: boolean
+  meetingUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -504,6 +552,8 @@ export type InterviewUpdateWithoutApplicationInput = {
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   outcome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creditCharged?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  meetingUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -516,6 +566,8 @@ export type InterviewUncheckedUpdateWithoutApplicationInput = {
   status?: Prisma.EnumInterviewStatusFieldUpdateOperationsInput | $Enums.InterviewStatus
   outcome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creditCharged?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  meetingUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -531,6 +583,8 @@ export type InterviewSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   status?: boolean
   outcome?: boolean
   notes?: boolean
+  creditCharged?: boolean
+  meetingUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
@@ -545,6 +599,8 @@ export type InterviewSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   status?: boolean
   outcome?: boolean
   notes?: boolean
+  creditCharged?: boolean
+  meetingUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
@@ -559,6 +615,8 @@ export type InterviewSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   status?: boolean
   outcome?: boolean
   notes?: boolean
+  creditCharged?: boolean
+  meetingUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
@@ -573,11 +631,13 @@ export type InterviewSelectScalar = {
   status?: boolean
   outcome?: boolean
   notes?: boolean
+  creditCharged?: boolean
+  meetingUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type InterviewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "applicationId" | "format" | "proposedTimes" | "confirmedTime" | "status" | "outcome" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["interview"]>
+export type InterviewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "applicationId" | "format" | "proposedTimes" | "confirmedTime" | "status" | "outcome" | "notes" | "creditCharged" | "meetingUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["interview"]>
 export type InterviewInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
 }
@@ -602,6 +662,8 @@ export type $InterviewPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     status: $Enums.InterviewStatus
     outcome: string | null
     notes: string | null
+    creditCharged: boolean
+    meetingUrl: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["interview"]>
@@ -1036,6 +1098,8 @@ export interface InterviewFieldRefs {
   readonly status: Prisma.FieldRef<"Interview", 'InterviewStatus'>
   readonly outcome: Prisma.FieldRef<"Interview", 'String'>
   readonly notes: Prisma.FieldRef<"Interview", 'String'>
+  readonly creditCharged: Prisma.FieldRef<"Interview", 'Boolean'>
+  readonly meetingUrl: Prisma.FieldRef<"Interview", 'String'>
   readonly createdAt: Prisma.FieldRef<"Interview", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Interview", 'DateTime'>
 }

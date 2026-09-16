@@ -423,6 +423,8 @@ export const ModelName = {
   ComplaintDocument: 'ComplaintDocument',
   Invoice: 'Invoice',
   Assessment: 'Assessment',
+  CareLogWorkspace: 'CareLogWorkspace',
+  CareLogEntry: 'CareLogEntry',
   Conversation: 'Conversation',
   Message: 'Message',
   Notification: 'Notification',
@@ -444,7 +446,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "workerProfile" | "education" | "experience" | "reference" | "workerDocument" | "employerProfile" | "employerDocument" | "workforceCategory" | "employerType" | "careType" | "job" | "jobCareType" | "application" | "shortlist" | "interview" | "offer" | "placement" | "contractTemplate" | "contract" | "welfareCheck" | "complaint" | "complaintEvent" | "complaintDocument" | "invoice" | "assessment" | "conversation" | "message" | "notification" | "auditLog" | "review" | "matchingModel"
+    modelProps: "user" | "workerProfile" | "education" | "experience" | "reference" | "workerDocument" | "employerProfile" | "employerDocument" | "workforceCategory" | "employerType" | "careType" | "job" | "jobCareType" | "application" | "shortlist" | "interview" | "offer" | "placement" | "contractTemplate" | "contract" | "welfareCheck" | "complaint" | "complaintEvent" | "complaintDocument" | "invoice" | "assessment" | "careLogWorkspace" | "careLogEntry" | "conversation" | "message" | "notification" | "auditLog" | "review" | "matchingModel"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2372,6 +2374,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CareLogWorkspace: {
+      payload: Prisma.$CareLogWorkspacePayload<ExtArgs>
+      fields: Prisma.CareLogWorkspaceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CareLogWorkspaceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogWorkspacePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CareLogWorkspaceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogWorkspacePayload>
+        }
+        findFirst: {
+          args: Prisma.CareLogWorkspaceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogWorkspacePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CareLogWorkspaceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogWorkspacePayload>
+        }
+        findMany: {
+          args: Prisma.CareLogWorkspaceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogWorkspacePayload>[]
+        }
+        create: {
+          args: Prisma.CareLogWorkspaceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogWorkspacePayload>
+        }
+        createMany: {
+          args: Prisma.CareLogWorkspaceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CareLogWorkspaceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogWorkspacePayload>[]
+        }
+        delete: {
+          args: Prisma.CareLogWorkspaceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogWorkspacePayload>
+        }
+        update: {
+          args: Prisma.CareLogWorkspaceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogWorkspacePayload>
+        }
+        deleteMany: {
+          args: Prisma.CareLogWorkspaceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CareLogWorkspaceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CareLogWorkspaceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogWorkspacePayload>[]
+        }
+        upsert: {
+          args: Prisma.CareLogWorkspaceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogWorkspacePayload>
+        }
+        aggregate: {
+          args: Prisma.CareLogWorkspaceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCareLogWorkspace>
+        }
+        groupBy: {
+          args: Prisma.CareLogWorkspaceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CareLogWorkspaceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CareLogWorkspaceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CareLogWorkspaceCountAggregateOutputType> | number
+        }
+      }
+    }
+    CareLogEntry: {
+      payload: Prisma.$CareLogEntryPayload<ExtArgs>
+      fields: Prisma.CareLogEntryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CareLogEntryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogEntryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CareLogEntryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogEntryPayload>
+        }
+        findFirst: {
+          args: Prisma.CareLogEntryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogEntryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CareLogEntryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogEntryPayload>
+        }
+        findMany: {
+          args: Prisma.CareLogEntryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogEntryPayload>[]
+        }
+        create: {
+          args: Prisma.CareLogEntryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogEntryPayload>
+        }
+        createMany: {
+          args: Prisma.CareLogEntryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CareLogEntryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogEntryPayload>[]
+        }
+        delete: {
+          args: Prisma.CareLogEntryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogEntryPayload>
+        }
+        update: {
+          args: Prisma.CareLogEntryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogEntryPayload>
+        }
+        deleteMany: {
+          args: Prisma.CareLogEntryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CareLogEntryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CareLogEntryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogEntryPayload>[]
+        }
+        upsert: {
+          args: Prisma.CareLogEntryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CareLogEntryPayload>
+        }
+        aggregate: {
+          args: Prisma.CareLogEntryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCareLogEntry>
+        }
+        groupBy: {
+          args: Prisma.CareLogEntryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CareLogEntryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CareLogEntryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CareLogEntryCountAggregateOutputType> | number
+        }
+      }
+    }
     Conversation: {
       payload: Prisma.$ConversationPayload<ExtArgs>
       fields: Prisma.ConversationFieldRefs
@@ -2971,6 +3121,16 @@ export const EmployerProfileScalarFieldEnum = {
   userId: 'userId',
   kind: 'kind',
   employerTypeId: 'employerTypeId',
+  accountType: 'accountType',
+  currency: 'currency',
+  countryCode: 'countryCode',
+  planTier: 'planTier',
+  subscriptionStatus: 'subscriptionStatus',
+  subscribedAt: 'subscribedAt',
+  periodEnd: 'periodEnd',
+  allowanceCredits: 'allowanceCredits',
+  purchasedCredits: 'purchasedCredits',
+  creditsGrantedAt: 'creditsGrantedAt',
   orgName: 'orgName',
   sector: 'sector',
   cacNumber: 'cacNumber',
@@ -3120,6 +3280,8 @@ export const InterviewScalarFieldEnum = {
   status: 'status',
   outcome: 'outcome',
   notes: 'notes',
+  creditCharged: 'creditCharged',
+  meetingUrl: 'meetingUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -3286,7 +3448,10 @@ export const InvoiceScalarFieldEnum = {
   dueAt: 'dueAt',
   paidAt: 'paidAt',
   paystackRef: 'paystackRef',
+  provider: 'provider',
+  providerRef: 'providerRef',
   lineItems: 'lineItems',
+  purchase: 'purchase',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -3305,6 +3470,40 @@ export const AssessmentScalarFieldEnum = {
 } as const
 
 export type AssessmentScalarFieldEnum = (typeof AssessmentScalarFieldEnum)[keyof typeof AssessmentScalarFieldEnum]
+
+
+export const CareLogWorkspaceScalarFieldEnum = {
+  id: 'id',
+  placementId: 'placementId',
+  active: 'active',
+  lastDigestAt: 'lastDigestAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CareLogWorkspaceScalarFieldEnum = (typeof CareLogWorkspaceScalarFieldEnum)[keyof typeof CareLogWorkspaceScalarFieldEnum]
+
+
+export const CareLogEntryScalarFieldEnum = {
+  id: 'id',
+  workspaceId: 'workspaceId',
+  workerId: 'workerId',
+  loggedFor: 'loggedFor',
+  bloodPressure: 'bloodPressure',
+  temperature: 'temperature',
+  pulse: 'pulse',
+  weight: 'weight',
+  medicationsTaken: 'medicationsTaken',
+  medicationTime: 'medicationTime',
+  meals: 'meals',
+  activities: 'activities',
+  mood: 'mood',
+  notes: 'notes',
+  concernFlag: 'concernFlag',
+  createdAt: 'createdAt'
+} as const
+
+export type CareLogEntryScalarFieldEnum = (typeof CareLogEntryScalarFieldEnum)[keyof typeof CareLogEntryScalarFieldEnum]
 
 
 export const ConversationScalarFieldEnum = {
@@ -3649,6 +3848,48 @@ export type ListEnumEmployerKindFieldRefInput<$PrismaModel> = FieldRefInputType<
 
 
 /**
+ * Reference to a field of type 'AccountType'
+ */
+export type EnumAccountTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccountType'>
+    
+
+
+/**
+ * Reference to a field of type 'AccountType[]'
+ */
+export type ListEnumAccountTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccountType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PlanTier'
+ */
+export type EnumPlanTierFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlanTier'>
+    
+
+
+/**
+ * Reference to a field of type 'PlanTier[]'
+ */
+export type ListEnumPlanTierFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlanTier[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SubscriptionStatus'
+ */
+export type EnumSubscriptionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'SubscriptionStatus[]'
+ */
+export type ListEnumSubscriptionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'EmployerDocType'
  */
 export type EnumEmployerDocTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmployerDocType'>
@@ -3915,6 +4156,20 @@ export type ListEnumInvoiceStatusFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
+ * Reference to a field of type 'PaymentProvider'
+ */
+export type EnumPaymentProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentProvider'>
+    
+
+
+/**
+ * Reference to a field of type 'PaymentProvider[]'
+ */
+export type ListEnumPaymentProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentProvider[]'>
+    
+
+
+/**
  * Reference to a field of type 'AssessmentType'
  */
 export type EnumAssessmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AssessmentType'>
@@ -4132,6 +4387,8 @@ export type GlobalOmitConfig = {
   complaintDocument?: Prisma.ComplaintDocumentOmit
   invoice?: Prisma.InvoiceOmit
   assessment?: Prisma.AssessmentOmit
+  careLogWorkspace?: Prisma.CareLogWorkspaceOmit
+  careLogEntry?: Prisma.CareLogEntryOmit
   conversation?: Prisma.ConversationOmit
   message?: Prisma.MessageOmit
   notification?: Prisma.NotificationOmit

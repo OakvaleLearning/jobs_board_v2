@@ -9,6 +9,12 @@ export type FormState = {
   message?: string;
   fieldErrors?: Record<string, string>;
   /**
+   * A machine-readable outcome the client can branch on, when "show the
+   * message" isn't the right response. Used by the interview flow to open the
+   * upgrade / buy-a-credit dialog instead of surfacing an error.
+   */
+  code?: "OUT_OF_CREDITS" | "NO_SUBSCRIPTION";
+  /**
    * The raw values the user submitted. React 19 automatically resets an
    * uncontrolled `<form action={fn}>` after the action runs — including on a
    * failed submission — so we echo the values back and use them as the

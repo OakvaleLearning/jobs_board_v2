@@ -27,11 +27,15 @@ export type AggregateEmployerProfile = {
 }
 
 export type EmployerProfileAvgAggregateOutputType = {
+  allowanceCredits: number | null
+  purchasedCredits: number | null
   ratingAvg: number | null
   ratingCount: number | null
 }
 
 export type EmployerProfileSumAggregateOutputType = {
+  allowanceCredits: number | null
+  purchasedCredits: number | null
   ratingAvg: number | null
   ratingCount: number | null
 }
@@ -41,6 +45,16 @@ export type EmployerProfileMinAggregateOutputType = {
   userId: string | null
   kind: $Enums.EmployerKind | null
   employerTypeId: string | null
+  accountType: $Enums.AccountType | null
+  currency: $Enums.Currency | null
+  countryCode: string | null
+  planTier: $Enums.PlanTier | null
+  subscriptionStatus: $Enums.SubscriptionStatus | null
+  subscribedAt: Date | null
+  periodEnd: Date | null
+  allowanceCredits: number | null
+  purchasedCredits: number | null
+  creditsGrantedAt: Date | null
   orgName: string | null
   sector: string | null
   cacNumber: string | null
@@ -64,6 +78,16 @@ export type EmployerProfileMaxAggregateOutputType = {
   userId: string | null
   kind: $Enums.EmployerKind | null
   employerTypeId: string | null
+  accountType: $Enums.AccountType | null
+  currency: $Enums.Currency | null
+  countryCode: string | null
+  planTier: $Enums.PlanTier | null
+  subscriptionStatus: $Enums.SubscriptionStatus | null
+  subscribedAt: Date | null
+  periodEnd: Date | null
+  allowanceCredits: number | null
+  purchasedCredits: number | null
+  creditsGrantedAt: Date | null
   orgName: string | null
   sector: string | null
   cacNumber: string | null
@@ -87,6 +111,16 @@ export type EmployerProfileCountAggregateOutputType = {
   userId: number
   kind: number
   employerTypeId: number
+  accountType: number
+  currency: number
+  countryCode: number
+  planTier: number
+  subscriptionStatus: number
+  subscribedAt: number
+  periodEnd: number
+  allowanceCredits: number
+  purchasedCredits: number
+  creditsGrantedAt: number
   orgName: number
   sector: number
   cacNumber: number
@@ -108,11 +142,15 @@ export type EmployerProfileCountAggregateOutputType = {
 
 
 export type EmployerProfileAvgAggregateInputType = {
+  allowanceCredits?: true
+  purchasedCredits?: true
   ratingAvg?: true
   ratingCount?: true
 }
 
 export type EmployerProfileSumAggregateInputType = {
+  allowanceCredits?: true
+  purchasedCredits?: true
   ratingAvg?: true
   ratingCount?: true
 }
@@ -122,6 +160,16 @@ export type EmployerProfileMinAggregateInputType = {
   userId?: true
   kind?: true
   employerTypeId?: true
+  accountType?: true
+  currency?: true
+  countryCode?: true
+  planTier?: true
+  subscriptionStatus?: true
+  subscribedAt?: true
+  periodEnd?: true
+  allowanceCredits?: true
+  purchasedCredits?: true
+  creditsGrantedAt?: true
   orgName?: true
   sector?: true
   cacNumber?: true
@@ -145,6 +193,16 @@ export type EmployerProfileMaxAggregateInputType = {
   userId?: true
   kind?: true
   employerTypeId?: true
+  accountType?: true
+  currency?: true
+  countryCode?: true
+  planTier?: true
+  subscriptionStatus?: true
+  subscribedAt?: true
+  periodEnd?: true
+  allowanceCredits?: true
+  purchasedCredits?: true
+  creditsGrantedAt?: true
   orgName?: true
   sector?: true
   cacNumber?: true
@@ -168,6 +226,16 @@ export type EmployerProfileCountAggregateInputType = {
   userId?: true
   kind?: true
   employerTypeId?: true
+  accountType?: true
+  currency?: true
+  countryCode?: true
+  planTier?: true
+  subscriptionStatus?: true
+  subscribedAt?: true
+  periodEnd?: true
+  allowanceCredits?: true
+  purchasedCredits?: true
+  creditsGrantedAt?: true
   orgName?: true
   sector?: true
   cacNumber?: true
@@ -278,6 +346,16 @@ export type EmployerProfileGroupByOutputType = {
   userId: string
   kind: $Enums.EmployerKind
   employerTypeId: string | null
+  accountType: $Enums.AccountType
+  currency: $Enums.Currency
+  countryCode: string | null
+  planTier: $Enums.PlanTier | null
+  subscriptionStatus: $Enums.SubscriptionStatus
+  subscribedAt: Date | null
+  periodEnd: Date | null
+  allowanceCredits: number
+  purchasedCredits: number
+  creditsGrantedAt: Date | null
   orgName: string | null
   sector: string | null
   cacNumber: string | null
@@ -324,6 +402,16 @@ export type EmployerProfileWhereInput = {
   userId?: Prisma.StringFilter<"EmployerProfile"> | string
   kind?: Prisma.EnumEmployerKindFilter<"EmployerProfile"> | $Enums.EmployerKind
   employerTypeId?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
+  accountType?: Prisma.EnumAccountTypeFilter<"EmployerProfile"> | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFilter<"EmployerProfile"> | $Enums.Currency
+  countryCode?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
+  planTier?: Prisma.EnumPlanTierNullableFilter<"EmployerProfile"> | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFilter<"EmployerProfile"> | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
+  periodEnd?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
+  allowanceCredits?: Prisma.IntFilter<"EmployerProfile"> | number
+  purchasedCredits?: Prisma.IntFilter<"EmployerProfile"> | number
+  creditsGrantedAt?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
   orgName?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   sector?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   cacNumber?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
@@ -356,6 +444,16 @@ export type EmployerProfileOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   kind?: Prisma.SortOrder
   employerTypeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  accountType?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  planTier?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  subscribedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  periodEnd?: Prisma.SortOrderInput | Prisma.SortOrder
+  allowanceCredits?: Prisma.SortOrder
+  purchasedCredits?: Prisma.SortOrder
+  creditsGrantedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   orgName?: Prisma.SortOrderInput | Prisma.SortOrder
   sector?: Prisma.SortOrderInput | Prisma.SortOrder
   cacNumber?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -391,6 +489,16 @@ export type EmployerProfileWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.EmployerProfileWhereInput | Prisma.EmployerProfileWhereInput[]
   kind?: Prisma.EnumEmployerKindFilter<"EmployerProfile"> | $Enums.EmployerKind
   employerTypeId?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
+  accountType?: Prisma.EnumAccountTypeFilter<"EmployerProfile"> | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFilter<"EmployerProfile"> | $Enums.Currency
+  countryCode?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
+  planTier?: Prisma.EnumPlanTierNullableFilter<"EmployerProfile"> | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFilter<"EmployerProfile"> | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
+  periodEnd?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
+  allowanceCredits?: Prisma.IntFilter<"EmployerProfile"> | number
+  purchasedCredits?: Prisma.IntFilter<"EmployerProfile"> | number
+  creditsGrantedAt?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
   orgName?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   sector?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   cacNumber?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
@@ -423,6 +531,16 @@ export type EmployerProfileOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   kind?: Prisma.SortOrder
   employerTypeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  accountType?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  planTier?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  subscribedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  periodEnd?: Prisma.SortOrderInput | Prisma.SortOrder
+  allowanceCredits?: Prisma.SortOrder
+  purchasedCredits?: Prisma.SortOrder
+  creditsGrantedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   orgName?: Prisma.SortOrderInput | Prisma.SortOrder
   sector?: Prisma.SortOrderInput | Prisma.SortOrder
   cacNumber?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -454,6 +572,16 @@ export type EmployerProfileScalarWhereWithAggregatesInput = {
   userId?: Prisma.StringWithAggregatesFilter<"EmployerProfile"> | string
   kind?: Prisma.EnumEmployerKindWithAggregatesFilter<"EmployerProfile"> | $Enums.EmployerKind
   employerTypeId?: Prisma.StringNullableWithAggregatesFilter<"EmployerProfile"> | string | null
+  accountType?: Prisma.EnumAccountTypeWithAggregatesFilter<"EmployerProfile"> | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyWithAggregatesFilter<"EmployerProfile"> | $Enums.Currency
+  countryCode?: Prisma.StringNullableWithAggregatesFilter<"EmployerProfile"> | string | null
+  planTier?: Prisma.EnumPlanTierNullableWithAggregatesFilter<"EmployerProfile"> | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusWithAggregatesFilter<"EmployerProfile"> | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EmployerProfile"> | Date | string | null
+  periodEnd?: Prisma.DateTimeNullableWithAggregatesFilter<"EmployerProfile"> | Date | string | null
+  allowanceCredits?: Prisma.IntWithAggregatesFilter<"EmployerProfile"> | number
+  purchasedCredits?: Prisma.IntWithAggregatesFilter<"EmployerProfile"> | number
+  creditsGrantedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EmployerProfile"> | Date | string | null
   orgName?: Prisma.StringNullableWithAggregatesFilter<"EmployerProfile"> | string | null
   sector?: Prisma.StringNullableWithAggregatesFilter<"EmployerProfile"> | string | null
   cacNumber?: Prisma.StringNullableWithAggregatesFilter<"EmployerProfile"> | string | null
@@ -475,6 +603,16 @@ export type EmployerProfileScalarWhereWithAggregatesInput = {
 export type EmployerProfileCreateInput = {
   id?: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -506,6 +644,16 @@ export type EmployerProfileUncheckedCreateInput = {
   userId: string
   kind: $Enums.EmployerKind
   employerTypeId?: string | null
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -533,6 +681,16 @@ export type EmployerProfileUncheckedCreateInput = {
 export type EmployerProfileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -564,6 +722,16 @@ export type EmployerProfileUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
   employerTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -593,6 +761,16 @@ export type EmployerProfileCreateManyInput = {
   userId: string
   kind: $Enums.EmployerKind
   employerTypeId?: string | null
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -614,6 +792,16 @@ export type EmployerProfileCreateManyInput = {
 export type EmployerProfileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -636,6 +824,16 @@ export type EmployerProfileUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
   employerTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -674,6 +872,16 @@ export type EmployerProfileCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   kind?: Prisma.SortOrder
   employerTypeId?: Prisma.SortOrder
+  accountType?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrder
+  planTier?: Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  subscribedAt?: Prisma.SortOrder
+  periodEnd?: Prisma.SortOrder
+  allowanceCredits?: Prisma.SortOrder
+  purchasedCredits?: Prisma.SortOrder
+  creditsGrantedAt?: Prisma.SortOrder
   orgName?: Prisma.SortOrder
   sector?: Prisma.SortOrder
   cacNumber?: Prisma.SortOrder
@@ -693,6 +901,8 @@ export type EmployerProfileCountOrderByAggregateInput = {
 }
 
 export type EmployerProfileAvgOrderByAggregateInput = {
+  allowanceCredits?: Prisma.SortOrder
+  purchasedCredits?: Prisma.SortOrder
   ratingAvg?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
 }
@@ -702,6 +912,16 @@ export type EmployerProfileMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   kind?: Prisma.SortOrder
   employerTypeId?: Prisma.SortOrder
+  accountType?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrder
+  planTier?: Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  subscribedAt?: Prisma.SortOrder
+  periodEnd?: Prisma.SortOrder
+  allowanceCredits?: Prisma.SortOrder
+  purchasedCredits?: Prisma.SortOrder
+  creditsGrantedAt?: Prisma.SortOrder
   orgName?: Prisma.SortOrder
   sector?: Prisma.SortOrder
   cacNumber?: Prisma.SortOrder
@@ -725,6 +945,16 @@ export type EmployerProfileMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   kind?: Prisma.SortOrder
   employerTypeId?: Prisma.SortOrder
+  accountType?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrder
+  planTier?: Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  subscribedAt?: Prisma.SortOrder
+  periodEnd?: Prisma.SortOrder
+  allowanceCredits?: Prisma.SortOrder
+  purchasedCredits?: Prisma.SortOrder
+  creditsGrantedAt?: Prisma.SortOrder
   orgName?: Prisma.SortOrder
   sector?: Prisma.SortOrder
   cacNumber?: Prisma.SortOrder
@@ -744,6 +974,8 @@ export type EmployerProfileMinOrderByAggregateInput = {
 }
 
 export type EmployerProfileSumOrderByAggregateInput = {
+  allowanceCredits?: Prisma.SortOrder
+  purchasedCredits?: Prisma.SortOrder
   ratingAvg?: Prisma.SortOrder
   ratingCount?: Prisma.SortOrder
 }
@@ -829,6 +1061,18 @@ export type EmployerProfileUncheckedUpdateManyWithoutAssignedAgentNestedInput = 
 
 export type EnumEmployerKindFieldUpdateOperationsInput = {
   set?: $Enums.EmployerKind
+}
+
+export type EnumAccountTypeFieldUpdateOperationsInput = {
+  set?: $Enums.AccountType
+}
+
+export type NullableEnumPlanTierFieldUpdateOperationsInput = {
+  set?: $Enums.PlanTier | null
+}
+
+export type EnumSubscriptionStatusFieldUpdateOperationsInput = {
+  set?: $Enums.SubscriptionStatus
 }
 
 export type EmployerProfileCreateNestedOneWithoutDocumentsInput = {
@@ -960,6 +1204,16 @@ export type EmployerProfileUpdateOneRequiredWithoutAssessmentsNestedInput = {
 export type EmployerProfileCreateWithoutUserInput = {
   id?: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -989,6 +1243,16 @@ export type EmployerProfileUncheckedCreateWithoutUserInput = {
   id?: string
   kind: $Enums.EmployerKind
   employerTypeId?: string | null
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1021,6 +1285,16 @@ export type EmployerProfileCreateOrConnectWithoutUserInput = {
 export type EmployerProfileCreateWithoutAssignedAgentInput = {
   id?: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1051,6 +1325,16 @@ export type EmployerProfileUncheckedCreateWithoutAssignedAgentInput = {
   userId: string
   kind: $Enums.EmployerKind
   employerTypeId?: string | null
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1098,6 +1382,16 @@ export type EmployerProfileUpdateToOneWithWhereWithoutUserInput = {
 export type EmployerProfileUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1127,6 +1421,16 @@ export type EmployerProfileUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
   employerTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1175,6 +1479,16 @@ export type EmployerProfileScalarWhereInput = {
   userId?: Prisma.StringFilter<"EmployerProfile"> | string
   kind?: Prisma.EnumEmployerKindFilter<"EmployerProfile"> | $Enums.EmployerKind
   employerTypeId?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
+  accountType?: Prisma.EnumAccountTypeFilter<"EmployerProfile"> | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFilter<"EmployerProfile"> | $Enums.Currency
+  countryCode?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
+  planTier?: Prisma.EnumPlanTierNullableFilter<"EmployerProfile"> | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFilter<"EmployerProfile"> | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
+  periodEnd?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
+  allowanceCredits?: Prisma.IntFilter<"EmployerProfile"> | number
+  purchasedCredits?: Prisma.IntFilter<"EmployerProfile"> | number
+  creditsGrantedAt?: Prisma.DateTimeNullableFilter<"EmployerProfile"> | Date | string | null
   orgName?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   sector?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
   cacNumber?: Prisma.StringNullableFilter<"EmployerProfile"> | string | null
@@ -1196,6 +1510,16 @@ export type EmployerProfileScalarWhereInput = {
 export type EmployerProfileCreateWithoutDocumentsInput = {
   id?: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1226,6 +1550,16 @@ export type EmployerProfileUncheckedCreateWithoutDocumentsInput = {
   userId: string
   kind: $Enums.EmployerKind
   employerTypeId?: string | null
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1268,6 +1602,16 @@ export type EmployerProfileUpdateToOneWithWhereWithoutDocumentsInput = {
 export type EmployerProfileUpdateWithoutDocumentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1298,6 +1642,16 @@ export type EmployerProfileUncheckedUpdateWithoutDocumentsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
   employerTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1324,6 +1678,16 @@ export type EmployerProfileUncheckedUpdateWithoutDocumentsInput = {
 export type EmployerProfileCreateWithoutEmployerTypeInput = {
   id?: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1353,6 +1717,16 @@ export type EmployerProfileUncheckedCreateWithoutEmployerTypeInput = {
   id?: string
   userId: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1406,6 +1780,16 @@ export type EmployerProfileUpdateManyWithWhereWithoutEmployerTypeInput = {
 export type EmployerProfileCreateWithoutJobsInput = {
   id?: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1436,6 +1820,16 @@ export type EmployerProfileUncheckedCreateWithoutJobsInput = {
   userId: string
   kind: $Enums.EmployerKind
   employerTypeId?: string | null
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1478,6 +1872,16 @@ export type EmployerProfileUpdateToOneWithWhereWithoutJobsInput = {
 export type EmployerProfileUpdateWithoutJobsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1508,6 +1912,16 @@ export type EmployerProfileUncheckedUpdateWithoutJobsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
   employerTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1534,6 +1948,16 @@ export type EmployerProfileUncheckedUpdateWithoutJobsInput = {
 export type EmployerProfileCreateWithoutShortlistsInput = {
   id?: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1564,6 +1988,16 @@ export type EmployerProfileUncheckedCreateWithoutShortlistsInput = {
   userId: string
   kind: $Enums.EmployerKind
   employerTypeId?: string | null
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1606,6 +2040,16 @@ export type EmployerProfileUpdateToOneWithWhereWithoutShortlistsInput = {
 export type EmployerProfileUpdateWithoutShortlistsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1636,6 +2080,16 @@ export type EmployerProfileUncheckedUpdateWithoutShortlistsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
   employerTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1662,6 +2116,16 @@ export type EmployerProfileUncheckedUpdateWithoutShortlistsInput = {
 export type EmployerProfileCreateWithoutPlacementsInput = {
   id?: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1692,6 +2156,16 @@ export type EmployerProfileUncheckedCreateWithoutPlacementsInput = {
   userId: string
   kind: $Enums.EmployerKind
   employerTypeId?: string | null
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1734,6 +2208,16 @@ export type EmployerProfileUpdateToOneWithWhereWithoutPlacementsInput = {
 export type EmployerProfileUpdateWithoutPlacementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1764,6 +2248,16 @@ export type EmployerProfileUncheckedUpdateWithoutPlacementsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
   employerTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1790,6 +2284,16 @@ export type EmployerProfileUncheckedUpdateWithoutPlacementsInput = {
 export type EmployerProfileCreateWithoutInvoicesInput = {
   id?: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1820,6 +2324,16 @@ export type EmployerProfileUncheckedCreateWithoutInvoicesInput = {
   userId: string
   kind: $Enums.EmployerKind
   employerTypeId?: string | null
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1862,6 +2376,16 @@ export type EmployerProfileUpdateToOneWithWhereWithoutInvoicesInput = {
 export type EmployerProfileUpdateWithoutInvoicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1892,6 +2416,16 @@ export type EmployerProfileUncheckedUpdateWithoutInvoicesInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
   employerTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1918,6 +2452,16 @@ export type EmployerProfileUncheckedUpdateWithoutInvoicesInput = {
 export type EmployerProfileCreateWithoutAssessmentsInput = {
   id?: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1948,6 +2492,16 @@ export type EmployerProfileUncheckedCreateWithoutAssessmentsInput = {
   userId: string
   kind: $Enums.EmployerKind
   employerTypeId?: string | null
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -1990,6 +2544,16 @@ export type EmployerProfileUpdateToOneWithWhereWithoutAssessmentsInput = {
 export type EmployerProfileUpdateWithoutAssessmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2020,6 +2584,16 @@ export type EmployerProfileUncheckedUpdateWithoutAssessmentsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
   employerTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2048,6 +2622,16 @@ export type EmployerProfileCreateManyAssignedAgentInput = {
   userId: string
   kind: $Enums.EmployerKind
   employerTypeId?: string | null
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -2068,6 +2652,16 @@ export type EmployerProfileCreateManyAssignedAgentInput = {
 export type EmployerProfileUpdateWithoutAssignedAgentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2098,6 +2692,16 @@ export type EmployerProfileUncheckedUpdateWithoutAssignedAgentInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
   employerTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2126,6 +2730,16 @@ export type EmployerProfileUncheckedUpdateManyWithoutAssignedAgentInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
   employerTypeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2147,6 +2761,16 @@ export type EmployerProfileCreateManyEmployerTypeInput = {
   id?: string
   userId: string
   kind: $Enums.EmployerKind
+  accountType?: $Enums.AccountType
+  currency?: $Enums.Currency
+  countryCode?: string | null
+  planTier?: $Enums.PlanTier | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  subscribedAt?: Date | string | null
+  periodEnd?: Date | string | null
+  allowanceCredits?: number
+  purchasedCredits?: number
+  creditsGrantedAt?: Date | string | null
   orgName?: string | null
   sector?: string | null
   cacNumber?: string | null
@@ -2168,6 +2792,16 @@ export type EmployerProfileCreateManyEmployerTypeInput = {
 export type EmployerProfileUpdateWithoutEmployerTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2197,6 +2831,16 @@ export type EmployerProfileUncheckedUpdateWithoutEmployerTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2225,6 +2869,16 @@ export type EmployerProfileUncheckedUpdateManyWithoutEmployerTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumEmployerKindFieldUpdateOperationsInput | $Enums.EmployerKind
+  accountType?: Prisma.EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+  currency?: Prisma.EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  planTier?: Prisma.NullableEnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  subscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  allowanceCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  purchasedCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  creditsGrantedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   orgName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cacNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2324,6 +2978,16 @@ export type EmployerProfileSelect<ExtArgs extends runtime.Types.Extensions.Inter
   userId?: boolean
   kind?: boolean
   employerTypeId?: boolean
+  accountType?: boolean
+  currency?: boolean
+  countryCode?: boolean
+  planTier?: boolean
+  subscriptionStatus?: boolean
+  subscribedAt?: boolean
+  periodEnd?: boolean
+  allowanceCredits?: boolean
+  purchasedCredits?: boolean
+  creditsGrantedAt?: boolean
   orgName?: boolean
   sector?: boolean
   cacNumber?: boolean
@@ -2357,6 +3021,16 @@ export type EmployerProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   userId?: boolean
   kind?: boolean
   employerTypeId?: boolean
+  accountType?: boolean
+  currency?: boolean
+  countryCode?: boolean
+  planTier?: boolean
+  subscriptionStatus?: boolean
+  subscribedAt?: boolean
+  periodEnd?: boolean
+  allowanceCredits?: boolean
+  purchasedCredits?: boolean
+  creditsGrantedAt?: boolean
   orgName?: boolean
   sector?: boolean
   cacNumber?: boolean
@@ -2383,6 +3057,16 @@ export type EmployerProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   userId?: boolean
   kind?: boolean
   employerTypeId?: boolean
+  accountType?: boolean
+  currency?: boolean
+  countryCode?: boolean
+  planTier?: boolean
+  subscriptionStatus?: boolean
+  subscribedAt?: boolean
+  periodEnd?: boolean
+  allowanceCredits?: boolean
+  purchasedCredits?: boolean
+  creditsGrantedAt?: boolean
   orgName?: boolean
   sector?: boolean
   cacNumber?: boolean
@@ -2409,6 +3093,16 @@ export type EmployerProfileSelectScalar = {
   userId?: boolean
   kind?: boolean
   employerTypeId?: boolean
+  accountType?: boolean
+  currency?: boolean
+  countryCode?: boolean
+  planTier?: boolean
+  subscriptionStatus?: boolean
+  subscribedAt?: boolean
+  periodEnd?: boolean
+  allowanceCredits?: boolean
+  purchasedCredits?: boolean
+  creditsGrantedAt?: boolean
   orgName?: boolean
   sector?: boolean
   cacNumber?: boolean
@@ -2427,7 +3121,7 @@ export type EmployerProfileSelectScalar = {
   deletedAt?: boolean
 }
 
-export type EmployerProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "kind" | "employerTypeId" | "orgName" | "sector" | "cacNumber" | "contactName" | "address" | "country" | "verificationStatus" | "reviewNotes" | "suspendedAt" | "suspendedReason" | "ratingAvg" | "ratingCount" | "assignedAgentId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["employerProfile"]>
+export type EmployerProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "kind" | "employerTypeId" | "accountType" | "currency" | "countryCode" | "planTier" | "subscriptionStatus" | "subscribedAt" | "periodEnd" | "allowanceCredits" | "purchasedCredits" | "creditsGrantedAt" | "orgName" | "sector" | "cacNumber" | "contactName" | "address" | "country" | "verificationStatus" | "reviewNotes" | "suspendedAt" | "suspendedReason" | "ratingAvg" | "ratingCount" | "assignedAgentId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["employerProfile"]>
 export type EmployerProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   employerType?: boolean | Prisma.EmployerProfile$employerTypeArgs<ExtArgs>
@@ -2469,6 +3163,16 @@ export type $EmployerProfilePayload<ExtArgs extends runtime.Types.Extensions.Int
     userId: string
     kind: $Enums.EmployerKind
     employerTypeId: string | null
+    accountType: $Enums.AccountType
+    currency: $Enums.Currency
+    countryCode: string | null
+    planTier: $Enums.PlanTier | null
+    subscriptionStatus: $Enums.SubscriptionStatus
+    subscribedAt: Date | null
+    periodEnd: Date | null
+    allowanceCredits: number
+    purchasedCredits: number
+    creditsGrantedAt: Date | null
     orgName: string | null
     sector: string | null
     cacNumber: string | null
@@ -2921,6 +3625,16 @@ export interface EmployerProfileFieldRefs {
   readonly userId: Prisma.FieldRef<"EmployerProfile", 'String'>
   readonly kind: Prisma.FieldRef<"EmployerProfile", 'EmployerKind'>
   readonly employerTypeId: Prisma.FieldRef<"EmployerProfile", 'String'>
+  readonly accountType: Prisma.FieldRef<"EmployerProfile", 'AccountType'>
+  readonly currency: Prisma.FieldRef<"EmployerProfile", 'Currency'>
+  readonly countryCode: Prisma.FieldRef<"EmployerProfile", 'String'>
+  readonly planTier: Prisma.FieldRef<"EmployerProfile", 'PlanTier'>
+  readonly subscriptionStatus: Prisma.FieldRef<"EmployerProfile", 'SubscriptionStatus'>
+  readonly subscribedAt: Prisma.FieldRef<"EmployerProfile", 'DateTime'>
+  readonly periodEnd: Prisma.FieldRef<"EmployerProfile", 'DateTime'>
+  readonly allowanceCredits: Prisma.FieldRef<"EmployerProfile", 'Int'>
+  readonly purchasedCredits: Prisma.FieldRef<"EmployerProfile", 'Int'>
+  readonly creditsGrantedAt: Prisma.FieldRef<"EmployerProfile", 'DateTime'>
   readonly orgName: Prisma.FieldRef<"EmployerProfile", 'String'>
   readonly sector: Prisma.FieldRef<"EmployerProfile", 'String'>
   readonly cacNumber: Prisma.FieldRef<"EmployerProfile", 'String'>

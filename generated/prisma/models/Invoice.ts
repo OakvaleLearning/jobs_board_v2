@@ -46,6 +46,8 @@ export type InvoiceMinAggregateOutputType = {
   dueAt: Date | null
   paidAt: Date | null
   paystackRef: string | null
+  provider: $Enums.PaymentProvider | null
+  providerRef: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -62,6 +64,8 @@ export type InvoiceMaxAggregateOutputType = {
   dueAt: Date | null
   paidAt: Date | null
   paystackRef: string | null
+  provider: $Enums.PaymentProvider | null
+  providerRef: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -78,7 +82,10 @@ export type InvoiceCountAggregateOutputType = {
   dueAt: number
   paidAt: number
   paystackRef: number
+  provider: number
+  providerRef: number
   lineItems: number
+  purchase: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -105,6 +112,8 @@ export type InvoiceMinAggregateInputType = {
   dueAt?: true
   paidAt?: true
   paystackRef?: true
+  provider?: true
+  providerRef?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -121,6 +130,8 @@ export type InvoiceMaxAggregateInputType = {
   dueAt?: true
   paidAt?: true
   paystackRef?: true
+  provider?: true
+  providerRef?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -137,7 +148,10 @@ export type InvoiceCountAggregateInputType = {
   dueAt?: true
   paidAt?: true
   paystackRef?: true
+  provider?: true
+  providerRef?: true
   lineItems?: true
+  purchase?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -241,7 +255,10 @@ export type InvoiceGroupByOutputType = {
   dueAt: Date | null
   paidAt: Date | null
   paystackRef: string | null
+  provider: $Enums.PaymentProvider | null
+  providerRef: string | null
   lineItems: runtime.JsonValue | null
+  purchase: runtime.JsonValue | null
   createdAt: Date
   updatedAt: Date
   _count: InvoiceCountAggregateOutputType | null
@@ -281,7 +298,10 @@ export type InvoiceWhereInput = {
   dueAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   paidAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   paystackRef?: Prisma.StringNullableFilter<"Invoice"> | string | null
+  provider?: Prisma.EnumPaymentProviderNullableFilter<"Invoice"> | $Enums.PaymentProvider | null
+  providerRef?: Prisma.StringNullableFilter<"Invoice"> | string | null
   lineItems?: Prisma.JsonNullableFilter<"Invoice">
+  purchase?: Prisma.JsonNullableFilter<"Invoice">
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   employer?: Prisma.XOR<Prisma.EmployerProfileScalarRelationFilter, Prisma.EmployerProfileWhereInput>
@@ -300,7 +320,10 @@ export type InvoiceOrderByWithRelationInput = {
   dueAt?: Prisma.SortOrderInput | Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
   paystackRef?: Prisma.SortOrderInput | Prisma.SortOrder
+  provider?: Prisma.SortOrderInput | Prisma.SortOrder
+  providerRef?: Prisma.SortOrderInput | Prisma.SortOrder
   lineItems?: Prisma.SortOrderInput | Prisma.SortOrder
+  purchase?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   employer?: Prisma.EmployerProfileOrderByWithRelationInput
@@ -322,7 +345,10 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   dueAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   paidAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   paystackRef?: Prisma.StringNullableFilter<"Invoice"> | string | null
+  provider?: Prisma.EnumPaymentProviderNullableFilter<"Invoice"> | $Enums.PaymentProvider | null
+  providerRef?: Prisma.StringNullableFilter<"Invoice"> | string | null
   lineItems?: Prisma.JsonNullableFilter<"Invoice">
+  purchase?: Prisma.JsonNullableFilter<"Invoice">
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   employer?: Prisma.XOR<Prisma.EmployerProfileScalarRelationFilter, Prisma.EmployerProfileWhereInput>
@@ -341,7 +367,10 @@ export type InvoiceOrderByWithAggregationInput = {
   dueAt?: Prisma.SortOrderInput | Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
   paystackRef?: Prisma.SortOrderInput | Prisma.SortOrder
+  provider?: Prisma.SortOrderInput | Prisma.SortOrder
+  providerRef?: Prisma.SortOrderInput | Prisma.SortOrder
   lineItems?: Prisma.SortOrderInput | Prisma.SortOrder
+  purchase?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.InvoiceCountOrderByAggregateInput
@@ -366,7 +395,10 @@ export type InvoiceScalarWhereWithAggregatesInput = {
   dueAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
   paidAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
   paystackRef?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null
+  provider?: Prisma.EnumPaymentProviderNullableWithAggregatesFilter<"Invoice"> | $Enums.PaymentProvider | null
+  providerRef?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null
   lineItems?: Prisma.JsonNullableWithAggregatesFilter<"Invoice">
+  purchase?: Prisma.JsonNullableWithAggregatesFilter<"Invoice">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string
 }
@@ -381,7 +413,10 @@ export type InvoiceCreateInput = {
   dueAt?: Date | string | null
   paidAt?: Date | string | null
   paystackRef?: string | null
+  provider?: $Enums.PaymentProvider | null
+  providerRef?: string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   employer: Prisma.EmployerProfileCreateNestedOneWithoutInvoicesInput
@@ -400,7 +435,10 @@ export type InvoiceUncheckedCreateInput = {
   dueAt?: Date | string | null
   paidAt?: Date | string | null
   paystackRef?: string | null
+  provider?: $Enums.PaymentProvider | null
+  providerRef?: string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -415,7 +453,10 @@ export type InvoiceUpdateInput = {
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paystackRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.NullableEnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider | null
+  providerRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employer?: Prisma.EmployerProfileUpdateOneRequiredWithoutInvoicesNestedInput
@@ -434,7 +475,10 @@ export type InvoiceUncheckedUpdateInput = {
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paystackRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.NullableEnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider | null
+  providerRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -451,7 +495,10 @@ export type InvoiceCreateManyInput = {
   dueAt?: Date | string | null
   paidAt?: Date | string | null
   paystackRef?: string | null
+  provider?: $Enums.PaymentProvider | null
+  providerRef?: string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -466,7 +513,10 @@ export type InvoiceUpdateManyMutationInput = {
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paystackRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.NullableEnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider | null
+  providerRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -483,7 +533,10 @@ export type InvoiceUncheckedUpdateManyInput = {
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paystackRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.NullableEnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider | null
+  providerRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -510,7 +563,10 @@ export type InvoiceCountOrderByAggregateInput = {
   dueAt?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
   paystackRef?: Prisma.SortOrder
+  provider?: Prisma.SortOrder
+  providerRef?: Prisma.SortOrder
   lineItems?: Prisma.SortOrder
+  purchase?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -531,6 +587,8 @@ export type InvoiceMaxOrderByAggregateInput = {
   dueAt?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
   paystackRef?: Prisma.SortOrder
+  provider?: Prisma.SortOrder
+  providerRef?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -547,6 +605,8 @@ export type InvoiceMinOrderByAggregateInput = {
   dueAt?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
   paystackRef?: Prisma.SortOrder
+  provider?: Prisma.SortOrder
+  providerRef?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -647,6 +707,10 @@ export type EnumInvoiceStatusFieldUpdateOperationsInput = {
   set?: $Enums.InvoiceStatus
 }
 
+export type NullableEnumPaymentProviderFieldUpdateOperationsInput = {
+  set?: $Enums.PaymentProvider | null
+}
+
 export type InvoiceCreateWithoutEmployerInput = {
   id?: string
   number: string
@@ -657,7 +721,10 @@ export type InvoiceCreateWithoutEmployerInput = {
   dueAt?: Date | string | null
   paidAt?: Date | string | null
   paystackRef?: string | null
+  provider?: $Enums.PaymentProvider | null
+  providerRef?: string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   placement?: Prisma.PlacementCreateNestedOneWithoutInvoicesInput
@@ -674,7 +741,10 @@ export type InvoiceUncheckedCreateWithoutEmployerInput = {
   dueAt?: Date | string | null
   paidAt?: Date | string | null
   paystackRef?: string | null
+  provider?: $Enums.PaymentProvider | null
+  providerRef?: string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -720,7 +790,10 @@ export type InvoiceScalarWhereInput = {
   dueAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   paidAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   paystackRef?: Prisma.StringNullableFilter<"Invoice"> | string | null
+  provider?: Prisma.EnumPaymentProviderNullableFilter<"Invoice"> | $Enums.PaymentProvider | null
+  providerRef?: Prisma.StringNullableFilter<"Invoice"> | string | null
   lineItems?: Prisma.JsonNullableFilter<"Invoice">
+  purchase?: Prisma.JsonNullableFilter<"Invoice">
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
 }
@@ -735,7 +808,10 @@ export type InvoiceCreateWithoutPlacementInput = {
   dueAt?: Date | string | null
   paidAt?: Date | string | null
   paystackRef?: string | null
+  provider?: $Enums.PaymentProvider | null
+  providerRef?: string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   employer: Prisma.EmployerProfileCreateNestedOneWithoutInvoicesInput
@@ -752,7 +828,10 @@ export type InvoiceUncheckedCreateWithoutPlacementInput = {
   dueAt?: Date | string | null
   paidAt?: Date | string | null
   paystackRef?: string | null
+  provider?: $Enums.PaymentProvider | null
+  providerRef?: string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -794,7 +873,10 @@ export type InvoiceCreateManyEmployerInput = {
   dueAt?: Date | string | null
   paidAt?: Date | string | null
   paystackRef?: string | null
+  provider?: $Enums.PaymentProvider | null
+  providerRef?: string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -809,7 +891,10 @@ export type InvoiceUpdateWithoutEmployerInput = {
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paystackRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.NullableEnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider | null
+  providerRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   placement?: Prisma.PlacementUpdateOneWithoutInvoicesNestedInput
@@ -826,7 +911,10 @@ export type InvoiceUncheckedUpdateWithoutEmployerInput = {
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paystackRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.NullableEnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider | null
+  providerRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -842,7 +930,10 @@ export type InvoiceUncheckedUpdateManyWithoutEmployerInput = {
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paystackRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.NullableEnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider | null
+  providerRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -858,7 +949,10 @@ export type InvoiceCreateManyPlacementInput = {
   dueAt?: Date | string | null
   paidAt?: Date | string | null
   paystackRef?: string | null
+  provider?: $Enums.PaymentProvider | null
+  providerRef?: string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -873,7 +967,10 @@ export type InvoiceUpdateWithoutPlacementInput = {
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paystackRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.NullableEnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider | null
+  providerRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employer?: Prisma.EmployerProfileUpdateOneRequiredWithoutInvoicesNestedInput
@@ -890,7 +987,10 @@ export type InvoiceUncheckedUpdateWithoutPlacementInput = {
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paystackRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.NullableEnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider | null
+  providerRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -906,7 +1006,10 @@ export type InvoiceUncheckedUpdateManyWithoutPlacementInput = {
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paystackRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provider?: Prisma.NullableEnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider | null
+  providerRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItems?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  purchase?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -925,7 +1028,10 @@ export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   dueAt?: boolean
   paidAt?: boolean
   paystackRef?: boolean
+  provider?: boolean
+  providerRef?: boolean
   lineItems?: boolean
+  purchase?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   employer?: boolean | Prisma.EmployerProfileDefaultArgs<ExtArgs>
@@ -944,7 +1050,10 @@ export type InvoiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   dueAt?: boolean
   paidAt?: boolean
   paystackRef?: boolean
+  provider?: boolean
+  providerRef?: boolean
   lineItems?: boolean
+  purchase?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   employer?: boolean | Prisma.EmployerProfileDefaultArgs<ExtArgs>
@@ -963,7 +1072,10 @@ export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   dueAt?: boolean
   paidAt?: boolean
   paystackRef?: boolean
+  provider?: boolean
+  providerRef?: boolean
   lineItems?: boolean
+  purchase?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   employer?: boolean | Prisma.EmployerProfileDefaultArgs<ExtArgs>
@@ -982,12 +1094,15 @@ export type InvoiceSelectScalar = {
   dueAt?: boolean
   paidAt?: boolean
   paystackRef?: boolean
+  provider?: boolean
+  providerRef?: boolean
   lineItems?: boolean
+  purchase?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "number" | "employerId" | "placementId" | "type" | "amount" | "currency" | "status" | "dueAt" | "paidAt" | "paystackRef" | "lineItems" | "createdAt" | "updatedAt", ExtArgs["result"]["invoice"]>
+export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "number" | "employerId" | "placementId" | "type" | "amount" | "currency" | "status" | "dueAt" | "paidAt" | "paystackRef" | "provider" | "providerRef" | "lineItems" | "purchase" | "createdAt" | "updatedAt", ExtArgs["result"]["invoice"]>
 export type InvoiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employer?: boolean | Prisma.EmployerProfileDefaultArgs<ExtArgs>
   placement?: boolean | Prisma.Invoice$placementArgs<ExtArgs>
@@ -1019,7 +1134,10 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     dueAt: Date | null
     paidAt: Date | null
     paystackRef: string | null
+    provider: $Enums.PaymentProvider | null
+    providerRef: string | null
     lineItems: runtime.JsonValue | null
+    purchase: runtime.JsonValue | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["invoice"]>
@@ -1458,7 +1576,10 @@ export interface InvoiceFieldRefs {
   readonly dueAt: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly paidAt: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly paystackRef: Prisma.FieldRef<"Invoice", 'String'>
+  readonly provider: Prisma.FieldRef<"Invoice", 'PaymentProvider'>
+  readonly providerRef: Prisma.FieldRef<"Invoice", 'String'>
   readonly lineItems: Prisma.FieldRef<"Invoice", 'Json'>
+  readonly purchase: Prisma.FieldRef<"Invoice", 'Json'>
   readonly createdAt: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Invoice", 'DateTime'>
 }

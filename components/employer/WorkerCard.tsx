@@ -13,6 +13,7 @@ import IconButton from "@mui/material/IconButton";
 import BookmarkRoundedIcon from "@mui/icons-material/BookmarkRounded";
 import BookmarkBorderRoundedIcon from "@mui/icons-material/BookmarkBorderRounded";
 import VerifiedRoundedIcon from "@mui/icons-material/VerifiedRounded";
+import VideocamRoundedIcon from "@mui/icons-material/VideocamRounded";
 import Link from "next/link";
 import { toggleShortlist } from "@/app/employer/shortlist-actions";
 
@@ -28,6 +29,12 @@ export type WorkerCardData = {
   certified: boolean;
   backgroundClear: boolean;
   shortlisted: boolean;
+  /**
+   * Candidate has a video introduction on file, so they can be assessed
+   * remotely. Only surfaced to Diaspora Sponsor accounts, whose directory is
+   * the "Full Verified + Diaspora-Ready" pool.
+   */
+  diasporaReady?: boolean;
 };
 
 export default function WorkerCard({ worker }: { worker: WorkerCardData }) {
@@ -66,6 +73,14 @@ export default function WorkerCard({ worker }: { worker: WorkerCardData }) {
             <Chip icon={<VerifiedRoundedIcon />} label="Oakvale verified" color="primary" size="small" />
           )}
           {worker.backgroundClear && <Chip label="Background clear" color="success" size="small" />}
+          {worker.diasporaReady && (
+            <Chip
+              icon={<VideocamRoundedIcon />}
+              label="Diaspora-ready"
+              color="secondary"
+              size="small"
+            />
+          )}
         </Stack>
 
         <Stack direction="row" spacing={0.75} sx={{ flexWrap: "wrap", gap: 0.75, mb: 2 }}>
